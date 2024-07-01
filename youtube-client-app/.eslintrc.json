@@ -1,6 +1,6 @@
 {
   "extends": [
-    "airbnb-base",
+    "airbnb-typescript/base",
     "plugin:@typescript-eslint/recommended"
   ],
   "env": {
@@ -9,7 +9,8 @@
   },
   "parser": "@typescript-eslint/parser",
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "import"
   ],
   "parserOptions": {
     "ecmaVersion": 12,
