@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
-import { HeaderComponent } from './components/header/header.component';
+import  HeaderComponent  from './components/header/header.component';
 import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
