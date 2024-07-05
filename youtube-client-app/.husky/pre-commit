@@ -1,0 +1,6 @@
+# Inside .husky/pre-commit
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+cd /home/den/Документи/denhelloworld-ANGULAR2024Q3/youtube-client-app
+npm run lint
