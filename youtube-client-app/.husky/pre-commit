@@ -2,5 +2,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-cd /home/den/Документи/denhelloworld-ANGULAR2024Q3/youtube-client-app
+cd "$(dirname "$0")/.."
 npm run lint
