@@ -8,6 +8,5 @@ export class FiltService {
 
   toggleFilter() {
     this.showFilter = !this.showFilter;
-    // console.log(this.showFilter);
   }
 }

@@ -1,13 +1,21 @@
 <div *ngIf="isVisible" class="card filter" @filterSlide>
   <p-toolbar>
-  <div class="p-toolbar-group-start">
-
-  </div>
+  <div class="p-toolbar-group-start"></div>
   <div class="p-toolbar-group-center">
-    <p>Filter</p>
-  </div>
-  <div class="p-toolbar-group-end">
 
+  <p-fieldset legend="Sorting By">
+    <div class="card">
+      <p-menubar [model]="filterItems" />
+    </div>
+    <p-autoComplete
+    [(ngModel)]="selectedCountry"
+    [dropdown]="true"
+    [suggestions]="filteredCountries"
+    (completeMethod)="filterCountry($event)"
+    field="name" />
+  </p-fieldset>
   </div>
+
+  <div class="p-toolbar-group-end"></div>
   </p-toolbar>
 </div>

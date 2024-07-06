@@ -8,7 +8,6 @@ import { AvatarModule } from 'primeng/avatar';
 import FilterComponent from '../filter/filter.component';
 import { FiltService } from '../filter/filter.service';
 
-
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -24,6 +23,5 @@ export default class HeaderComponent {
   toggleFilterView() {
     this.filtService.toggleFilter();
     this.isFilterShow = this.filtService.showFilter;
-
   }
 }
