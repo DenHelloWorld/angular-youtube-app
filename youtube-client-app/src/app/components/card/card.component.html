@@ -1,1 +1,13 @@
-<p>card works!</p>
+<div class="card flex justify-content-center">
+  <p-card header={{headerText}} subheader={{subHeaderText}} [style]="{ width: '360px' }">
+      <ng-template pTemplate="header">
+        <img [src]="imageUrl" [alt]="imageAlt" />
+      </ng-template>
+      <ng-content></ng-content>
+      <ng-template pTemplate="footer">
+          <div class="flex gap-3 mt-1">
+             <ng-content select="app-custom-button"></ng-content>
+          </div>
+      </ng-template>
+  </p-card>
+</div>

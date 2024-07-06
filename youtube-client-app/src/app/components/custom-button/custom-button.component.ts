@@ -20,6 +20,10 @@ export class CustomButtonComponent {
 
   @Input() rounded: boolean | undefined;
 
+  @Input() class: string | undefined;
+
+  @Input() styleClass: string | undefined;
+
   @Output() customEvent = new EventEmitter<void>();
 
   handleCustomEvent() {
