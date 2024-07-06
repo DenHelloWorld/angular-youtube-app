@@ -11,10 +11,10 @@
             <input pInputText placeholder="Search" />
         </span>
 
-        <p-button label="Search" [raised]="true" severity="primary" class="mr-2"/>
+        <app-custom-button [raised]="true" severity="primary" class="mr-2">Search</app-custom-button>
 
 
-        <p-button (onClick)="toggleFilterView()" [raised]="!isFilterShow" icon="pi pi-sliders-v" />
+        <app-custom-button (click)="toggleFilterView()" [raised]="!isFilterShow" icon="pi pi-sliders-v" />
     </div>
 
     <div class="p-toolbar-group-end">
@@ -22,7 +22,7 @@
         <span class="font-bold text-bluegray-50">
           Your Name
       </span>
-      <p-button [raised]="true" [rounded]="true" icon="pi pi-user" />
+      <app-custom-button [raised]="true" [rounded]="true" icon="pi pi-user"/>
     </div>
     </div>
   </p-toolbar>

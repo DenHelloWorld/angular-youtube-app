@@ -45,6 +45,8 @@ export default class FilterComponent implements OnInit {
 
   filteredCountries: Country[] = [];
 
+  placeHolder: string = 'Name';
+
   constructor(public filtService: FiltService, public countryService: CountryService) {}
 
   get isVisible() {

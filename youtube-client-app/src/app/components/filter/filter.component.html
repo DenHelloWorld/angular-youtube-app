@@ -3,16 +3,16 @@
   <div class="p-toolbar-group-start"></div>
   <div class="p-toolbar-group-center">
 
-  <p-fieldset legend="Sorting By">
-    <div class="card">
-      <p-menubar [model]="filterItems" />
-    </div>
+  <p-fieldset legend="Sorting By" >
+    <p-menubar [model]="filterItems"/>
     <p-autoComplete
-    [(ngModel)]="selectedCountry"
-    [dropdown]="true"
-    [suggestions]="filteredCountries"
-    (completeMethod)="filterCountry($event)"
-    field="name" />
+      [(ngModel)]="selectedCountry"
+      [dropdown]="true"
+      [suggestions]="filteredCountries"
+      (completeMethod)="filterCountry($event)"
+      [placeholder]="placeHolder"
+      field="name" />
+
   </p-fieldset>
   </div>
 
