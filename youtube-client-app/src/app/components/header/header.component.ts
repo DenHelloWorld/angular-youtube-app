@@ -5,7 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { AvatarModule } from 'primeng/avatar';
 import FilterComponent from '../filter/filter.component';
-import { FiltService } from '../filter/filter.service';
+import { FiltService } from '../../services/filter/filter.service';
 import { CustomButtonComponent } from '../custom-button/custom-button.component';
 
 @Component({
