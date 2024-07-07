@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { YouTubeVideoListResponse } from 'app/interfaces/youtube-response.interface';
+import { Item, YouTubeVideoListResponse } from 'app/interfaces/youtube-response.interface';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class YoutubeServiceService {
-  private mockVideos: YouTubeVideoListResponse = {
+  public mockVideos: YouTubeVideoListResponse = {
     'kind': 'youtube#videoListResponse',
     'etag': '"Fznwjl6JEQdo1MGvHOGaz_YanRU/Cmodw7c5XPTM8Yg3kMXelihxek4"',
     'pageInfo': {
@@ -754,7 +754,11 @@ export class YoutubeServiceService {
     ],
   };
 
-  getVideos(): Observable<YouTubeVideoListResponse> {
+  getAll(): Observable<YouTubeVideoListResponse> {
     return of(this.mockVideos);
+  }
+
+  getOnce(video: number): Item {
+    return this.mockVideos.items[video];
   }
 }

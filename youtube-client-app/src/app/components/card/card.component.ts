@@ -17,4 +17,6 @@ export default class CardComponent {
   @Input() headerText: string | undefined;
 
   @Input() subHeaderText: string | undefined;
+
+  @Input() fallBackImgUrl: string | undefined;
 }

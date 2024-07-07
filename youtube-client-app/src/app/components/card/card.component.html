@@ -1,7 +1,7 @@
-<div class="card flex justify-content-center">
-  <p-card header={{headerText}} subheader={{subHeaderText}} [style]="{ width: '360px' }">
+
+  <p-card header={{headerText}} subheader={{subHeaderText}} [style]="{ 'width': '360px', 'text-align': 'center' }">
       <ng-template pTemplate="header">
-        <img [src]="imageUrl" [alt]="imageAlt" />
+        <img [src]="imageUrl" [alt]="imageAlt" class="pt-4 pl-4 pr-4" />
       </ng-template>
       <ng-content></ng-content>
       <ng-template pTemplate="footer">
@@ -10,4 +10,4 @@
           </div>
       </ng-template>
   </p-card>
-</div>
+
