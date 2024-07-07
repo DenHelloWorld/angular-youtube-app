@@ -1,27 +1,12 @@
-<ng-container
-select="app-card" *ngIf="itemData">
-  <app-card  [imageUrl]="imgDefaultUrl" [headerText]="title">
+<ng-container *ngIf="itemData">
+  <app-card [imageUrl]="imgDefaultUrl" [headerText]="title">
     <app-custom-button [raised]="true" class="m-auto">More</app-custom-button>
-
     <p-toolbar>
-      <i class="pi pi-eye" style="font-size: .8em;">
-          {{statistics.viewCount}}
-      </i>
-      <i class="pi pi-comment text-xs" style="font-size: .8em;">
-        {{statistics.commentCount}}
-      </i>
-      <i class="pi pi-thumbs-down" style="font-size: .8em;">
-        {{statistics.dislikeCount}}
-      </i>
-      <i class="pi pi-thumbs-up" style="font-size: .8em;">
-        {{statistics.likeCount}}
-      </i>
+      <i class="pi pi-eye" style="font-size: .8em;">{{statistics.viewCount}}</i>
+      <i class="pi pi-comment text-xs" style="font-size: .8em;">{{statistics.commentCount}}</i>
+      <i class="pi pi-thumbs-down" style="font-size: .8em;">{{statistics.dislikeCount}}</i>
+      <i class="pi pi-thumbs-up" style="font-size: .8em;">{{statistics.likeCount}}</i>
     </p-toolbar>
-
   </app-card>
+  <p [appColoredBorder]="publishedAt"></p>
 </ng-container>
-
-
-
-
-c
