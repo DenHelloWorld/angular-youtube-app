@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class YoutubeServiceService {
+export class YoutubeService {
   public mockVideos: YouTubeVideoListResponse = {
     'kind': 'youtube#videoListResponse',
     'etag': '"Fznwjl6JEQdo1MGvHOGaz_YanRU/Cmodw7c5XPTM8Yg3kMXelihxek4"',
@@ -760,5 +760,12 @@ export class YoutubeServiceService {
 
   getOnce(video: number): Item {
     return this.mockVideos.items[video];
+  }
+
+  getMatching(title: string): Item[] {
+    const data = this.mockVideos.items.filter(item =>
+      item.snippet.localized.title.toLowerCase().includes(title.toLowerCase()));
+    console.log(data);
+    return data;
   }
 }

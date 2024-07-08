@@ -5,26 +5,22 @@ import { Directive, ElementRef, Renderer2, Input } from '@angular/core';
   standalone: true,
 })
 export default class ColoredBorderDirective {
-
   @Input() set appColoredBorder(publicationDate: string) {
     const currentDate = new Date();
-    const publicationDateObj = new Date(publicationDate);
+    const publishedDate = new Date(publicationDate);
+    const timeDifference = currentDate.getTime() - publishedDate.getTime();
+    const daysDifference = timeDifference / (1000 * 3600 * 24);
 
-    if (isNaN(publicationDateObj.getTime())) {
-      console.error('Invalid date format');
-      return;
-    }
+    let borderColor = 'transparent';
 
-    const sixMonthsAgo = new Date();
-    sixMonthsAgo.setMonth(currentDate.getMonth() - 6);
-
-    let borderColor = 'blue';
-    if (publicationDateObj < sixMonthsAgo) {
+    if (daysDifference > 180) {
       borderColor = 'red';
-    } else if (publicationDateObj < currentDate) {
+    } else if (daysDifference > 30) {
       borderColor = 'yellow';
-    } else if (publicationDateObj >= currentDate) {
+    } else if (daysDifference > 7) {
       borderColor = 'green';
+    } else {
+      borderColor = 'blue';
     }
 
     this.renderer.setStyle(this.el.nativeElement, 'border-bottom', `5px solid ${borderColor}`);

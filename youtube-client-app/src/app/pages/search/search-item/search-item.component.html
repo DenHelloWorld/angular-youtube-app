@@ -1,4 +1,4 @@
-<ng-container *ngIf="itemData">
+<ng-content  *ngIf="itemData">
   <app-card [imageUrl]="imgDefaultUrl" [headerText]="title">
     <app-custom-button [raised]="true" class="m-auto">More</app-custom-button>
     <p-toolbar>
@@ -9,4 +9,4 @@
     </p-toolbar>
   </app-card>
   <p [appColoredBorder]="publishedAt"></p>
-</ng-container>
+</ng-content>

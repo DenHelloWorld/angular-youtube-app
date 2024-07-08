@@ -1,13 +1,13 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ToolbarModule } from 'primeng/toolbar';
-import { FiltService } from '../../services/filter/filter.service';
+import { FiltService } from './service/filter.service';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { FieldsetModule } from 'primeng/fieldset';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
-import { CountryService } from '../../services/filter/country.service';
+import { CountryService } from './service/country.service';
 
 
 // country.model.ts

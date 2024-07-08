@@ -1,1 +1,7 @@
-<p>search-results works!</p>
+<p-card *ngIf="isVisible" class="card" [header]="isVisible ? 'Search Results' : '' ">
+
+    <ng-container select="app-search-item" *ngFor="let item of searchedItems">
+      <app-search-item [itemData]="item"></app-search-item>
+    </ng-container>
+
+</p-card>
