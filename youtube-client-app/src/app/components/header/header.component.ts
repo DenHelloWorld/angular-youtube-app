@@ -19,9 +19,9 @@ import { FormsModule } from '@angular/forms';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export default class HeaderComponent {
-  public isFilterShow: boolean;
+  isFilterShow: boolean;
 
-  public searchInputValue = '';
+  searchInputValue = '';
 
   constructor(private filtService: FiltService, private searchResultService: SearchResultsService) {
     this.isFilterShow = this.filtService.showFilter;

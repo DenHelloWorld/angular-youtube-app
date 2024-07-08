@@ -5,14 +5,7 @@
 
   <p-fieldset legend="Sorting By" >
     <p-menubar [model]="filterItems"/>
-    <p-autoComplete
-      [(ngModel)]="selectedCountry"
-      [dropdown]="true"
-      [suggestions]="filteredCountries"
-      (completeMethod)="filterCountry($event)"
-      [placeholder]="placeHolder"
-      field="name" />
-
+    <input (input)="showFilterResults()" type="text" pInputText [(ngModel)]="filterInputValue" />
   </p-fieldset>
   </div>
 

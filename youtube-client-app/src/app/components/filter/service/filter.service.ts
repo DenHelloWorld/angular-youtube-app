@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class FiltService {
   showFilter: boolean = false;
 
+  filterInputData: string = '';
+
   toggleView() {
     this.showFilter = !this.showFilter;
   }

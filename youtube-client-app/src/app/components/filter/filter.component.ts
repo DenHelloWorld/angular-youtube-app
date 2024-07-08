@@ -1,4 +1,4 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToolbarModule } from 'primeng/toolbar';
 import { FiltService } from './service/filter.service';
 import { CommonModule } from '@angular/common';
@@ -6,8 +6,10 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { FieldsetModule } from 'primeng/fieldset';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
-import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CountryService } from './service/country.service';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 // country.model.ts
@@ -17,11 +19,11 @@ export interface Country {
 }
 
 @Component({
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [CountryService],
   selector: 'app-filter',
   standalone: true,
-  imports: [AutoCompleteModule, MenubarModule, ToolbarModule, CommonModule, FieldsetModule],
+  imports: [AutoCompleteModule, MenubarModule, ToolbarModule, CommonModule, FieldsetModule, FormsModule, InputTextModule],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.scss',
   animations: [
@@ -39,15 +41,11 @@ export interface Country {
 export default class FilterComponent implements OnInit {
   filterItems: MenuItem[] | undefined;
 
-  countries: Country[] = [];
-
-  selectedCountry: string = '';
-
-  filteredCountries: Country[] = [];
-
   placeHolder: string = 'Name';
 
-  constructor(public filtService: FiltService, public countryService: CountryService) {}
+  filterInputValue: string = '';
+
+  constructor(public filtService: FiltService) {}
 
   get isVisible() {
     return this.filtService.showFilter;
@@ -84,21 +82,17 @@ export default class FilterComponent implements OnInit {
         ],
       },
     ];
-    this.countries = this.countryService.getCountries();
   }
 
-  filterCountry(event: AutoCompleteCompleteEvent) {
-    const filtered: Country[] = [];
+  showFilterResults() {
+    console.log(this.filterInputValue);
+  }
 
-    const query = event.query;
+  private updateFilterhResults() {
+    if (this.filterInputValue.trim() === '') {
+      
+    } else {
 
-    for (let i = 0; i < (this.countries as Country[]).length; i++) {
-      const country = (this.countries as Country[])[i];
-      if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-        filtered.push(country);
-      }
     }
-
-    this.filteredCountries = filtered;
   }
 }
