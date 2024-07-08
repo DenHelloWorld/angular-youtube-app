@@ -2,7 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Item } from 'app/interfaces/youtube-response.interface';
 
 @Pipe({
-  name: 'FilterByDate',
+  name: 'filterByDate',
+  pure: false,
+  standalone: true,
 })
 export class FilterByDatePipe implements PipeTransform {
 

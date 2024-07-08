@@ -8,19 +8,20 @@ import SearchItemComponent from '../search-item/search-item.component';
 import { FilterByTitlePipe } from 'app/components/filter/pipe/filterByTitle.pipe';
 import { SharedService } from 'app/services/shared.service';
 import { Subscription } from 'rxjs';
+import { FilterByDatePipe } from 'app/components/filter/pipe/filterByDate.pipe';
 
 @Component({
   selector: 'app-search-results',
   standalone: true,
-  imports: [FilterByTitlePipe, CommonModule, CardModule, ScrollPanelModule, SearchItemComponent],
+  imports: [FilterByDatePipe, FilterByTitlePipe, CommonModule, CardModule, ScrollPanelModule, SearchItemComponent],
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.scss',
 })
 export default class SearchResultsComponent implements AfterViewInit, OnInit {
   private subscriptions: Subscription[] = [];
 
-  // filterByTitle pipe
-  filterInputValue: string = '';
+  // filterByTitle & filterByDate pipes
+  filterTitle: string = '';
 
   constructor(private sharedService: SharedService, private searchResultsService: SearchResultsService) {}
 
@@ -29,8 +30,8 @@ export default class SearchResultsComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit() {
-    this.sharedService.filterInputValue$.subscribe(value => {
-      this.filterInputValue = value;
+    this.sharedService.filterTitle$ .subscribe(value => {
+      this.filterTitle = value;
     });
   }
 

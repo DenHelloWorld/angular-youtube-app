@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ToolbarModule } from 'primeng/toolbar';
 import { FiltService } from './service/filter.service';
@@ -40,7 +41,9 @@ export default class FilterComponent implements OnInit {
 
   placeHolder: string = 'Name';
 
-  filterInputValue: string = '';
+  filterTitle: string = '';
+
+  filterDate: string = '';
 
   constructor(private sharedService: SharedService, public filtService: FiltService) {}
 
@@ -57,10 +60,12 @@ export default class FilterComponent implements OnInit {
           {
             label: 'Ascending',
             icon: 'pi pi-calendar-plus',
+            command: () => this.handleMenubar('Date: Ascending'),
           },
           {
             label: 'Descending',
             icon: 'pi pi-calendar-minus',
+            command: () => this.handleMenubar('Date: Descending'),
           },
         ],
       },
@@ -71,17 +76,24 @@ export default class FilterComponent implements OnInit {
           {
             label: 'Ascending',
             icon: 'pi pi-arrow-circle-up',
+            command: () => this.handleMenubar('Views: Ascending'),
           },
           {
             label: 'Descending',
             icon: 'pi pi-arrow-circle-down',
+            command: () => this.handleMenubar('Views: Descending'),
           },
         ],
       },
     ];
     this.subscriptions.push(
-      this.sharedService.filterInputValue$.subscribe(value => {
-        this.filterInputValue = value;
+      this.sharedService.filterTitle$ .subscribe(value => {
+        this.filterTitle = value;
+      }),
+    );
+    this.subscriptions.push(
+      this.sharedService.filterDate$ .subscribe(value => {
+        this.filterDate = value;
       }),
     );
   }
@@ -90,8 +102,25 @@ export default class FilterComponent implements OnInit {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-
   showFilterResults() {
-    this.sharedService.setFilterInputValue(this.filterInputValue);
+    this.sharedService.setFilterTitle(this.filterTitle);
+  }
+
+  handleMenubar(str: string) {
+    switch (str) {
+      case 'Date: Ascending':
+        console.log('Date: Ascending');
+        break;
+      case 'Date: Descending':
+        console.log('Date: Descending');
+        break;
+      case 'Views: Ascending':
+        console.log('Views: Ascending');
+        break;
+      case 'Views: Descending':
+        console.log('Views: Descending');
+        break;
+    }
+
   }
 }

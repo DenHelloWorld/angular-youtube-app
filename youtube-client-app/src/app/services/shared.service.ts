@@ -5,11 +5,19 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class SharedService {
-  private filterInputValueSubject = new BehaviorSubject<string>('');
+  private filterTitle = new BehaviorSubject<string>('');
 
-  filterInputValue$ = this.filterInputValueSubject.asObservable();
+  private filterDate = new BehaviorSubject<string>('');
 
-  setFilterInputValue(value: string) {
-    this.filterInputValueSubject.next(value);
+  filterTitle$ = this.filterTitle.asObservable();
+
+  filterDate$ = this.filterDate.asObservable();
+
+  setFilterTitle(value: string) {
+    this.filterTitle.next(value);
+  }
+
+  setFilterDate(value: string) {
+    this.filterDate.next(value);
   }
 }

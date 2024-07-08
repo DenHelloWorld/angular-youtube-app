@@ -4,8 +4,8 @@
   <div class="p-toolbar-group-center">
 
   <p-fieldset legend="Sorting By" >
-    <p-menubar [model]="filterItems"/>
-    <input (input)="showFilterResults()" type="text" pInputText [(ngModel)]="filterInputValue" />
+    <p-menubar [model]="filterItems"></p-menubar>
+    <input (input)="showFilterResults()" type="text" pInputText [(ngModel)]="filterTitle" />
   </p-fieldset>
   </div>
 

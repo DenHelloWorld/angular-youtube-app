@@ -1,6 +1,6 @@
 <p-card *ngIf="isVisible" class="card" [header]="isVisible ? 'Search Results' : '' ">
 
-    <ng-container select="app-search-item" *ngFor="let item of searchedItems | filterByTitle: filterInputValue">
+    <ng-container select="app-search-item" *ngFor="let item of searchedItems | filterByTitle: filterTitle">
       <app-search-item [itemData]="item"></app-search-item>
     </ng-container>
 
