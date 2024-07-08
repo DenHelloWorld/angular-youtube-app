@@ -7,20 +7,15 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { CountryService } from './service/country.service';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { SharedService } from 'app/services/shared.service';
+import { Subscription } from 'rxjs';
 
 
-// country.model.ts
-export interface Country {
-  name: string;
-  code: string;
-}
+
 
 @Component({
-  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [CountryService],
   selector: 'app-filter',
   standalone: true,
   imports: [AutoCompleteModule, MenubarModule, ToolbarModule, CommonModule, FieldsetModule, FormsModule, InputTextModule],
@@ -39,13 +34,15 @@ export interface Country {
   ],
 })
 export default class FilterComponent implements OnInit {
+  private subscriptions: Subscription[] = [];
+
   filterItems: MenuItem[] | undefined;
 
   placeHolder: string = 'Name';
 
   filterInputValue: string = '';
 
-  constructor(public filtService: FiltService) {}
+  constructor(private sharedService: SharedService, public filtService: FiltService) {}
 
   get isVisible() {
     return this.filtService.showFilter;
@@ -82,17 +79,19 @@ export default class FilterComponent implements OnInit {
         ],
       },
     ];
+    this.subscriptions.push(
+      this.sharedService.filterInputValue$.subscribe(value => {
+        this.filterInputValue = value;
+      }),
+    );
   }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
 
   showFilterResults() {
-    console.log(this.filterInputValue);
-  }
-
-  private updateFilterhResults() {
-    if (this.filterInputValue.trim() === '') {
-      
-    } else {
-
-    }
+    this.sharedService.setFilterInputValue(this.filterInputValue);
   }
 }

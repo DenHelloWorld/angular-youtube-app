@@ -40,4 +40,5 @@ export class SearchResultsService {
   search(title: string) {
     this.searchedItems = this.youtubeService.getMatching(title);
   }
+
 }

@@ -3,6 +3,8 @@ import { Item } from 'app/interfaces/youtube-response.interface';
 
 @Pipe({
   name: 'filterByTitle',
+  pure: false,
+  standalone: true,
 })
 export class FilterByTitlePipe implements PipeTransform {
   transform(items: Item[], searchText: string): Item[] {
