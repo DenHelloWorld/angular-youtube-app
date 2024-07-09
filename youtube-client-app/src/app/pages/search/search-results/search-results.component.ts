@@ -9,11 +9,12 @@ import { FilterByTitlePipe } from 'app/components/filter/pipe/filterByTitle.pipe
 import { SharedService } from 'app/services/shared.service';
 import { Subscription } from 'rxjs';
 import { FilterByDatePipe } from 'app/components/filter/pipe/filterByDate.pipe';
+import { FilterByViewsPipe } from 'app/components/filter/pipe/filterByViews.pipe';
 
 @Component({
   selector: 'app-search-results',
   standalone: true,
-  imports: [FilterByDatePipe, FilterByTitlePipe, CommonModule, CardModule, ScrollPanelModule, SearchItemComponent],
+  imports: [FilterByViewsPipe, FilterByDatePipe, FilterByTitlePipe, CommonModule, CardModule, ScrollPanelModule, SearchItemComponent],
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.scss',
 })

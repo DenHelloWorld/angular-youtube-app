@@ -3,7 +3,7 @@ import { Item } from 'app/interfaces/youtube-response.interface';
 
 @Pipe({
   name: 'filterByTitle',
-  pure: false,
+  // pure: false,
   standalone: true,
 })
 export class FilterByTitlePipe implements PipeTransform {
