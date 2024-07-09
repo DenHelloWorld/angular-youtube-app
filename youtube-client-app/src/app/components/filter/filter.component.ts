@@ -45,6 +45,8 @@ export default class FilterComponent implements OnInit {
 
   filterDate: string = '';
 
+  filterViews: string = '';
+
   constructor(private sharedService: SharedService, public filtService: FiltService) {}
 
   get isVisible() {
@@ -52,6 +54,7 @@ export default class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
     this.filterItems = [
       {
         label: 'Date',
@@ -60,12 +63,12 @@ export default class FilterComponent implements OnInit {
           {
             label: 'Ascending',
             icon: 'pi pi-calendar-plus',
-            command: () => this.handleMenubar('Date: Ascending'),
+            command: () => this.handleMenubar('Date:Ascending'),
           },
           {
             label: 'Descending',
             icon: 'pi pi-calendar-minus',
-            command: () => this.handleMenubar('Date: Descending'),
+            command: () => this.handleMenubar('Date:Descending'),
           },
         ],
       },
@@ -76,12 +79,12 @@ export default class FilterComponent implements OnInit {
           {
             label: 'Ascending',
             icon: 'pi pi-arrow-circle-up',
-            command: () => this.handleMenubar('Views: Ascending'),
+            command: () => this.handleMenubar('Views:Ascending'),
           },
           {
             label: 'Descending',
             icon: 'pi pi-arrow-circle-down',
-            command: () => this.handleMenubar('Views: Descending'),
+            command: () => this.handleMenubar('Views:Descending'),
           },
         ],
       },
@@ -96,6 +99,11 @@ export default class FilterComponent implements OnInit {
         this.filterDate = value;
       }),
     );
+    this.subscriptions.push(
+      this.sharedService.filterView$ .subscribe(value => {
+        this.filterViews = value;
+      }),
+    );
   }
 
   ngOnDestroy() {
@@ -108,17 +116,25 @@ export default class FilterComponent implements OnInit {
 
   handleMenubar(str: string) {
     switch (str) {
-      case 'Date: Ascending':
-        console.log('Date: Ascending');
+      case 'Date:Ascending':
+
+        this.filterDate = 'asc';
+        this.sharedService.setFilterDate(this.filterDate);
         break;
-      case 'Date: Descending':
-        console.log('Date: Descending');
+      case 'Date:Descending':
+
+        this.filterDate = 'desc';
+        this.sharedService.setFilterDate(this.filterDate);
         break;
-      case 'Views: Ascending':
-        console.log('Views: Ascending');
+      case 'Views:Ascending':
+
+        this.filterViews = 'asc';
+        this.sharedService.setFilterView(this.filterViews);
         break;
-      case 'Views: Descending':
-        console.log('Views: Descending');
+      case 'Views:Descending':
+
+        this.filterViews = 'desc';
+        this.sharedService.setFilterView(this.filterViews);
         break;
     }
 

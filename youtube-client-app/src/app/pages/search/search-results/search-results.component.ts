@@ -23,6 +23,10 @@ export default class SearchResultsComponent implements AfterViewInit, OnInit {
   // filterByTitle & filterByDate pipes
   filterTitle: string = '';
 
+  filterDate: string = '';
+
+  filterViews: string = '';
+
   constructor(private sharedService: SharedService, private searchResultsService: SearchResultsService) {}
 
   get isVisible(): boolean {
@@ -30,8 +34,18 @@ export default class SearchResultsComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
     this.sharedService.filterTitle$ .subscribe(value => {
       this.filterTitle = value;
+      console.log(this.filterTitle);
+    });
+    this.sharedService.filterDate$ .subscribe(value => {
+      this.filterDate = value;
+      console.log('date', this.filterDate);
+    });
+    this.sharedService.filterView$.subscribe(value => {
+      this.filterViews = value;
+      console.log('view', this.filterViews);
     });
   }
 
