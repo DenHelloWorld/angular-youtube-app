@@ -1,7 +1,9 @@
 <p-card *ngIf="isVisible" class="card" [header]="isVisible ? 'Search Results' : '' ">
 
-    <ng-container select="app-search-item" *ngFor="let item of searchedItems | filterByTitle: filterTitle | filterByDate: filterDate | filterByViews: filterViews">
+  <div class="card flex-wrap flex flex-row justify-center gap-5">
+    <div *ngFor="let item of searchedItems | filterByTitle: filterTitle | filterByDate: filterDate | filterByViews: filterViews">
       <app-search-item [itemData]="item"></app-search-item>
-    </ng-container>
+    </div>
+  </div>
 
 </p-card>
