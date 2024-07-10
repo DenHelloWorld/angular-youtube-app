@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CardModule } from 'primeng/card';
 import { SearchResultsService } from './service/search-results.service';
@@ -17,11 +17,11 @@ import { FilterByViewsPipe } from 'app/components/filter/pipe/filterByViews.pipe
   imports: [FilterByViewsPipe, FilterByDatePipe, FilterByTitlePipe, CommonModule, CardModule, ScrollPanelModule, SearchItemComponent],
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export default class SearchResultsComponent implements AfterViewInit, OnInit {
   private subscriptions: Subscription[] = [];
 
-  // filterByTitle & filterByDate pipes
   filterTitle: string = '';
 
   filterDate: string = '';
