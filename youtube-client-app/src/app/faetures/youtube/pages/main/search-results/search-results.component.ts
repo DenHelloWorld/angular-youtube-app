@@ -7,14 +7,15 @@ import {
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CardModule } from 'primeng/card';
 import { CommonModule } from '@angular/common';
-import { Item } from 'app/youtube/interfaces/youtube-response.interface';
 import SearchItemComponent from '../search-item/search-item.component';
 import { SharedService } from 'app/shared/services/shared.service';
 import { Subscription } from 'rxjs';
-import { SearchResultsService } from 'app/youtube/services/search-results.service';
-import { FilterByDatePipe } from 'app/youtube/pipes/filterByDate.pipe';
-import { FilterByTitlePipe } from 'app/youtube/pipes/filterByTitle.pipe';
-import { FilterByViewsPipe } from 'app/youtube/pipes/filterByViews.pipe';
+import { Item } from 'app/faetures/youtube/interfaces/youtube-response.interface';
+import { FilterByDatePipe } from 'app/faetures/youtube/pipes/filterByDate.pipe';
+import { FilterByTitlePipe } from 'app/faetures/youtube/pipes/filterByTitle.pipe';
+import { FilterByViewsPipe } from 'app/faetures/youtube/pipes/filterByViews.pipe';
+import { SearchResultsService } from 'app/faetures/youtube/services/search-results.service';
+
 
 @Component({
   selector: 'app-search-results',

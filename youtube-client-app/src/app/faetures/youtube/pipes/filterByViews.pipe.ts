@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Item } from 'app/youtube/interfaces/youtube-response.interface';
+import { Item } from '../interfaces/youtube-response.interface';
+
 
 @Pipe({
   name: 'filterByViews',

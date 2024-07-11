@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  Item,
-  YouTubeVideoListResponse,
-} from 'app/youtube/interfaces/youtube-response.interface';
 import { Observable, of } from 'rxjs';
+import { YouTubeVideoListResponse, Item } from '../interfaces/youtube-response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -786,10 +783,9 @@ export class YoutubeService {
   }
 
   getMatching(title: string): Item[] {
-    const data = this.mockVideos.items.filter((item) =>
+    const matched = this.mockVideos.items.filter((item: Item) =>
       item.snippet.localized.title.toLowerCase().includes(title.toLowerCase()),
     );
-    console.log(data);
-    return data;
+    return matched;
   }
 }

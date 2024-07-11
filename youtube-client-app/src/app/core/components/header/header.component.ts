@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FiltService } from '../../../youtube/services/filter.service';
-import { SearchResultsService } from 'app/youtube/services/search-results.service';
+import { FiltService } from 'app/faetures/youtube/services/filter.service';
+import { SearchResultsService } from 'app/faetures/youtube/services/search-results.service';
 
 @Component({
   selector: 'app-header',

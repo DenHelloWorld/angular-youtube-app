@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { SharedService } from 'app/shared/services/shared.service';
 import { Subscription } from 'rxjs';
-import { FiltService } from 'app/youtube/services/filter.service';
+import { FiltService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-filter',
