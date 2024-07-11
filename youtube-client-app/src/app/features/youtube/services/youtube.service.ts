@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { YouTubeVideoListResponse, Item } from '../interfaces/youtube-response.interface';
+import {
+  YouTubeVideoListResponse,
+  Item,
+} from '../models/youtube-response.model';
 
 @Injectable({
   providedIn: 'root',

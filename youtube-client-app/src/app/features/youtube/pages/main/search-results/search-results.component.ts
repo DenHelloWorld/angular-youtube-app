@@ -10,12 +10,11 @@ import { CommonModule } from '@angular/common';
 import SearchItemComponent from '../search-item/search-item.component';
 import { SharedService } from 'app/shared/services/shared.service';
 import { Subscription } from 'rxjs';
-import { Item } from 'app/faetures/youtube/interfaces/youtube-response.interface';
-import { FilterByDatePipe } from 'app/faetures/youtube/pipes/filterByDate.pipe';
-import { FilterByTitlePipe } from 'app/faetures/youtube/pipes/filterByTitle.pipe';
-import { FilterByViewsPipe } from 'app/faetures/youtube/pipes/filterByViews.pipe';
-import { SearchResultsService } from 'app/faetures/youtube/services/search-results.service';
-
+import { Item } from 'app/features/youtube/models/youtube-response.model';
+import { FilterByDatePipe } from 'app/features/youtube/pipes/filterByDate.pipe';
+import { FilterByTitlePipe } from 'app/features/youtube/pipes/filterByTitle.pipe';
+import { FilterByViewsPipe } from 'app/features/youtube/pipes/filterByViews.pipe';
+import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
 
 @Component({
   selector: 'app-search-results',
