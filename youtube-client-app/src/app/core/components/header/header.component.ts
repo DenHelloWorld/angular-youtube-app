@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FiltService } from 'app/features/youtube/services/filter.service';
 import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
 
@@ -15,6 +16,7 @@ export default class HeaderComponent {
   constructor(
     private filtService: FiltService,
     private searchResultService: SearchResultsService,
+    private router: Router,
   ) {
     this.isFilterShow = this.filtService.showFilter;
   }
@@ -26,7 +28,8 @@ export default class HeaderComponent {
 
   showSearchResults() {
     this.updateSearchResults();
-    this.searchResultService.setView(true);
+    // this.searchResultService.setView(true);
+    this.router.navigate(['/youtube']);
   }
 
   private updateSearchResults() {

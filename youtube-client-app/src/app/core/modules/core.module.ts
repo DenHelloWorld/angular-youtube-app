@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import HeaderComponent from '../components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -31,5 +31,6 @@ import { SearchResultsService } from 'app/features/youtube/services/search-resul
   declarations: [HeaderComponent],
   exports: [HeaderComponent],
   providers: [FilterService, SearchResultsService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CoreModule {}

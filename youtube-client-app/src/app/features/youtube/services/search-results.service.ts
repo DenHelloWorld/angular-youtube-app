@@ -9,7 +9,7 @@ import {
   providedIn: 'root',
 })
 export class SearchResultsService {
-  showSearchResults: boolean = false;
+  showSearchResults: boolean = true;
 
   private mockItems: Item[] = [];
 
@@ -26,13 +26,14 @@ export class SearchResultsService {
       });
   }
 
-  toggleView() {
-    this.showSearchResults = !this.showSearchResults;
-  }
+  // toggleView() {
+  //   this.showSearchResults = !this.showSearchResults;
+  // }
 
-  setView(isShow: boolean) {
-    this.showSearchResults = isShow;
-  }
+  // setView(isShow: boolean) {
+  //   console.log(isShow);
+  //   this.showSearchResults = isShow;
+  // }
 
   get allItems() {
     return this.mockItems;
