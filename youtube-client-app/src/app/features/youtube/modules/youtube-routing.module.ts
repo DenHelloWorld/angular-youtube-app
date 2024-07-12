@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import SearchResultsComponent from '../pages/main/search-results/search-results.component';
+import { MainComponent } from '../pages/main/main.component';
 
-const routes: Routes = [{ path: '', component: SearchResultsComponent }];
+const routes: Routes = [{ path: '', component: MainComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

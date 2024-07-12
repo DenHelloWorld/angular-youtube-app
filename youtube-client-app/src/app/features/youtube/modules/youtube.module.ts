@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import SearchItemComponent from '../pages/main/search-item/search-item.component';
+import SearchItemComponent from '../components/search-item/search-item.component';
 import { CommonModule } from '@angular/common';
-import SearchResultsComponent from '../pages/main/search-results/search-results.component';
+import SearchResultsComponent from '../components/search-results/search-results.component';
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
 import { FilterByDatePipe } from '../pipes/filterByDate.pipe';
 import { FilterByTitlePipe } from '../pipes/filterByTitle.pipe';
@@ -12,9 +12,10 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import CardComponent from 'app/shared/components/card/card.component';
 import { YoutubeRoutingModule } from './youtube-routing.module';
+import { MainComponent } from '../pages/main/main.component';
 
 @NgModule({
-  declarations: [SearchResultsComponent],
+  declarations: [SearchResultsComponent, MainComponent],
   imports: [
     SearchItemComponent,
     CommonModule,
@@ -29,9 +30,7 @@ import { YoutubeRoutingModule } from './youtube-routing.module';
     CardComponent,
     YoutubeRoutingModule,
   ],
-  exports: [SearchResultsComponent],
+  exports: [MainComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class YoutubeModule {
-
-}
+export class YoutubeModule {}

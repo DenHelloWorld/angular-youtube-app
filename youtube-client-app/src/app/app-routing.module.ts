@@ -8,7 +8,7 @@ const routes: Routes = [
   //   component: HeaderComponent,
   // },
   {
-    path: 'youtube',
+    path: 'main',
     loadChildren: () =>
       import('./features/youtube/modules/youtube.module').then(
         (m) => m.YoutubeModule,

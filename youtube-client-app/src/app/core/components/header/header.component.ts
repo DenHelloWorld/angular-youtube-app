@@ -43,7 +43,7 @@ export default class HeaderComponent implements OnInit {
 
   showSearchResults() {
     this.handleSearchString();
-    this.router.navigate(['/youtube']);
+    this.router.navigate(['/main']);
   }
 
   handleSearchString() {
