@@ -9,7 +9,6 @@ import {
   providedIn: 'root',
 })
 export class SearchResultsService {
-  showSearchResults: boolean = true;
 
   private mockItems: Item[] = [];
 
@@ -25,15 +24,6 @@ export class SearchResultsService {
         this.clientItems = response.items;
       });
   }
-
-  // toggleView() {
-  //   this.showSearchResults = !this.showSearchResults;
-  // }
-
-  // setView(isShow: boolean) {
-  //   console.log(isShow);
-  //   this.showSearchResults = isShow;
-  // }
 
   get allItems() {
     return this.mockItems;

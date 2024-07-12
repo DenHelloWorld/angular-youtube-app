@@ -1,24 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FiltService } from 'app/features/youtube/services/filter.service';
-import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
+import { SharedService } from 'app/shared/services/shared.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export default class HeaderComponent {
+export default class HeaderComponent implements OnInit {
+  private subscriptions: Subscription[] = [];
+
   isFilterShow: boolean;
 
-  searchInputValue = '';
+  searchInputHeader: string = '';
 
   constructor(
     private filtService: FiltService,
-    private searchResultService: SearchResultsService,
+    private sharedService: SharedService,
     private router: Router,
   ) {
     this.isFilterShow = this.filtService.showFilter;
+  }
+
+  ngOnInit() {
+    this.subscriptions.push(
+      this.sharedService.searchInputHeader$.subscribe((value) => {
+        this.searchInputHeader = value;
+      }),
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   toggleFilterView(): void {
@@ -27,17 +42,11 @@ export default class HeaderComponent {
   }
 
   showSearchResults() {
-    this.updateSearchResults();
-    // this.searchResultService.setView(true);
+    this.handleSearchString();
     this.router.navigate(['/youtube']);
   }
 
-  private updateSearchResults() {
-    if (this.searchInputValue.trim() === '') {
-      this.searchResultService.searchedItems =
-        this.searchResultService.allItems;
-    } else {
-      this.searchResultService.search(this.searchInputValue);
-    }
+  handleSearchString() {
+    this.sharedService.setSearchInputHeader(this.searchInputHeader);
   }
 }

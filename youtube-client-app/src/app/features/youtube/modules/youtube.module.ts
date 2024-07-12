@@ -33,7 +33,5 @@ import { YoutubeRoutingModule } from './youtube-routing.module';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class YoutubeModule {
-  constructor() {
-    console.log('load YoutubeModule');
-  }
+
 }

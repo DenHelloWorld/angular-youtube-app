@@ -1,17 +1,16 @@
-// import { CommonModule } from '@angular/common';
-// import { CommonModule } from '@angular/common';
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
-import { STATISTICS } from 'app/features/youtube/constants/constants';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { Statistics } from 'app/features/youtube/models/statistics';
 import { Item } from 'app/features/youtube/models/youtube-response.model';
 import CardComponent from 'app/shared/components/card/card.component';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
 import { ToolbarModule } from 'primeng/toolbar';
-// import CardComponent from 'app/shared/components/card/card.component';
-// import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
-// import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
-// import { ToolbarModule } from 'primeng/toolbar';
 
 @Component({
   selector: 'app-search-item',
@@ -36,7 +35,13 @@ export default class SearchItemComponent implements OnInit {
 
   publishedAt: string = '';
 
-  statistics = STATISTICS;
+  statistics: Statistics = {
+    viewCount: '',
+    likeCount: '',
+    dislikeCount: '',
+    favoriteCount: '',
+    commentCount: '',
+  };
 
   ngOnInit(): void {
     this.setPublishedAt();
