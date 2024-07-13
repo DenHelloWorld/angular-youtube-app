@@ -10,6 +10,8 @@ import { ButtonModule } from 'primeng/button';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CustomButtonComponent {
+  @Input() type: string | undefined;
+
   @Input() label: string | undefined;
 
   @Input() raised: boolean | undefined;

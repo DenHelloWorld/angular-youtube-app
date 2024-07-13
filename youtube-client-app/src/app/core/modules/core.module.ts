@@ -13,7 +13,7 @@ import { FilterService } from 'primeng/api';
 import FilterComponent from 'app/features/youtube/components/filter/filter.component';
 import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
 import { HeaderService } from '../services/header.service';
-
+// import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -28,6 +28,9 @@ import { HeaderService } from '../services/header.service';
     AvatarModule,
     FilterComponent,
     FormsModule,
+    // FormControl,
+    // FormGroup,
+    // ReactiveFormsModule,
   ],
   declarations: [HeaderComponent],
   exports: [HeaderComponent],
