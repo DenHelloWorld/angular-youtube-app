@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ISearchResultsData } from 'app/features/youtube/models/searchResultsData';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -13,6 +14,14 @@ export class SharedService {
 
   private searchInputHeader = new BehaviorSubject<string>('');
 
+  private searchResultsData = new BehaviorSubject<ISearchResultsData>({
+    filterTitle: '',
+    filterDate: '',
+    filterViews: '',
+    searchInputHeader: '',
+    searchedItems: [],
+  });
+
   filterTitle$ = this.filterTitle.asObservable();
 
   filterDate$ = this.filterDate.asObservable();
@@ -20,6 +29,8 @@ export class SharedService {
   filterView$ = this.filterView.asObservable();
 
   searchInputHeader$ = this.searchInputHeader.asObservable();
+
+  searchResultsData$ = this.searchResultsData.asObservable();
 
   setFilterTitle(value: string) {
     this.filterTitle.next(value);
@@ -35,5 +46,9 @@ export class SharedService {
 
   setSearchInputHeader(value: string) {
     this.searchInputHeader.next(value);
+  }
+
+  setSearchResultsData(value: ISearchResultsData) {
+    this.searchResultsData.next(value);
   }
 }

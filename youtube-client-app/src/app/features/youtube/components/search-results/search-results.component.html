@@ -1,7 +1,7 @@
 <p-card class="card" [header]="title">
 
   <div class="card flex-wrap flex flex-row justify-center gap-5">
-    <div *ngFor="let item of searchedItems | filterByTitle: filterTitle | filterByDate: filterDate | filterByViews: filterViews">
+    <div *ngFor="let item of this.searchResultsService.SearchResultsData.searchedItems | filterByTitle: this.searchResultsService.SearchResultsData.filterTitle | filterByDate: this.searchResultsService.SearchResultsData.filterDate | filterByViews: this.searchResultsService.SearchResultsData.filterViews">
       <app-search-item [itemData]="item"></app-search-item>
     </div>
   </div>

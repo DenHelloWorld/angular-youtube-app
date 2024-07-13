@@ -61,7 +61,6 @@ export default class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
     this.filterItems = [
       {
         label: 'Date',
