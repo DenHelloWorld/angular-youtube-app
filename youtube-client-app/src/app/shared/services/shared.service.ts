@@ -12,7 +12,6 @@ export class SharedService {
 
   private filterView = new BehaviorSubject<string>('');
 
-  private searchInputHeader = new BehaviorSubject<string>('');
 
   private searchResultsData = new BehaviorSubject<ISearchResultsData>({
     filterTitle: '',
@@ -28,8 +27,6 @@ export class SharedService {
 
   filterView$ = this.filterView.asObservable();
 
-  searchInputHeader$ = this.searchInputHeader.asObservable();
-
   searchResultsData$ = this.searchResultsData.asObservable();
 
   setFilterTitle(value: string) {
@@ -42,10 +39,6 @@ export class SharedService {
 
   setFilterView(value: string) {
     this.filterView.next(value);
-  }
-
-  setSearchInputHeader(value: string) {
-    this.searchInputHeader.next(value);
   }
 
   setSearchResultsData(value: ISearchResultsData) {

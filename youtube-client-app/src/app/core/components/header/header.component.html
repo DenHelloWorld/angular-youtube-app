@@ -7,13 +7,13 @@
 
         <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
-            <input [(ngModel)] = 'searchInputHeader' pInputText placeholder="Search" />
+            <input [(ngModel)] = 'this.headerService.searchInputHeader' pInputText placeholder="Search" />
         </span>
 
-        <app-custom-button (click)="showSearchResults()"  [raised]="true" severity="primary" class="mr-2">Search</app-custom-button>
+        <app-custom-button (click)="this.headerService.showSearchResults()"  [raised]="true" severity="primary" class="mr-2">Search</app-custom-button>
 
 
-        <app-custom-button (click)="toggleFilterView()" [raised]="!isFilterShow" icon="pi pi-sliders-v" />
+        <app-custom-button (click)="this.filtService.toggleView()" [raised]="!this.filtService.showFilter" icon="pi pi-sliders-v" />
     </div>
 
     <div class="p-toolbar-group-end">

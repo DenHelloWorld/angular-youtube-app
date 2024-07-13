@@ -30,7 +30,8 @@ export class SearchResultsService {
   ) {
     this.subscriptions = [];
     this.getAllYoutubeItems();
-    this.handleFilterChange();
+    this.handleFiltersChange();
+    this.allOrSearchedItems();
   }
 
   private getAllYoutubeItems() {
@@ -41,7 +42,7 @@ export class SearchResultsService {
       });
   }
 
-  private handleFilterChange() {
+  private handleFiltersChange() {
     this.sharedService.filterTitle$.subscribe((value) => {
       this.SearchResultsData.filterTitle = value;
       this.listenSearchResultsData();
@@ -52,11 +53,6 @@ export class SearchResultsService {
     });
     this.sharedService.filterView$.subscribe((value) => {
       this.SearchResultsData.filterViews = value;
-      this.listenSearchResultsData();
-    });
-    this.sharedService.searchInputHeader$.subscribe((value) => {
-      this.SearchResultsData.searchInputHeader = value;
-      this.SearchResultsData.searchedItems = this.allOrSearchItems();
       this.listenSearchResultsData();
     });
     this.subscriptions.push(
@@ -78,16 +74,16 @@ export class SearchResultsService {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  search(title: string) {
+  searchByTitle(title: string) {
     this.SearchResultsData.searchedItems =
       this.youtubeService.getMatching(title);
   }
 
-  allOrSearchItems(): Item[] {
+  allOrSearchedItems(): Item[] {
     if (this.SearchResultsData.searchInputHeader.trim() === '') {
       this.SearchResultsData.searchedItems = this.allItems;
     } else {
-      this.search(this.SearchResultsData.searchInputHeader);
+      this.searchByTitle(this.SearchResultsData.searchInputHeader);
     }
     return this.SearchResultsData.searchedItems;
   }

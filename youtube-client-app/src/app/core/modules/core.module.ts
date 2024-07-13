@@ -12,6 +12,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { FilterService } from 'primeng/api';
 import FilterComponent from 'app/features/youtube/components/filter/filter.component';
 import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
+import { HeaderService } from '../services/header.service';
 
 
 
@@ -30,7 +31,7 @@ import { SearchResultsService } from 'app/features/youtube/services/search-resul
   ],
   declarations: [HeaderComponent],
   exports: [HeaderComponent],
-  providers: [FilterService, SearchResultsService],
+  providers: [FilterService, SearchResultsService, HeaderService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CoreModule {}
