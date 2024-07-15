@@ -11,6 +11,7 @@ import CardComponent from 'app/shared/components/card/card.component';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
 import { ToolbarModule } from 'primeng/toolbar';
+import { SearchItemService } from '../../services/search-item.service';
 
 @Component({
   selector: 'app-search-item',
@@ -29,6 +30,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 export default class SearchItemComponent implements OnInit {
   @Input() itemData: Item | undefined;
 
+  id: string = '';
+
   imgDefaultUrl: string = '';
 
   title: string = '';
@@ -43,11 +46,16 @@ export default class SearchItemComponent implements OnInit {
     commentCount: '',
   };
 
+  constructor(
+    private searchItemService: SearchItemService,
+  ) {}
+
   ngOnInit(): void {
     this.setPublishedAt();
     this.setImgDefaultUrl();
     this.setTitle();
     this.setStatistic();
+    this.setId();
   }
 
   private setImgDefaultUrl(): void {
@@ -60,6 +68,10 @@ export default class SearchItemComponent implements OnInit {
       this.itemData?.snippet?.title ??
       this.itemData?.snippet?.localized?.title ??
       '';
+  }
+
+  private setId(): void {
+    this.id = this.itemData?.id ?? '';
   }
 
   private setStatistic(): void {
@@ -77,5 +89,9 @@ export default class SearchItemComponent implements OnInit {
 
   private setPublishedAt(): void {
     this.publishedAt = this.itemData?.snippet?.publishedAt ?? '';
+  }
+
+  openDetalis() {
+    this.searchItemService.openDetalis(this.id);
   }
 }

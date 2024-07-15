@@ -1,4 +1,4 @@
-export interface Thumbnail {
+export interface IThumbnail {
   url: string;
   width: number;
   height: number;
@@ -13,17 +13,17 @@ export interface Item {
     title: string;
     description: string;
     thumbnails: {
-      default: Thumbnail;
-      medium: Thumbnail;
-      high: Thumbnail;
-      standard?: Thumbnail;
-      maxres?: Thumbnail;
+      default: IThumbnail;
+      medium: IThumbnail;
+      high: IThumbnail;
+      standard?: IThumbnail;
+      maxres?: IThumbnail;
     };
     channelTitle: string;
     tags?: string[];
     categoryId: string;
     liveBroadcastContent: string;
-    defaultLanguage?: string,
+    defaultLanguage?: string;
     localized: {
       title: string;
       description: string;
@@ -39,7 +39,7 @@ export interface Item {
   };
 }
 
-export interface YouTubeVideoListResponse {
+export interface IYouTubeVideoListResponse {
   kind: string;
   etag: string;
   pageInfo: {

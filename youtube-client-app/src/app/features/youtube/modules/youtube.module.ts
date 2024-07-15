@@ -13,9 +13,11 @@ import { CustomButtonComponent } from 'app/shared/components/custom-button/custo
 import CardComponent from 'app/shared/components/card/card.component';
 import { YoutubeRoutingModule } from './youtube-routing.module';
 import { MainComponent } from '../pages/main/main.component';
+import { DetalisComponent } from '../components/detalis/detalis.component';
+import { DetalisService } from '../services/detalis.service';
 
 @NgModule({
-  declarations: [SearchResultsComponent, MainComponent],
+  declarations: [SearchResultsComponent, MainComponent, DetalisComponent],
   imports: [
     SearchItemComponent,
     CommonModule,
@@ -30,6 +32,7 @@ import { MainComponent } from '../pages/main/main.component';
     CardComponent,
     YoutubeRoutingModule,
   ],
+  providers:[DetalisService],
   exports: [MainComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

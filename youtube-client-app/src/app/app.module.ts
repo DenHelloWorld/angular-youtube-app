@@ -8,6 +8,7 @@ import { CustomButtonComponent } from './shared/components/custom-button/custom-
 import { CoreModule } from './core/modules/core.module';
 import { AppRoutingModule } from './app-routing.module';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

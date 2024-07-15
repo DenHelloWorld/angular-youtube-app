@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {
-  YouTubeVideoListResponse,
+  IYouTubeVideoListResponse,
   Item,
 } from '../models/youtube-response.model';
 
@@ -9,7 +9,7 @@ import {
   providedIn: 'root',
 })
 export class YoutubeService {
-  public mockVideos: YouTubeVideoListResponse = {
+  public mockVideos: IYouTubeVideoListResponse = {
     kind: 'youtube#videoListResponse',
     etag: '"Fznwjl6JEQdo1MGvHOGaz_YanRU/Cmodw7c5XPTM8Yg3kMXelihxek4"',
     pageInfo: {
@@ -777,15 +777,21 @@ export class YoutubeService {
     ],
   };
 
-  getAll(): Observable<YouTubeVideoListResponse> {
+  getAll(): Observable<IYouTubeVideoListResponse> {
     return of(this.mockVideos);
   }
 
-  getOnce(video: number): Item {
-    return this.mockVideos.items[video];
+  // getOnce(video: number): Item {
+  //   return this.mockVideos.items[video];
+  // }
+  getById(id: string) {
+    const matched = this.mockVideos.items.filter((item: Item) =>
+      item.id.includes(id),
+    );
+    return matched;
   }
 
-  getMatching(title: string): Item[] {
+  getByTitle(title: string): Item[] {
     const matched = this.mockVideos.items.filter((item: Item) =>
       item.snippet.localized.title.toLowerCase().includes(title.toLowerCase()),
     );

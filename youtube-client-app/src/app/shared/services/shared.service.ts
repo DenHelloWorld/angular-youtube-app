@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ISearchResultsData } from 'app/features/youtube/models/searchResultsData';
+import { SearchResultsData } from 'app/features/youtube/models/searchResultsData';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -12,8 +12,9 @@ export class SharedService {
 
   private filterView = new BehaviorSubject<string>('');
 
+  private detalisId = new BehaviorSubject<string>('');
 
-  private searchResultsData = new BehaviorSubject<ISearchResultsData>({
+  private searchResultsData = new BehaviorSubject<SearchResultsData>({
     filterTitle: '',
     filterDate: '',
     filterViews: '',
@@ -29,6 +30,8 @@ export class SharedService {
 
   searchResultsData$ = this.searchResultsData.asObservable();
 
+  detalisId$ = this.detalisId.asObservable();
+
   setFilterTitle(value: string) {
     this.filterTitle.next(value);
   }
@@ -41,7 +44,11 @@ export class SharedService {
     this.filterView.next(value);
   }
 
-  setSearchResultsData(value: ISearchResultsData) {
+  setSearchResultsData(value: SearchResultsData) {
     this.searchResultsData.next(value);
+  }
+
+  setDetalisId(value: string) {
+    this.detalisId.next(value);
   }
 }

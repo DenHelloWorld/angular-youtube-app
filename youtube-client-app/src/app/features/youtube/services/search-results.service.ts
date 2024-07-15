@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { YoutubeService } from './youtube.service';
 import {
   Item,
-  YouTubeVideoListResponse,
+  IYouTubeVideoListResponse,
 } from '../models/youtube-response.model';
 import { SharedService } from 'app/shared/services/shared.service';
 import { Subscription } from 'rxjs';
-import { ISearchResultsData } from '../models/searchResultsData';
+import { SearchResultsData } from '../models/searchResultsData';
+import { DetalisService } from './detalis.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class SearchResultsService {
 
   private mockItems: Item[] = [];
 
-  SearchResultsData: ISearchResultsData = {
+  SearchResultsData: SearchResultsData = {
     filterTitle: '',
     filterDate: '',
     filterViews: '',
@@ -27,6 +28,7 @@ export class SearchResultsService {
   constructor(
     private youtubeService: YoutubeService,
     private sharedService: SharedService,
+    private detalisService: DetalisService,
   ) {
     this.subscriptions = [];
     this.getAllYoutubeItems();
@@ -37,7 +39,7 @@ export class SearchResultsService {
   private getAllYoutubeItems() {
     this.youtubeService
       .getAll()
-      .subscribe((response: YouTubeVideoListResponse) => {
+      .subscribe((response: IYouTubeVideoListResponse) => {
         this.mockItems = response.items;
       });
   }
@@ -76,7 +78,7 @@ export class SearchResultsService {
 
   searchByTitle(title: string) {
     this.SearchResultsData.searchedItems =
-      this.youtubeService.getMatching(title);
+      this.youtubeService.getByTitle(title);
   }
 
   allOrSearchedItems(): Item[] {
