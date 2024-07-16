@@ -1,2 +1,22 @@
-<p>{{ id }}: detalis works!</p>
-<app-custom-button (click)="handleButtonBack()" icon="pi pi-angle-double-left" />
+<p-fieldset styleClass="w-5/6 m-auto" [legend]="detalisService.datalisData.channelTitle">
+  <p>{{ id }}: detalis works!</p>
+  <p-splitter [panelSizes]="[55, 45]" styleClass="mb-5 min-h-fit">
+    <ng-template pTemplate>
+      <div class="col flex align-items-center justify-content-center">
+        <app-custom-button
+          [raised]="true"
+          (click)="handleButtonBack()"
+          icon="pi pi-angle-double-left"
+        />
+      </div>
+    </ng-template>
+    <ng-template pTemplate>
+      <div
+        [appColoredBorder]="detalisService.datalisData.publishedAt"
+        class="col flex align-items-center justify-content-center w-full"
+      >
+        Panel 2
+      </div>
+    </ng-template>
+  </p-splitter>
+</p-fieldset>

@@ -11,7 +11,7 @@ export class DetalisComponent implements OnInit {
   id: string = '';
 
   constructor(
-    private detalisService: DetalisService,
+    public detalisService: DetalisService,
     private activatedRoute: ActivatedRoute,
   ) {}
 

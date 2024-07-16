@@ -784,7 +784,7 @@ export class YoutubeService {
   // getOnce(video: number): Item {
   //   return this.mockVideos.items[video];
   // }
-  getById(id: string) {
+  getById(id: string): Item[] {
     const matched = this.mockVideos.items.filter((item: Item) =>
       item.id.includes(id),
     );

@@ -4,6 +4,7 @@ import { DetalisData } from '../models/detalisData';
 import { Subscription } from 'rxjs';
 import { YoutubeService } from './youtube.service';
 import { Location } from '@angular/common';
+import { Item } from '../models/youtube-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class DetalisService {
 
   subscriptions: Subscription[] = [];
 
-  SearchResultsData: DetalisData = {
+  datalisData: DetalisData = {
     statistics: {
       likeCount: '',
       dislikeCount: '',
@@ -44,8 +45,12 @@ export class DetalisService {
   }
 
   loadDetalisById(id: string) {
-    const data = this.youtubeservice.getById(id);
+    const data: Item = this.youtubeservice.getById(id)[0];
     console.log(data);
+    this.datalisData.channelTitle = data.snippet.channelTitle;
+    this.datalisData.description = data.snippet.description;
+    this.datalisData.publishedAt = data.snippet.publishedAt;
+    console.log(this.datalisData.description);
   }
 
   openDetalis(id: string) {
@@ -53,6 +58,7 @@ export class DetalisService {
   }
 
   handleButtonBack() {
-    this.location.back();
+    // this.location.back();
+    this.router.navigate(['/main']);
   }
 }

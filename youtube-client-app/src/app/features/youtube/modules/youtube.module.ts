@@ -15,6 +15,8 @@ import { YoutubeRoutingModule } from './youtube-routing.module';
 import { MainComponent } from '../pages/main/main.component';
 import { DetalisComponent } from '../components/detalis/detalis.component';
 import { DetalisService } from '../services/detalis.service';
+import { FieldsetModule } from 'primeng/fieldset';
+import { SplitterModule } from 'primeng/splitter';
 
 @NgModule({
   declarations: [SearchResultsComponent, MainComponent, DetalisComponent],
@@ -31,8 +33,10 @@ import { DetalisService } from '../services/detalis.service';
     CustomButtonComponent,
     CardComponent,
     YoutubeRoutingModule,
+    FieldsetModule,
+    SplitterModule,
   ],
-  providers:[DetalisService],
+  providers: [DetalisService],
   exports: [MainComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
