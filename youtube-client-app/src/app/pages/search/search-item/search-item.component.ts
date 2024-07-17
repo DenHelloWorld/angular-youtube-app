@@ -20,7 +20,7 @@ import { ToolbarModule } from 'primeng/toolbar';
   standalone: true,
 })
 export default class SearchItemComponent implements OnInit {
-  @Input() itemData?: YouTubeVideoData;
+  @Input() public itemData?: YouTubeVideoData;
 
   public imgDefaultUrl: string = '';
 

@@ -11,9 +11,9 @@ import { ButtonModule } from 'primeng/button';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CustomButtonComponent {
-  @Input() config?: CustomButtonConfig;
+  @Input() public config?: CustomButtonConfig;
 
-  @Output() customEvent = new EventEmitter<void>();
+  @Output() private customEvent = new EventEmitter<void>();
 
   public handleCustomEvent() {
     this.customEvent.emit();
