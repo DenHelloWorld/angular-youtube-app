@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Item } from 'app/interfaces/youtube-response.interface';
+import { YouTubeVideoData } from 'app/interfaces/youtube-video-data.interface';
 
 @Pipe({
   name: 'filterByDate',
@@ -7,14 +7,14 @@ import { Item } from 'app/interfaces/youtube-response.interface';
   standalone: true,
 })
 export class FilterByDatePipe implements PipeTransform {
-
-  transform(items: Item[], order: string): Item[] {
+  transform(items: YouTubeVideoData[], order: string): YouTubeVideoData[] {
     if (!items) return [];
     return items.sort((a, b) => {
       const dateA = new Date(a.snippet.publishedAt);
       const dateB = new Date(b.snippet.publishedAt);
-      return order === 'asc' ? dateA.getTime() - dateB.getTime() : dateB.getTime() - dateA.getTime();
+      return order === 'asc'
+        ? dateA.getTime() - dateB.getTime()
+        : dateB.getTime() - dateA.getTime();
     });
   }
-
 }

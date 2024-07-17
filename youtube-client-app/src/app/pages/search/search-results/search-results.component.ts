@@ -3,18 +3,26 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CardModule } from 'primeng/card';
 import { SearchResultsService } from './service/search-results.service';
 import { CommonModule } from '@angular/common';
-import { Item } from 'app/interfaces/youtube-response.interface';
 import SearchItemComponent from '../search-item/search-item.component';
 import { FilterByTitlePipe } from 'app/components/filter/pipe/filterByTitle.pipe';
 import { SharedService } from 'app/services/shared.service';
 import { Subscription } from 'rxjs';
 import { FilterByDatePipe } from 'app/components/filter/pipe/filterByDate.pipe';
 import { FilterByViewsPipe } from 'app/components/filter/pipe/filterByViews.pipe';
+import { YouTubeVideoData } from 'app/interfaces/youtube-video-data.interface';
 
 @Component({
   selector: 'app-search-results',
   standalone: true,
-  imports: [FilterByViewsPipe, FilterByDatePipe, FilterByTitlePipe, CommonModule, CardModule, ScrollPanelModule, SearchItemComponent],
+  imports: [
+    FilterByViewsPipe,
+    FilterByDatePipe,
+    FilterByTitlePipe,
+    CommonModule,
+    CardModule,
+    ScrollPanelModule,
+    SearchItemComponent,
+  ],
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.scss',
 })
@@ -28,36 +36,38 @@ export default class SearchResultsComponent implements AfterViewInit, OnInit {
 
   filterViews: string = '';
 
-  constructor(private sharedService: SharedService, private searchResultsService: SearchResultsService) {}
+  constructor(
+    private sharedService: SharedService,
+    private searchResultsService: SearchResultsService,
+  ) {}
 
   get isVisible(): boolean {
     return this.searchResultsService.showSearchResults;
   }
 
   ngOnInit() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-    this.sharedService.filterTitle$ .subscribe(value => {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.sharedService.filterTitle$.subscribe((value) => {
       this.filterTitle = value;
       console.log(this.filterTitle);
     });
-    this.sharedService.filterDate$ .subscribe(value => {
+    this.sharedService.filterDate$.subscribe((value) => {
       this.filterDate = value;
       console.log('date', this.filterDate);
     });
-    this.sharedService.filterView$.subscribe(value => {
+    this.sharedService.filterView$.subscribe((value) => {
       this.filterViews = value;
       console.log('view', this.filterViews);
     });
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
-  get searchedItems(): Item[] {
+  get searchedItems(): YouTubeVideoData[] {
     return this.searchResultsService.searchedItems;
   }
 }

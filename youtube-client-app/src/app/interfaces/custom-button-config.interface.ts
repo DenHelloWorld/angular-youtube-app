@@ -1,7 +1,9 @@
+import { CustomButtonSeverity } from './custom-button-severity';
+
 export interface CustomButtonConfig {
   label?: string;
   raised?: boolean;
-  severity?: string;
+  severity?: CustomButtonSeverity;
   icon?: string;
   rounded?: boolean;
   class?: string;

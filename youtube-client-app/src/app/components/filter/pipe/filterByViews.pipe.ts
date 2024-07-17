@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Item } from 'app/interfaces/youtube-response.interface';
+import { YouTubeVideoData } from 'app/interfaces/youtube-video-data.interface';
 
 @Pipe({
   name: 'filterByViews',
@@ -7,7 +7,7 @@ import { Item } from 'app/interfaces/youtube-response.interface';
   standalone: true,
 })
 export class FilterByViewsPipe implements PipeTransform {
-  transform(items: Item[], order: string): Item[] {
+  transform(items: YouTubeVideoData[], order: string): YouTubeVideoData[] {
     if (!items) return [];
     return items.sort((a, b) => {
       return order === 'asc'

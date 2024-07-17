@@ -1,4 +1,12 @@
-<p-button [rounded]="rounded" [icon]="icon" [label]="label" [raised]="raised" [class.severity]="severity"
-  [class]="class" [styleClass]="styleClass" (click)="handleCustomEvent()">
-  <ng-content></ng-content>
-</p-button>
+<p-button
+  [rounded]="config?.rounded"
+  [icon]="config?.icon"
+  [label]="config?.label"
+  [raised]="config?.raised"
+  [severity]="config?.severity"
+  [class]="config?.class"
+  [styleClass]="config?.styleClass"
+  (click)="handleCustomEvent()"
+>
+  <ng-content></ng-content
+></p-button>

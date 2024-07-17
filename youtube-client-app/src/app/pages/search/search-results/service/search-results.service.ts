@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Item, YouTubeVideoListResponse } from 'app/interfaces/youtube-response.interface';
+import { YouTubeResponse } from 'app/interfaces/youtube-response.interface';
+import { YouTubeVideoData } from 'app/interfaces/youtube-video-data.interface';
 import { YoutubeService } from 'app/services/youtube.service';
 
 @Injectable({
@@ -8,14 +9,14 @@ import { YoutubeService } from 'app/services/youtube.service';
 export class SearchResultsService {
   showSearchResults: boolean = false;
 
-  private mockItems: Item[] = [];
+  private mockItems: YouTubeVideoData[] = [];
 
-  searchedItems: Item[] = [];
+  searchedItems: YouTubeVideoData[] = [];
 
-  clientItems: Item[] = [];
+  clientItems: YouTubeVideoData[] = [];
 
   constructor(private youtubeService: YoutubeService) {
-    this.youtubeService.getAll().subscribe((response: YouTubeVideoListResponse) => {
+    this.youtubeService.getAll().subscribe((response: YouTubeResponse) => {
       this.mockItems = response.items;
       this.clientItems = response.items;
     });
@@ -33,12 +34,11 @@ export class SearchResultsService {
     return this.mockItems;
   }
 
-  get pageItems(): Item[] {
+  get pageItems(): YouTubeVideoData[] {
     return this.clientItems;
   }
 
   search(title: string) {
     this.searchedItems = this.youtubeService.getMatching(title);
   }
-
 }
