@@ -1,4 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, Output, EventEmitter } from '@angular/core';
+import { CustomButtonConfig } from 'app/interfaces/custom-button-config.interface';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -10,25 +11,11 @@ import { ButtonModule } from 'primeng/button';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CustomButtonComponent {
-  @Input() type: string | undefined;
+  @Input() public config?: CustomButtonConfig;
 
-  @Input() label: string | undefined;
+  @Output() private customEvent = new EventEmitter<void>();
 
-  @Input() raised: boolean | undefined;
-
-  @Input() severity: string | undefined;
-
-  @Input() icon: string | undefined;
-
-  @Input() rounded: boolean | undefined;
-
-  @Input() class: string | undefined;
-
-  @Input() styleClass: string | undefined;
-
-  @Output() customEvent = new EventEmitter<void>();
-
-  handleCustomEvent() {
+  public handleCustomEvent() {
     this.customEvent.emit();
   }
 }

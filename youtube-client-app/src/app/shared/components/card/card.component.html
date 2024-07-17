@@ -1,16 +1,15 @@
 
   <p-card [style]="{ 'width': '360px', 'text-align': 'center' }">
       <ng-template pTemplate="header">
-          <img [src]="imageUrl" [alt]="imageAlt" class="pt-2 pl-2 pr-2" />
+          <img [src]="config?.imageUrl" [alt]="config?.imageAlt" class="pt-2 pl-2 pr-2" />
       </ng-template>
       <p-scrollPanel [style]="{ width: '100%', height: '80px'}">
         <p>
-          {{headerText}}
+          {{config?.headerText}}
         </p>
       </p-scrollPanel>
       <ng-content>
 
-        <!-- subheader={{headerText}} -->
       </ng-content>
       <ng-template pTemplate="footer">
           <div class="flex gap-3 mt-1">

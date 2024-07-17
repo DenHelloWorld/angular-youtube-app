@@ -4,9 +4,7 @@
     "outDir": "./dist/out-tsc",
     "baseUrl": "./",
     "paths": {
-      "*": [
-        "./src/*"
-      ]
+      "*": ["./src/*"]
     },
     "strict": true,
     "noImplicitOverride": true,

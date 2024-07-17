@@ -8,11 +8,10 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 
 class AppComponent implements OnInit {
-  title = 'youtube-client-app';
 
   constructor(private primengConfig: PrimeNGConfig) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.primengConfig.ripple = true;
   }
 }

@@ -24,7 +24,7 @@ export class SharedService {
 
   filterTitle$ = this.filterTitle.asObservable();
 
-  filterDate$ = this.filterDate.asObservable();
+  public filterDate$ = this.filterDate.asObservable();
 
   filterView$ = this.filterView.asObservable();
 
@@ -32,11 +32,11 @@ export class SharedService {
 
   detalisId$ = this.detalisId.asObservable();
 
-  setFilterTitle(value: string) {
+  public setFilterTitle(value: string) {
     this.filterTitle.next(value);
   }
 
-  setFilterDate(value: string) {
+  public setFilterDate(value: string) {
     this.filterDate.next(value);
   }
 
