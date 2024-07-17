@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { YoutubeService } from './youtube.service';
-import {
-  Item,
-  IYouTubeVideoListResponse,
-} from '../models/youtube-response.model';
-import { SharedService } from 'app/shared/services/shared.service';
+import { YouTubeResponse } from '../models/youtube-response.interface';
+
 import { Subscription } from 'rxjs';
-import { SearchResultsData } from '../models/searchResultsData';
+
 import { DetalisService } from './detalis.service';
+import { YouTubeVideoData } from '../models/youtube-video-data.interface';
+import { SearchResultsData } from '../models/search-results-data.interface';
+import { SharedService } from 'app/shared/services/shared.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ import { DetalisService } from './detalis.service';
 export class SearchResultsService {
   private subscriptions: Subscription[];
 
-  private mockItems: Item[] = [];
+  private mockItems: YouTubeVideoData[] = [];
 
   SearchResultsData: SearchResultsData = {
     filterTitle: '',
@@ -37,11 +37,9 @@ export class SearchResultsService {
   }
 
   private getAllYoutubeItems() {
-    this.youtubeService
-      .getAll()
-      .subscribe((response: IYouTubeVideoListResponse) => {
-        this.mockItems = response.items;
-      });
+    this.youtubeService.getAll().subscribe((response: YouTubeResponse) => {
+      this.mockItems = response.items;
+    });
   }
 
   private handleFiltersChange() {
@@ -81,7 +79,7 @@ export class SearchResultsService {
       this.youtubeService.getByTitle(title);
   }
 
-  allOrSearchedItems(): Item[] {
+  allOrSearchedItems(): YouTubeVideoData[] {
     if (this.SearchResultsData.searchInputHeader.trim() === '') {
       this.SearchResultsData.searchedItems = this.allItems;
     } else {

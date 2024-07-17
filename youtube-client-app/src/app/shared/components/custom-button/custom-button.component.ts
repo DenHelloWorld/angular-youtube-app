@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, Output, EventEmitter } from '@angular/core';
-import { CustomButtonConfig } from 'app/interfaces/custom-button-config.interface';
+import { CustomButtonConfig } from 'app/features/youtube/models/custom-button-config.interface';
 import { ButtonModule } from 'primeng/button';
 
 @Component({

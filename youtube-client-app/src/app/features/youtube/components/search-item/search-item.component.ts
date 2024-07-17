@@ -5,13 +5,13 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { Statistics } from 'app/features/youtube/models/statistics';
-import { Item } from 'app/features/youtube/models/youtube-response.model';
 import CardComponent from 'app/shared/components/card/card.component';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SearchItemService } from '../../services/search-item.service';
+import { YouTubeVideoStatistics } from '../../models/youtube-video-statistics.interface';
+import { YouTubeVideoData } from '../../models/youtube-video-data.interface';
 
 @Component({
   selector: 'app-search-item',
@@ -28,7 +28,7 @@ import { SearchItemService } from '../../services/search-item.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export default class SearchItemComponent implements OnInit {
-  @Input() itemData: Item | undefined;
+  @Input() itemData: YouTubeVideoData | undefined;
 
   id: string = '';
 
@@ -38,7 +38,7 @@ export default class SearchItemComponent implements OnInit {
 
   publishedAt: string = '';
 
-  statistics: Statistics = {
+  statistics: YouTubeVideoStatistics = {
     viewCount: '',
     likeCount: '',
     dislikeCount: '',
@@ -46,9 +46,7 @@ export default class SearchItemComponent implements OnInit {
     commentCount: '',
   };
 
-  constructor(
-    private searchItemService: SearchItemService,
-  ) {}
+  constructor(private searchItemService: SearchItemService) {}
 
   ngOnInit(): void {
     this.setPublishedAt();

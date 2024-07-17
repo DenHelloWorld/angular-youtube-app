@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { YouTubeVideoData } from 'app/interfaces/youtube-video-data.interface';
+import { YouTubeVideoData } from '../models/youtube-video-data.interface';
+
 
 @Pipe({
   name: 'filterByDate',

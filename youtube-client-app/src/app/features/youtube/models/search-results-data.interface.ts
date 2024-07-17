@@ -1,9 +1,9 @@
-import { Item } from './youtube-response.model';
+import { YouTubeVideoData } from './youtube-video-data.interface';
 
 export type SearchResultsData = {
   filterTitle: string;
   filterDate: string;
   filterViews: string;
   searchInputHeader: string;
-  searchedItems: Item[];
+  searchedItems: YouTubeVideoData[];
 };

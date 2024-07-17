@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import {
-  IYouTubeVideoListResponse,
-  Item,
-} from '../models/youtube-response.model';
+import { YouTubeResponse } from '../models/youtube-response.interface';
+import { YouTubeVideoData } from '../models/youtube-video-data.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class YoutubeService {
-  public mockVideos: IYouTubeVideoListResponse = {
+  public mockVideos: YouTubeResponse = {
     kind: 'youtube#videoListResponse',
     etag: '"Fznwjl6JEQdo1MGvHOGaz_YanRU/Cmodw7c5XPTM8Yg3kMXelihxek4"',
     pageInfo: {
@@ -777,23 +775,23 @@ export class YoutubeService {
     ],
   };
 
-  getAll(): Observable<IYouTubeVideoListResponse> {
+  getAll(): Observable<YouTubeResponse> {
     return of(this.mockVideos);
   }
 
   // getOnce(video: number): Item {
   //   return this.mockVideos.items[video];
   // }
-  getById(id: string): Item[] {
-    const matched = this.mockVideos.items.filter((item: Item) =>
-      item.id.includes(id),
+  getById(id: string): YouTubeVideoData[] {
+    const matched = this.mockVideos.items.filter((video: YouTubeVideoData) =>
+      video.id.includes(id),
     );
     return matched;
   }
 
-  getByTitle(title: string): Item[] {
-    const matched = this.mockVideos.items.filter((item: Item) =>
-      item.snippet.localized.title.toLowerCase().includes(title.toLowerCase()),
+  getByTitle(title: string): YouTubeVideoData[] {
+    const matched = this.mockVideos.items.filter((video: YouTubeVideoData) =>
+      video.snippet.localized.title.toLowerCase().includes(title.toLowerCase()),
     );
     return matched;
   }
