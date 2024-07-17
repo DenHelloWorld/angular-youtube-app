@@ -6,6 +6,4 @@ export interface CustomButtonConfig {
   severity?: CustomButtonSeverity;
   icon?: string;
   rounded?: boolean;
-  class?: string;
-  styleClass?: string;
 }
