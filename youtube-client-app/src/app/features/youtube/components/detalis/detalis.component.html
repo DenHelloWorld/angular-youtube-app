@@ -1,12 +1,17 @@
-<p-fieldset styleClass="w-5/6 m-auto" [legend]="detalisService.datalisData.channelTitle">
+<p-fieldset
+  styleClass="w-5/6 m-auto"
+  [legend]="detalisService.datalisData.channelTitle"
+>
   <p>{{ id }}: detalis works!</p>
   <p-splitter [panelSizes]="[55, 45]" styleClass="mb-5 min-h-fit">
     <ng-template pTemplate>
       <div class="col flex align-items-center justify-content-center">
         <app-custom-button
-          [raised]="true"
+          [config]="{
+            raised: true,
+            icon: 'pi pi-angle-double-left'
+          }"
           (click)="handleButtonBack()"
-          icon="pi pi-angle-double-left"
         />
       </div>
     </ng-template>

@@ -10,8 +10,9 @@ import { CustomButtonComponent } from 'app/shared/components/custom-button/custo
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SearchItemService } from '../../services/search-item.service';
-import { YouTubeVideoStatistics } from '../../models/youtube-video-statistics.interface';
+// import { YouTubeVideoStatistics } from '../../models/youtube-video-statistics.interface';
 import { YouTubeVideoData } from '../../models/youtube-video-data.interface';
+import { StatisticsComponent } from '../statistics/statistics.component';
 
 @Component({
   selector: 'app-search-item',
@@ -23,12 +24,13 @@ import { YouTubeVideoData } from '../../models/youtube-video-data.interface';
     CardComponent,
     CustomButtonComponent,
     CommonModule,
+    StatisticsComponent,
   ],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export default class SearchItemComponent implements OnInit {
-  @Input() itemData: YouTubeVideoData | undefined;
+  @Input() itemData?: YouTubeVideoData;
 
   id: string = '';
 
@@ -38,21 +40,12 @@ export default class SearchItemComponent implements OnInit {
 
   publishedAt: string = '';
 
-  statistics: YouTubeVideoStatistics = {
-    viewCount: '',
-    likeCount: '',
-    dislikeCount: '',
-    favoriteCount: '',
-    commentCount: '',
-  };
-
   constructor(private searchItemService: SearchItemService) {}
 
   ngOnInit(): void {
     this.setPublishedAt();
     this.setImgDefaultUrl();
     this.setTitle();
-    this.setStatistic();
     this.setId();
   }
 
@@ -70,19 +63,6 @@ export default class SearchItemComponent implements OnInit {
 
   private setId(): void {
     this.id = this.itemData?.id ?? '';
-  }
-
-  private setStatistic(): void {
-    if (this.itemData?.statistics) {
-      this.statistics.viewCount = this.itemData.statistics.viewCount ?? '';
-      this.statistics.commentCount =
-        this.itemData.statistics.commentCount ?? '';
-      this.statistics.dislikeCount =
-        this.itemData.statistics.dislikeCount ?? '';
-      this.statistics.favoriteCount =
-        this.itemData.statistics.favoriteCount ?? '';
-      this.statistics.likeCount = this.itemData.statistics.likeCount ?? '';
-    }
   }
 
   private setPublishedAt(): void {
