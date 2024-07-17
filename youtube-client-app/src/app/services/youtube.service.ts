@@ -775,21 +775,20 @@ export class YoutubeService {
     ],
   };
 
-  getAll(): Observable<YouTubeResponse> {
+  public getAll(): Observable<YouTubeResponse> {
     return of(this.mockVideos);
   }
 
-  getOnce(video: number): YouTubeVideoData {
+  public getOnce(video: number): YouTubeVideoData {
     return this.mockVideos.items[video];
   }
 
-  getMatching(title: string): YouTubeVideoData[] {
+  public getMatching(title: string): YouTubeVideoData[] {
     const data = this.mockVideos.items.filter((videoData) =>
       videoData.snippet.localized.title
         .toLowerCase()
         .includes(title.toLowerCase()),
     );
-    console.log(data);
     return data;
   }
 }

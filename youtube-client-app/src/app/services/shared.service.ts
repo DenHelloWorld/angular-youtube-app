@@ -11,22 +11,21 @@ export class SharedService {
 
   private filterView = new BehaviorSubject<string>('');
 
-  filterTitle$ = this.filterTitle.asObservable();
+  public filterTitle$ = this.filterTitle.asObservable();
 
-  filterDate$ = this.filterDate.asObservable();
+  public filterDate$ = this.filterDate.asObservable();
 
-  filterView$ = this.filterView.asObservable();
+  public filterView$ = this.filterView.asObservable();
 
-  setFilterTitle(value: string) {
+  public setFilterTitle(value: string) {
     this.filterTitle.next(value);
   }
 
-  setFilterDate(value: string) {
+  public setFilterDate(value: string) {
     this.filterDate.next(value);
   }
 
-
-  setFilterView(value: string) {
+  public setFilterView(value: string) {
     this.filterView.next(value);
   }
 }

@@ -16,11 +16,10 @@ import SearchResultsComponent from './pages/search/search-results/search-results
 })
 
 class AppComponent implements OnInit {
-  title = 'youtube-client-app';
 
   constructor(private primengConfig: PrimeNGConfig) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.primengConfig.ripple = true;
   }
 }

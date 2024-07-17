@@ -6,7 +6,7 @@ import { YouTubeVideoData } from 'app/interfaces/youtube-video-data.interface';
   standalone: true,
 })
 export class FilterByDatePipe implements PipeTransform {
-  transform(items: YouTubeVideoData[], order: string): YouTubeVideoData[] {
+  public transform(items: YouTubeVideoData[], order: string): YouTubeVideoData[] {
     return (
       items?.sort((a, b) => {
         const dateA = new Date(a.snippet.publishedAt).getTime();

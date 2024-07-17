@@ -15,7 +15,7 @@ export class CustomButtonComponent {
 
   @Output() customEvent = new EventEmitter<void>();
 
-  handleCustomEvent() {
+  public handleCustomEvent() {
     this.customEvent.emit();
   }
 }

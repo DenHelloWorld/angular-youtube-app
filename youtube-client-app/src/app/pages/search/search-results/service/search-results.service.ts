@@ -7,13 +7,13 @@ import { YoutubeService } from 'app/services/youtube.service';
   providedIn: 'root',
 })
 export class SearchResultsService {
-  showSearchResults: boolean = false;
+  public showSearchResults: boolean = false;
 
   private mockItems: YouTubeVideoData[] = [];
 
-  searchedItems: YouTubeVideoData[] = [];
+  public searchedItems: YouTubeVideoData[] = [];
 
-  clientItems: YouTubeVideoData[] = [];
+  private clientItems: YouTubeVideoData[] = [];
 
   constructor(private youtubeService: YoutubeService) {
     this.youtubeService.getAll().subscribe((response: YouTubeResponse) => {
@@ -22,23 +22,23 @@ export class SearchResultsService {
     });
   }
 
-  toggleView() {
+  public toggleView() {
     this.showSearchResults = !this.showSearchResults;
   }
 
-  setView(isShow: boolean) {
+  public setView(isShow: boolean) {
     this.showSearchResults = isShow;
   }
 
-  get allItems() {
+  public get allItems() {
     return this.mockItems;
   }
 
-  get pageItems(): YouTubeVideoData[] {
+  public get pageItems(): YouTubeVideoData[] {
     return this.clientItems;
   }
 
-  search(title: string) {
+  public search(title: string) {
     this.searchedItems = this.youtubeService.getMatching(title);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CardModule } from 'primeng/card';
 import { SearchResultsService } from './service/search-results.service';
@@ -26,48 +26,42 @@ import { YouTubeVideoData } from 'app/interfaces/youtube-video-data.interface';
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.scss',
 })
-export default class SearchResultsComponent implements AfterViewInit, OnInit {
+export default class SearchResultsComponent implements OnInit {
   private subscriptions: Subscription[] = [];
 
-  // filterByTitle & filterByDate pipes
-  filterTitle: string = '';
+  public filterTitle: string = '';
 
-  filterDate: string = '';
+  public filterDate: string = '';
 
-  filterViews: string = '';
+  public filterViews: string = '';
 
   constructor(
     private sharedService: SharedService,
     private searchResultsService: SearchResultsService,
   ) {}
 
-  get isVisible(): boolean {
+  public get isVisible(): boolean {
     return this.searchResultsService.showSearchResults;
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
     this.sharedService.filterTitle$.subscribe((value) => {
       this.filterTitle = value;
-      console.log(this.filterTitle);
     });
     this.sharedService.filterDate$.subscribe((value) => {
       this.filterDate = value;
-      console.log('date', this.filterDate);
     });
     this.sharedService.filterView$.subscribe((value) => {
       this.filterViews = value;
-      console.log('view', this.filterViews);
     });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  ngAfterViewInit() {}
-
-  get searchedItems(): YouTubeVideoData[] {
+  public get searchedItems(): YouTubeVideoData[] {
     return this.searchResultsService.searchedItems;
   }
 }

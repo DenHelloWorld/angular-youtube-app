@@ -6,7 +6,10 @@ import { YouTubeVideoData } from 'app/interfaces/youtube-video-data.interface';
   standalone: true,
 })
 export class FilterByViewsPipe implements PipeTransform {
-  transform(items: YouTubeVideoData[], order: string): YouTubeVideoData[] {
+  public transform(
+    items: YouTubeVideoData[],
+    order: string,
+  ): YouTubeVideoData[] {
     return (
       items?.sort((a, b) => {
         const viewCountA = +(a.statistics?.viewCount ?? 0);

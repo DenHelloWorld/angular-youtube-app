@@ -13,36 +13,48 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ToolbarModule, CustomButtonComponent, SplitButtonModule, InputTextModule, DropdownModule, AvatarModule, FilterComponent, FormsModule],
+  imports: [
+    ToolbarModule,
+    CustomButtonComponent,
+    SplitButtonModule,
+    InputTextModule,
+    DropdownModule,
+    AvatarModule,
+    FilterComponent,
+    FormsModule,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export default class HeaderComponent {
-  isFilterShow: boolean;
+  public isFilterShow: boolean;
 
-  searchInputValue = '';
+  public searchInputValue = '';
 
-  constructor(private filtService: FiltService, private searchResultService: SearchResultsService) {
+  constructor(
+    private filtService: FiltService,
+    private searchResultService: SearchResultsService,
+  ) {
     this.isFilterShow = this.filtService.showFilter;
   }
 
-  toggleFilterView(): void {
+  public toggleFilterView(): void {
     this.filtService.toggleView();
     this.isFilterShow = this.filtService.showFilter;
   }
 
-  showSearchResults() {
+  public showSearchResults() {
     this.updateSearchResults();
     this.searchResultService.setView(true);
   }
 
   private updateSearchResults() {
     if (this.searchInputValue.trim() === '') {
-      this.searchResultService.searchedItems = this.searchResultService.allItems;
+      this.searchResultService.searchedItems =
+        this.searchResultService.allItems;
     } else {
       this.searchResultService.search(this.searchInputValue);
     }
   }
-
 }

@@ -22,13 +22,13 @@ import { ToolbarModule } from 'primeng/toolbar';
 export default class SearchItemComponent implements OnInit {
   @Input() itemData?: YouTubeVideoData;
 
-  imgDefaultUrl: string = '';
+  public imgDefaultUrl: string = '';
 
-  title: string = '';
+  public title: string = '';
 
-  publishedAt: string = '';
+  public publishedAt: string = '';
 
-  statistics: YouTubeVideoStatistics = {
+  public statistics: YouTubeVideoStatistics = {
     viewCount: '',
     likeCount: '',
     dislikeCount: '',
@@ -36,7 +36,7 @@ export default class SearchItemComponent implements OnInit {
     commentCount: '',
   };
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.setPublishedAt();
     this.setImgDefaultUrl();
     this.setTitle();

@@ -6,7 +6,10 @@ import { YouTubeVideoData } from 'app/interfaces/youtube-video-data.interface';
   standalone: true,
 })
 export class FilterByTitlePipe implements PipeTransform {
-  transform(items: YouTubeVideoData[], searchText: string): YouTubeVideoData[] {
+  public transform(
+    items: YouTubeVideoData[],
+    searchText: string,
+  ): YouTubeVideoData[] {
     if (!items || !searchText) return items;
     searchText = searchText.toLowerCase();
     return items.filter((item) =>
