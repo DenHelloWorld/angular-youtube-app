@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { Subscription } from 'rxjs';
 import { YoutubeService } from './youtube.service';
-import { Location } from '@angular/common';
+// import { Location } from '@angular/common';
 import { YouTubeVideoData } from '../models/youtube-video-data.interface';
-import { DetalisData } from '../models/detalis-data.interface';
-
+import { DetalisData } from '../models/detalis-data';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +12,7 @@ import { DetalisData } from '../models/detalis-data.interface';
 export class DetalisService {
   id: string = '';
 
-  routeSubscription: Subscription | undefined;
+  routeSubscription?: PushSubscription;
 
   subscriptions: Subscription[] = [];
 
@@ -36,11 +34,7 @@ export class DetalisService {
     publishedAt: '',
   };
 
-  constructor(
-    private router: Router,
-    private youtubeservice: YoutubeService,
-    private location: Location,
-  ) {}
+  constructor(private router: Router, private youtubeservice: YoutubeService) {}
 
   turnOffSubscribes() {
     this.routeSubscription?.unsubscribe();
@@ -48,11 +42,10 @@ export class DetalisService {
 
   loadDetalisById(id: string) {
     const data: YouTubeVideoData = this.youtubeservice.getById(id)[0];
-    console.log(data);
     this.datalisData.channelTitle = data.snippet.channelTitle;
     this.datalisData.description = data.snippet.description;
     this.datalisData.publishedAt = data.snippet.publishedAt;
-    console.log(this.datalisData.description);
+    this.datalisData.statistics = data.statistics;
   }
 
   openDetalis(id: string) {

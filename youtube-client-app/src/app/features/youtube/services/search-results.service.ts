@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 
 import { DetalisService } from './detalis.service';
 import { YouTubeVideoData } from '../models/youtube-video-data.interface';
-import { SearchResultsData } from '../models/search-results-data.interface';
+import { SearchResultsData } from '../models/search-results-data';
 import { SharedService } from 'app/shared/services/shared.service';
 
 @Injectable({

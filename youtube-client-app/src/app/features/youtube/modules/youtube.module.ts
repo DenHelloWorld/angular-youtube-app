@@ -15,11 +15,10 @@ import { YoutubeRoutingModule } from './youtube-routing.module';
 import { MainComponent } from '../pages/main/main.component';
 import { DetalisComponent } from '../components/detalis/detalis.component';
 import { DetalisService } from '../services/detalis.service';
-import { FieldsetModule } from 'primeng/fieldset';
-import { SplitterModule } from 'primeng/splitter';
+import { StatisticsComponent } from '../components/statistics/statistics.component';
 
 @NgModule({
-  declarations: [SearchResultsComponent, MainComponent, DetalisComponent],
+  declarations: [SearchResultsComponent, MainComponent],
   imports: [
     SearchItemComponent,
     CommonModule,
@@ -33,8 +32,8 @@ import { SplitterModule } from 'primeng/splitter';
     CustomButtonComponent,
     CardComponent,
     YoutubeRoutingModule,
-    FieldsetModule,
-    SplitterModule,
+    StatisticsComponent,
+    DetalisComponent,
   ],
   providers: [DetalisService],
   exports: [MainComponent],

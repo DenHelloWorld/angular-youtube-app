@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SearchResultsData } from 'app/features/youtube/models/search-results-data.interface';
+import { SearchResultsData } from 'app/features/youtube/models/search-results-data';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
