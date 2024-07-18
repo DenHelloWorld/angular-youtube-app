@@ -7,7 +7,8 @@ import { CustomButtonComponent } from 'app/shared/components/custom-button/custo
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
 import { StatisticsComponent } from '../statistics/statistics.component';
 import { DividerModule } from 'primeng/divider';
-import { PanelModule } from 'primeng/panel';
+import { CommonModule } from '@angular/common';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 @Component({
   selector: 'app-detalis',
@@ -21,22 +22,23 @@ import { PanelModule } from 'primeng/panel';
     ColoredBorderDirective,
     StatisticsComponent,
     DividerModule,
-    PanelModule,
+    CommonModule,
+    ScrollPanelModule,
   ],
 })
 export class DetalisComponent implements OnInit {
-  id: string = '';
+  private id: string = '';
 
   constructor(
     public detalisService: DetalisService,
     private activatedRoute: ActivatedRoute,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.turnOnSubscribes();
   }
 
-  turnOnSubscribes() {
+  private turnOnSubscribes() {
     this.activatedRoute.params.subscribe((params) => {
       const id = params['id'];
       this.id = id;
@@ -44,11 +46,11 @@ export class DetalisComponent implements OnInit {
     this.detalisService.loadDetalisById(this.id);
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.detalisService.turnOffSubscribes();
   }
 
-  handleButtonBack() {
+  public handleButtonBack() {
     this.detalisService.handleButtonBack();
   }
 }

@@ -32,6 +32,7 @@ export class DetalisService {
     description: '',
     channelTitle: '',
     publishedAt: '',
+    title: '',
   };
 
   constructor(private router: Router, private youtubeservice: YoutubeService) {}
@@ -47,6 +48,7 @@ export class DetalisService {
     this.datalisData.publishedAt = data.snippet.publishedAt;
     this.datalisData.statistics = data.statistics;
     this.datalisData.img.url = data.snippet.thumbnails.medium.url;
+    this.datalisData.title = data.snippet.title;
   }
 
   openDetalis(id: string) {

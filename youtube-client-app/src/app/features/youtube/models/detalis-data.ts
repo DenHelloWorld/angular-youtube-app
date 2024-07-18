@@ -7,4 +7,5 @@ export type DetalisData = {
   description: string;
   channelTitle: string;
   publishedAt: string;
+  title: string;
 };
