@@ -46,6 +46,7 @@ export class DetalisService {
     this.datalisData.description = data.snippet.description;
     this.datalisData.publishedAt = data.snippet.publishedAt;
     this.datalisData.statistics = data.statistics;
+    this.datalisData.img.url = data.snippet.thumbnails.medium.url;
   }
 
   openDetalis(id: string) {

@@ -3,17 +3,26 @@ import { DetalisService } from '../../services/detalis.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToolbarModule } from 'primeng/toolbar';
 import { FieldsetModule } from 'primeng/fieldset';
-import { SplitterModule } from 'primeng/splitter';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
 import { StatisticsComponent } from '../statistics/statistics.component';
+import { DividerModule } from 'primeng/divider';
+import { PanelModule } from 'primeng/panel';
 
 @Component({
   selector: 'app-detalis',
   templateUrl: './detalis.component.html',
   styleUrls: ['./detalis.component.scss'],
   standalone: true,
-  imports: [ToolbarModule, FieldsetModule, SplitterModule, CustomButtonComponent, ColoredBorderDirective, StatisticsComponent],
+  imports: [
+    ToolbarModule,
+    FieldsetModule,
+    CustomButtonComponent,
+    ColoredBorderDirective,
+    StatisticsComponent,
+    DividerModule,
+    PanelModule,
+  ],
 })
 export class DetalisComponent implements OnInit {
   id: string = '';

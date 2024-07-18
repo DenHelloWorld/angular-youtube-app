@@ -1,9 +1,13 @@
-<ng-content>
-  <app-card [config]="{ imageUrl: imgDefaultUrl, headerText: title}">
-    <app-custom-button (click)="openDetalis()" [config]="{ raised: true }" class="m-auto"
-      >More</app-custom-button
-    >
-    <app-statistics [statistics]="itemData?.statistics"></app-statistics>
-  </app-card>
-  <p [appColoredBorder]="publishedAt"></p>
-</ng-content>
+<div class="hover:drop-shadow-2xl transition-all" [appColoredBorder]="publishedAt">
+  <ng-content>
+    <app-card [config]="{ imageUrl: imgDefaultUrl, headerText: title }">
+      <app-custom-button
+        (click)="openDetalis()"
+        [config]="{ raised: true }"
+        class="m-auto"
+        >More</app-custom-button
+      >
+      <app-statistics [statistics]="itemData?.statistics"></app-statistics>
+    </app-card>
+  </ng-content>
+</div>

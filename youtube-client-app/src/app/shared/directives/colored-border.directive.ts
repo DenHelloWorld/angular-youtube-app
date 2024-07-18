@@ -23,13 +23,12 @@ export default class ColoredBorderDirective {
       borderColor = 'blue';
     }
 
-
-
     this.renderer.setStyle(
       this.el.nativeElement,
-      'border-bottom',
-      `5px solid ${borderColor}`,
+      'box-shadow',
+      `0px 11px 17px -7px ${borderColor}`,
     );
+
   }
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}

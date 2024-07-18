@@ -2,26 +2,31 @@
   styleClass="w-5/6 m-auto"
   [legend]="detalisService.datalisData.channelTitle"
 >
-  <p>{{ id }}: detalis works!</p>
-  <p-splitter [panelSizes]="[55, 45]" styleClass="mb-5 min-h-fit">
-    <ng-template pTemplate>
-      <div class="col flex align-items-center justify-content-center">
-        <app-custom-button
-          [config]="{
-            raised: true,
-            icon: 'pi pi-angle-double-left'
-          }"
-          (click)="handleButtonBack()"
+  <div class="flex row justify-between">
+    <app-custom-button
+      [config]="{
+        raised: true,
+        icon: 'pi pi-angle-double-left'
+      }"
+      (click)="handleButtonBack()"
+    />
+    <div class="flex flex-col justify-start align-items-center">
+      <div class="m-1">
+        <img
+          class="block max-w-none overflow-hidden"
+          alt="Video Preview"
+          [src]="detalisService.datalisData.img.url"
         />
       </div>
-    </ng-template>
-    <ng-template pTemplate>
-      <div
-        [appColoredBorder]="detalisService.datalisData.publishedAt"
-        class="col flex align-items-center justify-content-center w-full"
-      >
-        <app-statistics [statistics]="detalisService.datalisData.statistics"></app-statistics>
-      </div>
-    </ng-template>
-  </p-splitter>
+      <app-statistics
+        [statistics]="detalisService.datalisData.statistics"
+      ></app-statistics>
+    </div>
+    <p-divider layout="vertical" />
+    <div class="flex-col flex align-items-center justifyt-center">
+      <p-panel header="Description" [toggleable]="true">
+        <p>{{ detalisService.datalisData.description }}</p>
+      </p-panel>
+    </div>
+  </div>
 </p-fieldset>
