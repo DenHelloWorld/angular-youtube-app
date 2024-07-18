@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CommonModule } from '@angular/common';
-import { trigger, transition, style, animate } from '@angular/animations';
 import { FieldsetModule } from 'primeng/fieldset';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
@@ -9,6 +8,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { FiltService } from '../../services/filter.service';
+import { SidebarModule } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-filter',
@@ -21,20 +21,10 @@ import { FiltService } from '../../services/filter.service';
     FieldsetModule,
     FormsModule,
     InputTextModule,
+    SidebarModule,
   ],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.scss',
-  animations: [
-    trigger('filterSlide', [
-      transition(':enter', [
-        style({ transform: 'translateY(-100%)' }),
-        animate('0.1s', style({ transform: 'translateY(0)' })),
-      ]),
-      transition(':leave', [
-        animate('0.1s', style({ transform: 'translateY(-100%)' })),
-      ]),
-    ]),
-  ],
 })
 export default class FilterComponent implements OnInit {
   filterItems: MenuItem[] | undefined;
