@@ -1,11 +1,17 @@
 <p-toolbar>
-  <div class="p-toolbar-group-start"></div>
-
-  <div class="p-toolbar-group-center">
+  <div class="p-toolbar-group-start">
     <i class="pi pi-youtube mr-2" style="color: red; font-size: 60px"></i>
+  </div>
+
+  <div *ngIf="headerService.authService.isAuth()" class="p-toolbar-group-center">
     <span class="p-input-icon-left">
       <i class="pi pi-search"></i>
-      <input (keydown.enter)="headerService.showSearchResults()" [(ngModel)]="headerService.searchInputHeader" pInputText placeholder="Search" />
+      <input
+        (keydown.enter)="headerService.showSearchResults()"
+        [(ngModel)]="headerService.searchInputHeader"
+        pInputText
+        placeholder="Search"
+      />
     </span>
 
     <app-custom-button
@@ -21,11 +27,17 @@
     />
   </div>
 
-  <div class="p-toolbar-group-end">
-    <div class="flex items-center gap-2">
-      <span class="font-bold text-bluegray-50"> Your Name </span>
+  <div *ngIf="headerService.authService.isAuth()" class="p-toolbar-group-end">
+    <div
+      class="flex items-center gap-2"
+    >
+      <span class="font-bold text-bluegray-50">User</span>
       <app-custom-button
         [config]="{ raised: true, icon: 'pi pi-user', rounded: true }"
+      />
+      <app-custom-button
+        (click)="headerService.authService.logout()"
+        [config]="{ icon: 'pi pi-sign-out', raised: true, rounded: true }"
       />
     </div>
   </div>

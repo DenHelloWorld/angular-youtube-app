@@ -13,8 +13,8 @@ import { FilterService } from 'primeng/api';
 import FilterComponent from 'app/features/youtube/components/filter/filter.component';
 import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
 import { HeaderService } from '../services/header.service';
-// import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-
+import { NotFoundComponent } from '../components/not-found/not-found.component';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @NgModule({
   imports: [
@@ -28,9 +28,10 @@ import { HeaderService } from '../services/header.service';
     AvatarModule,
     FilterComponent,
     FormsModule,
+    FieldsetModule,
   ],
-  declarations: [HeaderComponent],
-  exports: [HeaderComponent],
+  declarations: [HeaderComponent, NotFoundComponent],
+  exports: [HeaderComponent, NotFoundComponent],
   providers: [FilterService, SearchResultsService, HeaderService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'app/features/auth/services/auth.service';
 import { FiltService } from 'app/features/youtube/services/filter.service';
 import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
 
@@ -13,14 +14,15 @@ export class HeaderService {
     public filtService: FiltService,
     private router: Router,
     private searchResultService: SearchResultsService,
+    public authService: AuthService,
   ) {}
 
-  showSearchResults() {
+  public showSearchResults() {
     this.handleSearchString();
     this.router.navigate(['/main']);
   }
 
-  handleSearchString() {
+  public handleSearchString() {
     this.searchResultService.SearchResultsData.searchInputHeader =
       this.searchInputHeader;
     this.searchResultService.allOrSearchedItems();
