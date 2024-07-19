@@ -5,7 +5,7 @@
     <i class="pi pi-youtube mr-2" style="color: red; font-size: 60px"></i>
     <span class="p-input-icon-left">
       <i class="pi pi-search"></i>
-      <input [(ngModel)]="headerService.searchInputHeader" pInputText placeholder="Search" />
+      <input (keydown.enter)="headerService.showSearchResults()" [(ngModel)]="headerService.searchInputHeader" pInputText placeholder="Search" />
     </span>
 
     <app-custom-button

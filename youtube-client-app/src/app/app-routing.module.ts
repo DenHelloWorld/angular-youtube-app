@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './features/auth/guards/auth.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/main', pathMatch: 'full' },
   {
     path: 'main',
     loadChildren: () =>

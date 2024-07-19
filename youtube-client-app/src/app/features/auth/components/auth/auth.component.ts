@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css'],
+  styleUrls: ['./auth.component.scss'],
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent {
 
-  // constructor() { }
+  public loginForm: FormGroup = this.formBuilder.group({
+    username: [''],
+    password: [''],
+  });
 
-  ngOnInit() {
+  constructor(
+    public authService: AuthService,
+    private formBuilder: FormBuilder,
+  ) {}
+
+  public onSubmit() {
+    const { username, password } = this.loginForm.value;
+    this.authService.login(username, password);
   }
-
 }
