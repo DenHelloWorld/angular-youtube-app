@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DetalisService } from '../../services/detalis.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToolbarModule } from 'primeng/toolbar';
 import { FieldsetModule } from 'primeng/fieldset';
@@ -9,11 +8,11 @@ import { StatisticsComponent } from '../statistics/statistics.component';
 import { DividerModule } from 'primeng/divider';
 import { CommonModule } from '@angular/common';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { DetailsService } from '../../services/details.service';
 
 @Component({
   selector: 'app-detalis',
-  templateUrl: './detalis.component.html',
-  styleUrls: ['./detalis.component.scss'],
+  templateUrl: './details.component.html',
   standalone: true,
   imports: [
     ToolbarModule,
@@ -26,11 +25,11 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
     ScrollPanelModule,
   ],
 })
-export class DetalisComponent implements OnInit {
+export class DetailsComponent implements OnInit {
   private id: string = '';
 
   constructor(
-    public detalisService: DetalisService,
+    public detailsService: DetailsService,
     private activatedRoute: ActivatedRoute,
   ) {}
 
@@ -43,14 +42,14 @@ export class DetalisComponent implements OnInit {
       const id = params['id'];
       this.id = id;
     });
-    this.detalisService.loadDetalisById(this.id);
+    this.detailsService.loadDetailsById(this.id);
   }
 
   public ngOnDestroy(): void {
-    this.detalisService.turnOffSubscribes();
+    this.detailsService.turnOffSubscribes();
   }
 
   public handleButtonBack() {
-    this.detalisService.handleButtonBack();
+    this.detailsService.handleButtonBack();
   }
 }

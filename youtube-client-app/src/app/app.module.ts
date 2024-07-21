@@ -7,6 +7,7 @@ import { RouterOutlet } from '@angular/router';
 import { CustomButtonComponent } from './shared/components/custom-button/custom-button.component';
 import { CoreModule } from './core/modules/core.module';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
     CommonModule,
     CustomButtonComponent,
     AppRoutingModule,
+    HttpClientModule,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -9,14 +9,14 @@ import { DetalisData } from '../models/detalis-data';
 @Injectable({
   providedIn: 'root',
 })
-export class DetalisService {
+export class DetailsService {
   id: string = '';
 
   routeSubscription?: PushSubscription;
 
   subscriptions: Subscription[] = [];
 
-  datalisData: DetalisData = {
+  detailsData: DetalisData = {
     statistics: {
       likeCount: '',
       dislikeCount: '',
@@ -35,20 +35,24 @@ export class DetalisService {
     title: '',
   };
 
-  constructor(private router: Router, private youtubeservice: YoutubeService) {}
+  constructor(private router: Router, private youtubeService: YoutubeService) {}
 
   turnOffSubscribes() {
     this.routeSubscription?.unsubscribe();
   }
 
-  loadDetalisById(id: string) {
-    const data: YouTubeVideoData = this.youtubeservice.getById(id)[0];
-    this.datalisData.channelTitle = data.snippet.channelTitle;
-    this.datalisData.description = data.snippet.description;
-    this.datalisData.publishedAt = data.snippet.publishedAt;
-    this.datalisData.statistics = data.statistics;
-    this.datalisData.img.url = data.snippet.thumbnails.medium.url;
-    this.datalisData.title = data.snippet.title;
+  public loadDetailsById(id: string) {
+    this.youtubeService.getById(id).subscribe((data: YouTubeVideoData[]) => {
+      if (data.length > 0) {
+        const video = data[0];
+        this.detailsData.channelTitle = video.snippet.channelTitle;
+        this.detailsData.description = video.snippet.description;
+        this.detailsData.publishedAt = video.snippet.publishedAt;
+        this.detailsData.statistics = video.statistics;
+        this.detailsData.img.url = video.snippet.thumbnails.medium.url;
+        this.detailsData.title = video.snippet.title;
+      }
+    });
   }
 
   openDetalis(id: string) {

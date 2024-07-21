@@ -13,9 +13,9 @@ import { CustomButtonComponent } from 'app/shared/components/custom-button/custo
 import CardComponent from 'app/shared/components/card/card.component';
 import { YoutubeRoutingModule } from './youtube-routing.module';
 import { MainComponent } from '../pages/main/main.component';
-import { DetalisComponent } from '../components/detalis/detalis.component';
-import { DetalisService } from '../services/detalis.service';
+import { DetailsService } from '../services/details.service';
 import { StatisticsComponent } from '../components/statistics/statistics.component';
+import { DetailsComponent } from '../components/details/details.component';
 
 @NgModule({
   declarations: [SearchResultsComponent, MainComponent],
@@ -33,9 +33,9 @@ import { StatisticsComponent } from '../components/statistics/statistics.compone
     CardComponent,
     YoutubeRoutingModule,
     StatisticsComponent,
-    DetalisComponent,
+    DetailsComponent,
   ],
-  providers: [DetalisService],
+  providers: [DetailsService],
   exports: [MainComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
