@@ -8,7 +8,7 @@ import { SearchResultsService } from 'app/features/youtube/services/search-resul
   providedIn: 'root',
 })
 export class HeaderService {
-  searchInputHeader: string = '';
+  public searchInputHeader: string = '';
 
   constructor(
     public filtService: FiltService,

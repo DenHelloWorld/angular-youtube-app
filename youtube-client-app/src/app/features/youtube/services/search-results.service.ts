@@ -17,7 +17,7 @@ export class SearchResultsService {
 
   private mockItems: YouTubeVideoData[] = [];
 
-  SearchResultsData: SearchResultsData = {
+  public SearchResultsData: SearchResultsData = {
     filterTitle: '',
     filterDate: '',
     filterViews: '',
@@ -62,24 +62,24 @@ export class SearchResultsService {
     );
   }
 
-  listenSearchResultsData() {
+  public listenSearchResultsData() {
     this.sharedService.setSearchResultsData(this.SearchResultsData);
   }
 
-  get allItems() {
+  public get allItems() {
     return this.mockItems;
   }
 
-  destroyListeners() {
+  public destroyListeners() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  searchByTitle(title: string) {
+  public searchByTitle(title: string) {
     this.SearchResultsData.searchedItems =
       this.youtubeService.getByTitle(title);
   }
 
-  allOrSearchedItems(): YouTubeVideoData[] {
+  public allOrSearchedItems(): YouTubeVideoData[] {
     if (this.SearchResultsData.searchInputHeader.trim() === '') {
       this.SearchResultsData.searchedItems = this.allItems;
     } else {

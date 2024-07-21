@@ -32,17 +32,17 @@ import { StatisticsComponent } from '../statistics/statistics.component';
 export default class SearchItemComponent implements OnInit {
   @Input() itemData?: YouTubeVideoData;
 
-  id: string = '';
+  public id: string = '';
 
-  imgDefaultUrl: string = '';
+  public imgDefaultUrl: string = '';
 
-  title: string = '';
+  public title: string = '';
 
-  publishedAt: string = '';
+  public publishedAt: string = '';
 
   constructor(private searchItemService: SearchItemService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.setPublishedAt();
     this.setImgDefaultUrl();
     this.setTitle();
@@ -69,7 +69,7 @@ export default class SearchItemComponent implements OnInit {
     this.publishedAt = this.itemData?.snippet?.publishedAt ?? '';
   }
 
-  openDetalis() {
+  public openDetalis() {
     this.searchItemService.openDetalis(this.id);
   }
 }

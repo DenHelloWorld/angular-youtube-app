@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { YoutubeService } from './youtube.service';
-// import { Location } from '@angular/common';
 import { YouTubeVideoData } from '../models/youtube-video-data.interface';
 import { DetalisData } from '../models/detalis-data';
 

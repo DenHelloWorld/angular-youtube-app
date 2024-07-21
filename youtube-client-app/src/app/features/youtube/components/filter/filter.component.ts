@@ -27,13 +27,13 @@ import { SidebarModule } from 'primeng/sidebar';
   styleUrl: './filter.component.scss',
 })
 export default class FilterComponent implements OnInit {
-  filterItems: MenuItem[] | undefined;
+  public filterItems: MenuItem[] | undefined;
 
-  placeHolder: string = 'Name';
+  public placeHolder: string = 'Name';
 
   constructor(public filtService: FiltService) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.filterItems = [
       {
         label: 'Date',
@@ -70,7 +70,7 @@ export default class FilterComponent implements OnInit {
     ];
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.filtService.removeSubscriptions();
   }
 }

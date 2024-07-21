@@ -6,17 +6,15 @@ import { Subscription } from 'rxjs';
   providedIn: 'root',
 })
 export class FiltService {
-  subscriptions: Subscription[] = [];
+  private subscriptions: Subscription[] = [];
 
-  showFilter: boolean = false;
+  public showFilter: boolean = false;
 
-  filterInputData: string = '';
+  public filterTitle: string = '';
 
-  filterTitle: string = '';
+  public filterDate: string = '';
 
-  filterDate: string = '';
-
-  filterViews: string = '';
+  public filterViews: string = '';
 
   toggleView() {
     this.showFilter = !this.showFilter;
@@ -24,7 +22,7 @@ export class FiltService {
 
   constructor(private sharedService: SharedService) {}
 
-  turnOnSubscriptions() {
+  public turnOnSubscriptions() {
     this.subscriptions.push(
       this.sharedService.filterTitle$.subscribe((value) => {
         this.filterTitle = value;
@@ -42,11 +40,11 @@ export class FiltService {
     );
   }
 
-  removeSubscriptions() {
+  public removeSubscriptions() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  handleMenubar(str: string) {
+  public handleMenubar(str: string) {
     switch (str) {
       case 'Date:Ascending':
         this.filterDate = 'asc';
@@ -67,7 +65,7 @@ export class FiltService {
     }
   }
 
-  showFilterResults() {
+  public showFilterResults() {
     this.sharedService.setFilterTitle(this.filterTitle);
   }
 }

@@ -775,21 +775,18 @@ export class YoutubeService {
     ],
   };
 
-  getAll(): Observable<YouTubeResponse> {
+  public getAll(): Observable<YouTubeResponse> {
     return of(this.mockVideos);
   }
 
-  // getOnce(video: number): Item {
-  //   return this.mockVideos.items[video];
-  // }
-  getById(id: string): YouTubeVideoData[] {
+  public getById(id: string): YouTubeVideoData[] {
     const matched = this.mockVideos.items.filter((video: YouTubeVideoData) =>
       video.id.includes(id),
     );
     return matched;
   }
 
-  getByTitle(title: string): YouTubeVideoData[] {
+  public getByTitle(title: string): YouTubeVideoData[] {
     const matched = this.mockVideos.items.filter((video: YouTubeVideoData) =>
       video.snippet.localized.title.toLowerCase().includes(title.toLowerCase()),
     );

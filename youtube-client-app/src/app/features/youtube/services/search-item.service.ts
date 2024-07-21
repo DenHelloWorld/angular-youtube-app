@@ -8,7 +8,7 @@ export class SearchItemService {
 
   constructor(private detalisService: DetalisService) {}
 
-  openDetalis(id: string) {
+  public openDetalis(id: string) {
     this.detalisService.openDetalis(id);
   }
 }
