@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainComponent } from '../pages/main/main.component';
-import { DetalisComponent } from '../components/detalis/detalis.component';
+import { DetalisComponent } from 'app/features/youtube/components/detalis/detalis.component';
+import { MainComponent } from 'app/features/youtube/pages/main/main.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: MainComponent },

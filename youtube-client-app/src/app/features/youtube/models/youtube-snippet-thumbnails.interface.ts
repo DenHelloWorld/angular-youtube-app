@@ -1,4 +1,4 @@
-import { YouTubeVideoThumbnail } from './youtube-video-thumbnail.interface';
+import { YouTubeVideoThumbnail } from 'app/features/youtube/models/youtube-video-thumbnail.interface';
 
 export interface YouTubeSnippetThumbnails {
   default: YouTubeVideoThumbnail;

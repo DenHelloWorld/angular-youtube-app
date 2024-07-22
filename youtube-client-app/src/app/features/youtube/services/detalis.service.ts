@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { DetalisData } from 'app/features/youtube/models/detalis-data';
+import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
+import { YoutubeService } from 'app/features/youtube/services/youtube.service';
 import { Subscription } from 'rxjs';
-import { YoutubeService } from './youtube.service';
-import { YouTubeVideoData } from '../models/youtube-video-data.interface';
-import { DetalisData } from '../models/detalis-data';
 
 @Injectable({
   providedIn: 'root',

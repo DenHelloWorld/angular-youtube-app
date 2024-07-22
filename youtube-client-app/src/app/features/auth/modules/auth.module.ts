@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthRoutingModule } from './auth-routing.module';
-import { AuthComponent } from '../components/auth/auth.component';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
@@ -12,6 +10,8 @@ import { PasswordModule } from 'primeng/password';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthComponent } from 'app/features/auth/components/auth/auth.component';
+import { AuthRoutingModule } from 'app/features/auth/modules/auth-routing.module';
 
 @NgModule({
   declarations: [AuthComponent],

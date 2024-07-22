@@ -1,5 +1,5 @@
-import { YouTubeVideoSnippet } from './youtube-video-snippet.interface';
-import { YouTubeVideoStatistics } from './youtube-video-statistics.interface';
+import { YouTubeVideoSnippet } from 'app/features/youtube/models/youtube-video-snippet.interface';
+import { YouTubeVideoStatistics } from 'app/features/youtube/models/youtube-video-statistics.interface';
 
 export interface YouTubeVideoData {
   kind: string;

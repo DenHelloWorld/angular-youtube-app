@@ -7,9 +7,9 @@ import { MenubarModule } from 'primeng/menubar';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
-import { FiltService } from '../../services/filter.service';
 import { SidebarModule } from 'primeng/sidebar';
-import { FilterItemsService } from '../../services/filter-items.service';
+import { FilterItemsService } from 'app/features/youtube/services/filter-items.service';
+import { FiltService } from 'app/features/youtube/services/filter.service';
 
 @Component({
   selector: 'app-filter',

@@ -1,4 +1,4 @@
-import { CustomButtonSeverity } from './custom-button-severity';
+import { CustomButtonSeverity } from 'app/features/youtube/models/custom-button-severity';
 
 export interface CustomButtonConfig {
   label?: string;

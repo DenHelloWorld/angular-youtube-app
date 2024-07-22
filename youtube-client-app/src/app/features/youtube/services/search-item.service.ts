@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DetalisService } from './detalis.service';
+import { DetalisService } from 'app/features/youtube/services/detalis.service';
 
 @Injectable({
   providedIn: 'root',

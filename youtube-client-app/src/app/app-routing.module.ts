@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { authGuard } from './features/auth/guards/auth.guard';
-import { preventAuthGuard } from './features/auth/guards/unAuth.guard';
-import { NotFoundComponent } from './core/components/not-found/not-found.component';
+import { NotFoundComponent } from 'app/core/components/not-found/not-found.component';
+import { authGuard } from 'app/features/auth/guards/auth.guard';
+import { preventAuthGuard } from 'app/features/auth/guards/unAuth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },

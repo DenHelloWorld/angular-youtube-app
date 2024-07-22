@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { YouTubeResponse } from 'app/features/youtube/models/youtube-response.interface';
+import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
 import { Observable, of } from 'rxjs';
-import { YouTubeResponse } from '../models/youtube-response.interface';
-import { YouTubeVideoData } from '../models/youtube-video-data.interface';
 
 @Injectable({
   providedIn: 'root',

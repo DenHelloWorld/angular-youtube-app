@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { YouTubeVideoData } from '../models/youtube-video-data.interface';
+import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
 
 @Pipe({
   name: 'filterByTitle',

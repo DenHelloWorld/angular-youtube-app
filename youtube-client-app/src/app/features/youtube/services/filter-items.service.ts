@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { FiltService } from 'app/features/youtube/services/filter.service';
 import { MenuItem } from 'primeng/api';
-import { FiltService } from './filter.service';
 
 @Injectable({
   providedIn: 'root',

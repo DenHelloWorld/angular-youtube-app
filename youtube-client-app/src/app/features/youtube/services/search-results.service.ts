@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { YoutubeService } from './youtube.service';
-import { YouTubeResponse } from '../models/youtube-response.interface';
 import { Subscription } from 'rxjs';
-import { YouTubeVideoData } from '../models/youtube-video-data.interface';
-import { SearchResultsData } from '../models/search-results-data';
 import { SharedService } from 'app/shared/services/shared.service';
+import { SearchResultsData } from 'app/features/youtube/models/search-results-data';
+import { YouTubeResponse } from 'app/features/youtube/models/youtube-response.interface';
+import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
+import { YoutubeService } from 'app/features/youtube/services/youtube.service';
 
 @Injectable({
   providedIn: 'root',

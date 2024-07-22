@@ -5,13 +5,14 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
+import { StatisticsComponent } from 'app/features/youtube/components/statistics/statistics.component';
+import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
+import { SearchItemService } from 'app/features/youtube/services/search-item.service';
 import CardComponent from 'app/shared/components/card/card.component';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
 import { ToolbarModule } from 'primeng/toolbar';
-import { SearchItemService } from '../../services/search-item.service';
-import { YouTubeVideoData } from '../../models/youtube-video-data.interface';
-import { StatisticsComponent } from '../statistics/statistics.component';
+
 
 @Component({
   selector: 'app-search-item',
