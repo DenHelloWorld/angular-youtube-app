@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { YoutubeService } from './youtube.service';
 import { YouTubeResponse } from '../models/youtube-response.interface';
-
 import { Subscription } from 'rxjs';
-
-import { DetalisService } from './detalis.service';
 import { YouTubeVideoData } from '../models/youtube-video-data.interface';
 import { SearchResultsData } from '../models/search-results-data';
 import { SharedService } from 'app/shared/services/shared.service';
@@ -28,7 +25,6 @@ export class SearchResultsService {
   constructor(
     private youtubeService: YoutubeService,
     private sharedService: SharedService,
-    private detalisService: DetalisService,
   ) {
     this.subscriptions = [];
     this.getAllYoutubeItems();

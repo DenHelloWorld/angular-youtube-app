@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HeaderService } from 'app/core/services/header.service';
+import { SearchStringService } from 'app/core/services/search-string.service';
+
 import { FiltService } from 'app/features/youtube/services/filter.service';
 
 @Component({
@@ -10,6 +11,6 @@ import { FiltService } from 'app/features/youtube/services/filter.service';
 export default class HeaderComponent {
   constructor(
     public filtService: FiltService,
-    public headerService: HeaderService,
+    public searchStringService: SearchStringService,
   ) {}
 }
