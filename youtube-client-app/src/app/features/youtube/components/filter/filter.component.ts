@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { FiltService } from '../../services/filter.service';
 import { SidebarModule } from 'primeng/sidebar';
+import { FilterItemsService } from '../../services/filter-items.service';
 
 @Component({
   selector: 'app-filter',
@@ -31,43 +32,10 @@ export default class FilterComponent implements OnInit {
 
   public placeHolder: string = 'Name';
 
-  constructor(public filtService: FiltService) {}
+  constructor(public filtService: FiltService, private filtItemService: FilterItemsService) {}
 
   public ngOnInit() {
-    this.filterItems = [
-      {
-        label: 'Date',
-        icon: 'pi pi-calendar-clock',
-        items: [
-          {
-            label: 'Ascending',
-            icon: 'pi pi-calendar-plus',
-            command: () => this.filtService.handleMenubar('Date:Ascending'),
-          },
-          {
-            label: 'Descending',
-            icon: 'pi pi-calendar-minus',
-            command: () => this.filtService.handleMenubar('Date:Descending'),
-          },
-        ],
-      },
-      {
-        label: 'Views',
-        icon: 'pi pi-eye',
-        items: [
-          {
-            label: 'Ascending',
-            icon: 'pi pi-arrow-circle-up',
-            command: () => this.filtService.handleMenubar('Views:Ascending'),
-          },
-          {
-            label: 'Descending',
-            icon: 'pi pi-arrow-circle-down',
-            command: () => this.filtService.handleMenubar('Views:Descending'),
-          },
-        ],
-      },
-    ];
+    this.filterItems = this.filtItemService.getItems();
   }
 
   public ngOnDestroy() {
