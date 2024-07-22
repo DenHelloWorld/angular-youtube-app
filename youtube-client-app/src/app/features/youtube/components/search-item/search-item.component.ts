@@ -10,7 +10,6 @@ import { CustomButtonComponent } from 'app/shared/components/custom-button/custo
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SearchItemService } from '../../services/search-item.service';
-// import { YouTubeVideoStatistics } from '../../models/youtube-video-statistics.interface';
 import { YouTubeVideoData } from '../../models/youtube-video-data.interface';
 import { StatisticsComponent } from '../statistics/statistics.component';
 

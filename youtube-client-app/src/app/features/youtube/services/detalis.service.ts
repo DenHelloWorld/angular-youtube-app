@@ -55,7 +55,6 @@ export class DetalisService {
   }
 
   handleButtonBack() {
-    // this.location.back();
     this.router.navigate(['/main']);
   }
 }
