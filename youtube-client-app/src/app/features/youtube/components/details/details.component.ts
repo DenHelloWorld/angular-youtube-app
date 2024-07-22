@@ -37,7 +37,7 @@ export class DetailsComponent implements OnInit {
     this.turnOnSubscribes();
   }
 
-  private turnOnSubscribes() {
+  public turnOnSubscribes() {
     this.activatedRoute.params.subscribe((params) => {
       const id = params['id'];
       this.id = id;

@@ -10,7 +10,6 @@ import { CustomButtonComponent } from 'app/shared/components/custom-button/custo
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SearchItemService } from '../../services/search-item.service';
-// import { YouTubeVideoStatistics } from '../../models/youtube-video-statistics.interface';
 import { YouTubeVideoData } from '../../models/youtube-video-data.interface';
 import { StatisticsComponent } from '../statistics/statistics.component';
 
@@ -62,14 +61,17 @@ export default class SearchItemComponent implements OnInit {
   }
 
   private setId(): void {
-    this.id = this.itemData?.id ?? '';
+    this.id = this.itemData?.id.videoId ?? '';
+    console.log(this.id);
   }
 
   private setPublishedAt(): void {
     this.publishedAt = this.itemData?.snippet?.publishedAt ?? '';
   }
 
-  openDetalis() {
-    this.searchItemService.openDetalis(this.id);
+  openDetails() {
+    console.log(this.itemData);
+
+    this.searchItemService.openDetails(this.id);
   }
 }

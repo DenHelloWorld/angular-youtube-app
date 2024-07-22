@@ -7,7 +7,7 @@ import { DetailsService } from './details.service';
 export class SearchItemService {
   constructor(private detailsService: DetailsService) {}
 
-  openDetalis(id: string) {
-    this.detailsService.openDetalis(id);
+  openDetails(id: string) {
+    this.detailsService.openDetails(id);
   }
 }

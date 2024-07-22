@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { YoutubeService } from './youtube.service';
-// import { Location } from '@angular/common';
 import { YouTubeVideoData } from '../models/youtube-video-data.interface';
 import { DetalisData } from '../models/detalis-data';
 
@@ -43,6 +42,7 @@ export class DetailsService {
 
   public loadDetailsById(id: string) {
     this.youtubeService.getById(id).subscribe((data: YouTubeVideoData[]) => {
+      console.log('loadDetailsById', data);
       if (data.length > 0) {
         const video = data[0];
         this.detailsData.channelTitle = video.snippet.channelTitle;
@@ -55,8 +55,8 @@ export class DetailsService {
     });
   }
 
-  openDetalis(id: string) {
-    this.router.navigate(['/main/detalis', id]);
+  openDetails(id: string) {
+    this.router.navigate(['/main/details', id]);
   }
 
   handleButtonBack() {
