@@ -3,19 +3,14 @@ import { Router } from '@angular/router';
 import { DetalisData } from 'app/features/youtube/models/detalis-data';
 import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
 import { YoutubeService } from 'app/features/youtube/services/youtube.service';
-import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DetalisService {
-  id: string = '';
+  private routeSubscription?: PushSubscription;
 
-  routeSubscription?: PushSubscription;
-
-  subscriptions: Subscription[] = [];
-
-  datalisData: DetalisData = {
+  public datalisData: DetalisData = {
     statistics: {
       likeCount: '',
       dislikeCount: '',
@@ -36,11 +31,11 @@ export class DetalisService {
 
   constructor(private router: Router, private youtubeservice: YoutubeService) {}
 
-  turnOffSubscribes() {
+  public turnOffSubscribes() {
     this.routeSubscription?.unsubscribe();
   }
 
-  loadDetalisById(id: string) {
+  public loadDetalisById(id: string) {
     const data: YouTubeVideoData = this.youtubeservice.getById(id)[0];
     this.datalisData.channelTitle = data.snippet.channelTitle;
     this.datalisData.description = data.snippet.description;
@@ -50,11 +45,11 @@ export class DetalisService {
     this.datalisData.title = data.snippet.title;
   }
 
-  openDetalis(id: string) {
+  public openDetalis(id: string) {
     this.router.navigate(['/main/detalis', id]);
   }
 
-  handleButtonBack() {
+  public handleButtonBack() {
     this.router.navigate(['/main']);
   }
 }

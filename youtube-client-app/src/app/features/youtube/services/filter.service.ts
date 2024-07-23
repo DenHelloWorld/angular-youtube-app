@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class FiltService {
+export class FilterService {
   private subscriptions: Subscription[] = [];
 
   public showFilter: boolean = false;
@@ -16,7 +16,7 @@ export class FiltService {
 
   public filterViews: string = '';
 
-  toggleView() {
+  public toggleView() {
     this.showFilter = !this.showFilter;
   }
 
