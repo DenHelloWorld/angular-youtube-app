@@ -1,8 +1,8 @@
 
 import { Component, Input } from '@angular/core';
-import { YouTubeVideoStatistics } from '../../models/youtube-video-statistics.interface';
 import { ToolbarModule } from 'primeng/toolbar';
 import { TagModule } from 'primeng/tag';
+import { YouTubeVideoStatistics } from 'app/features/youtube/models/youtube-video-statistics.interface';
 
 @Component({
   selector: 'app-statistics',

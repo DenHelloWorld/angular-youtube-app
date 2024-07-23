@@ -7,8 +7,8 @@ import { SearchResultsService } from 'app/features/youtube/services/search-resul
 @Injectable({
   providedIn: 'root',
 })
-export class HeaderService {
-  searchInputHeader: string = '';
+export class SearchStringService {
+  public searchInputHeader: string = '';
 
   constructor(
     public filtService: FiltService,

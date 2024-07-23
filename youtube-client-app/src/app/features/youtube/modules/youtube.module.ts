@@ -1,21 +1,21 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import SearchItemComponent from '../components/search-item/search-item.component';
 import { CommonModule } from '@angular/common';
-import SearchResultsComponent from '../components/search-results/search-results.component';
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
-import { FilterByDatePipe } from '../pipes/filterByDate.pipe';
-import { FilterByTitlePipe } from '../pipes/filterByTitle.pipe';
-import { FilterByViewsPipe } from '../pipes/filterByViews.pipe';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import CardComponent from 'app/shared/components/card/card.component';
-import { YoutubeRoutingModule } from './youtube-routing.module';
-import { MainComponent } from '../pages/main/main.component';
-import { DetailsService } from '../services/details.service';
-import { StatisticsComponent } from '../components/statistics/statistics.component';
-import { DetailsComponent } from '../components/details/details.component';
+import SearchResultsComponent from 'app/features/youtube/components/search-results/search-results.component';
+import { StatisticsComponent } from 'app/features/youtube/components/statistics/statistics.component';
+import { YoutubeRoutingModule } from 'app/features/youtube/modules/youtube-routing.module';
+import { MainComponent } from 'app/features/youtube/pages/main/main.component';
+import { FilterByDatePipe } from 'app/features/youtube/pipes/filterByDate.pipe';
+import { FilterByTitlePipe } from 'app/features/youtube/pipes/filterByTitle.pipe';
+import { FilterByViewsPipe } from 'app/features/youtube/pipes/filterByViews.pipe';
+import { DetailsService } from 'app/features/youtube/services/details.service';
+import { DetailsComponent } from 'app/features/youtube/components/details/details.component';
 
 @NgModule({
   declarations: [SearchResultsComponent, MainComponent],

@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { CardModule } from 'primeng/card';
-import { CustomButtonComponent } from '../custom-button/custom-button.component';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CardConfig } from 'app/features/youtube/models/card-config.interface';
 import { CommonModule } from '@angular/common';
+import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 
 @Component({
   selector: 'app-card',

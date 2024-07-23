@@ -1,5 +1,5 @@
-import { YouTubeVideoStatistics } from './youtube-video-statistics.interface';
-import { YouTubeVideoThumbnail } from './youtube-video-thumbnail.interface';
+import { YouTubeVideoStatistics } from 'app/features/youtube/models/youtube-video-statistics.interface';
+import { YouTubeVideoThumbnail } from 'app/features/youtube/models/youtube-video-thumbnail.interface';
 
 export type DetalisData = {
   statistics?: YouTubeVideoStatistics;

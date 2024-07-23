@@ -7,8 +7,9 @@ import { MenubarModule } from 'primeng/menubar';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
-import { FiltService } from '../../services/filter.service';
 import { SidebarModule } from 'primeng/sidebar';
+import { FilterItemsService } from 'app/features/youtube/services/filter-items.service';
+import { FiltService } from 'app/features/youtube/services/filter.service';
 
 @Component({
   selector: 'app-filter',
@@ -27,50 +28,17 @@ import { SidebarModule } from 'primeng/sidebar';
   styleUrl: './filter.component.scss',
 })
 export default class FilterComponent implements OnInit {
-  filterItems: MenuItem[] | undefined;
+  public filterItems: MenuItem[] | undefined;
 
-  placeHolder: string = 'Name';
+  public placeHolder: string = 'Name';
 
-  constructor(public filtService: FiltService) {}
+  constructor(public filtService: FiltService, private filtItemService: FilterItemsService) {}
 
-  ngOnInit() {
-    this.filterItems = [
-      {
-        label: 'Date',
-        icon: 'pi pi-calendar-clock',
-        items: [
-          {
-            label: 'Ascending',
-            icon: 'pi pi-calendar-plus',
-            command: () => this.filtService.handleMenubar('Date:Ascending'),
-          },
-          {
-            label: 'Descending',
-            icon: 'pi pi-calendar-minus',
-            command: () => this.filtService.handleMenubar('Date:Descending'),
-          },
-        ],
-      },
-      {
-        label: 'Views',
-        icon: 'pi pi-eye',
-        items: [
-          {
-            label: 'Ascending',
-            icon: 'pi pi-arrow-circle-up',
-            command: () => this.filtService.handleMenubar('Views:Ascending'),
-          },
-          {
-            label: 'Descending',
-            icon: 'pi pi-arrow-circle-down',
-            command: () => this.filtService.handleMenubar('Views:Descending'),
-          },
-        ],
-      },
-    ];
+  public ngOnInit() {
+    this.filterItems = this.filtItemService.getItems();
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.filtService.removeSubscriptions();
   }
 }

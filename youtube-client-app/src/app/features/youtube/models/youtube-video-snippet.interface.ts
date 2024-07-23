@@ -1,4 +1,4 @@
-import { YouTubeSnippetThumbnails } from './youtube-snippet-thumbnails.interface';
+import { YouTubeSnippetThumbnails } from 'app/features/youtube/models/youtube-snippet-thumbnails.interface';
 
 export interface YouTubeVideoSnippet {
   publishedAt: string;

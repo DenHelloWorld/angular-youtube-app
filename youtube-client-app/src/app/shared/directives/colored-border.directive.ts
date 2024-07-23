@@ -5,7 +5,7 @@ import { Directive, ElementRef, Renderer2, Input } from '@angular/core';
   standalone: true,
 })
 export default class ColoredBorderDirective {
-  @Input() set appColoredBorder(publicationDate: string) {
+  @Input() public set appColoredBorder(publicationDate: string) {
     const currentDate = new Date();
     const publishedDate = new Date(publicationDate);
     const timeDifference = currentDate.getTime() - publishedDate.getTime();
@@ -28,7 +28,6 @@ export default class ColoredBorderDirective {
       'box-shadow',
       `0px 11px 17px -7px ${borderColor}`,
     );
-
   }
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}

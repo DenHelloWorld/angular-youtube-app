@@ -9,7 +9,7 @@ import { AuthService } from 'app/features/auth/services/auth.service';
 export class NotFoundComponent {
   constructor(public authService: AuthService) {}
 
-  isAuth() {
+  public isAuth() {
     return this.authService.isAuth() ? 'To main' : 'To Login';
   }
 }

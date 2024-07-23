@@ -5,13 +5,14 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
+import { StatisticsComponent } from 'app/features/youtube/components/statistics/statistics.component';
+import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
+import { SearchItemService } from 'app/features/youtube/services/search-item.service';
 import CardComponent from 'app/shared/components/card/card.component';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
 import { ToolbarModule } from 'primeng/toolbar';
-import { SearchItemService } from '../../services/search-item.service';
-import { YouTubeVideoData } from '../../models/youtube-video-data.interface';
-import { StatisticsComponent } from '../statistics/statistics.component';
+
 
 @Component({
   selector: 'app-search-item',
@@ -31,17 +32,17 @@ import { StatisticsComponent } from '../statistics/statistics.component';
 export default class SearchItemComponent implements OnInit {
   @Input() itemData?: YouTubeVideoData;
 
-  id: string = '';
+  public id: string = '';
 
-  imgDefaultUrl: string = '';
+  public imgDefaultUrl: string = '';
 
-  title: string = '';
+  public title: string = '';
 
-  publishedAt: string = '';
+  public publishedAt: string = '';
 
   constructor(private searchItemService: SearchItemService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.setPublishedAt();
     this.setImgDefaultUrl();
     this.setTitle();
@@ -69,9 +70,7 @@ export default class SearchItemComponent implements OnInit {
     this.publishedAt = this.itemData?.snippet?.publishedAt ?? '';
   }
 
-  openDetails() {
-    console.log(this.itemData);
-
+  public openDetails() {
     this.searchItemService.openDetails(this.id);
   }
 }

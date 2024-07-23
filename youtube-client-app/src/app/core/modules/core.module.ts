@@ -1,5 +1,4 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import HeaderComponent from '../components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,9 +11,10 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { FilterService } from 'primeng/api';
 import FilterComponent from 'app/features/youtube/components/filter/filter.component';
 import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
-import { HeaderService } from '../services/header.service';
-import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { FieldsetModule } from 'primeng/fieldset';
+import HeaderComponent from 'app/core/components/header/header.component';
+import { NotFoundComponent } from 'app/core/components/not-found/not-found.component';
+import { SearchStringService } from 'app/core/services/search-string.service';
 
 @NgModule({
   imports: [
@@ -32,7 +32,7 @@ import { FieldsetModule } from 'primeng/fieldset';
   ],
   declarations: [HeaderComponent, NotFoundComponent],
   exports: [HeaderComponent, NotFoundComponent],
-  providers: [FilterService, SearchResultsService, HeaderService],
+  providers: [FilterService, SearchResultsService, SearchStringService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CoreModule {}

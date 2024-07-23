@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { YoutubeService } from './youtube.service';
-// import { YouTubeResponse } from '../models/youtube-response.interface';
 import { Subscription } from 'rxjs';
-import { YouTubeVideoData } from '../models/youtube-video-data.interface';
-import { SearchResultsData } from '../models/search-results-data';
 import { SharedService } from 'app/shared/services/shared.service';
-import { DetailsService } from './details.service';
+import { SearchResultsData } from 'app/features/youtube/models/search-results-data';
+import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
+import { DetailsService } from 'app/features/youtube/services/details.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,7 @@ export class SearchResultsService {
 
   private mockItems: YouTubeVideoData[] = [];
 
-  SearchResultsData: SearchResultsData = {
+  public SearchResultsData: SearchResultsData = {
     filterTitle: '',
     filterDate: '',
     filterViews: '',
@@ -60,15 +59,15 @@ export class SearchResultsService {
     );
   }
 
-  listenSearchResultsData() {
+  public listenSearchResultsData() {
     this.sharedService.setSearchResultsData(this.SearchResultsData);
   }
 
-  get allItems() {
+  public get allItems() {
     return this.mockItems;
   }
 
-  destroyListeners() {
+  public destroyListeners() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
@@ -80,7 +79,7 @@ export class SearchResultsService {
       });
   }
 
-  allOrSearchedItems(): YouTubeVideoData[] {
+  public allOrSearchedItems(): YouTubeVideoData[] {
     if (this.SearchResultsData.searchInputHeader.trim() === '') {
       this.SearchResultsData.searchedItems = this.allItems;
     } else {

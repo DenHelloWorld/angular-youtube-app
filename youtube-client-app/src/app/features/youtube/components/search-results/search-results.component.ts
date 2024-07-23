@@ -7,13 +7,11 @@ import { SearchResultsService } from 'app/features/youtube/services/search-resul
   styleUrl: './search-results.component.scss',
 })
 export default class SearchResultsComponent implements OnDestroy {
-  title: string = 'Search Results';
+  public title: string = 'Search Results';
 
-  constructor(
-    public searchResultsService: SearchResultsService,
-  ) {}
+  constructor(public searchResultsService: SearchResultsService) {}
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.searchResultsService.destroyListeners();
   }
 }

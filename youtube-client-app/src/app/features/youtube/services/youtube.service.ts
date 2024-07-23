@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { YouTubeResponse } from '../models/youtube-response.interface';
-import { YouTubeVideoData } from '../models/youtube-video-data.interface';
 import { HttpClient } from '@angular/common/http';
-import { BUILDED_URLS } from '../models/builded-urls.model';
+import { BUILDED_URLS } from 'app/features/youtube/models/builded-urls.model';
+import { YouTubeResponse } from 'app/features/youtube/models/youtube-response.interface';
+import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
 
 @Injectable({
   providedIn: 'root',

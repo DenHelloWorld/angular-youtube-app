@@ -4,11 +4,12 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { FieldsetModule } from 'primeng/fieldset';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
-import { StatisticsComponent } from '../statistics/statistics.component';
 import { DividerModule } from 'primeng/divider';
 import { CommonModule } from '@angular/common';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { DetailsService } from '../../services/details.service';
+import { StatisticsComponent } from 'app/features/youtube/components/statistics/statistics.component';
+import { DetalisService } from 'app/features/youtube/services/detalis.service';
 
 @Component({
   selector: 'app-detalis',

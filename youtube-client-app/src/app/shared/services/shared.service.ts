@@ -22,15 +22,15 @@ export class SharedService {
     searchedItems: [],
   });
 
-  filterTitle$ = this.filterTitle.asObservable();
+  public filterTitle$ = this.filterTitle.asObservable();
 
   public filterDate$ = this.filterDate.asObservable();
 
-  filterView$ = this.filterView.asObservable();
+  public filterView$ = this.filterView.asObservable();
 
-  searchResultsData$ = this.searchResultsData.asObservable();
+  public searchResultsData$ = this.searchResultsData.asObservable();
 
-  detalisId$ = this.detalisId.asObservable();
+  public detalisId$ = this.detalisId.asObservable();
 
   public setFilterTitle(value: string) {
     this.filterTitle.next(value);
@@ -40,15 +40,15 @@ export class SharedService {
     this.filterDate.next(value);
   }
 
-  setFilterView(value: string) {
+  public setFilterView(value: string) {
     this.filterView.next(value);
   }
 
-  setSearchResultsData(value: SearchResultsData) {
+  public setSearchResultsData(value: SearchResultsData) {
     this.searchResultsData.next(value);
   }
 
-  setDetalisId(value: string) {
+  public setDetalisId(value: string) {
     this.detalisId.next(value);
   }
 }

@@ -1,4 +1,5 @@
-import { YouTubeVideoData } from './youtube-video-data.interface';
+import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
+
 
 export interface YouTubeResponse {
   kind: string;
