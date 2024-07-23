@@ -5,6 +5,5 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './alert.component.html',
-  styleUrl: './alert.component.scss',
 })
 export default class AlertComponent {}

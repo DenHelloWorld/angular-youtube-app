@@ -7,7 +7,6 @@ import { ButtonModule } from 'primeng/button';
   standalone: true,
   imports: [ButtonModule],
   templateUrl: './custom-button.component.html',
-  styleUrl: './custom-button.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CustomButtonComponent {

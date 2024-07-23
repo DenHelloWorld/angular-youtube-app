@@ -13,7 +13,6 @@ import { DetalisService } from 'app/features/youtube/services/detalis.service';
 @Component({
   selector: 'app-detalis',
   templateUrl: './detalis.component.html',
-  styleUrls: ['./detalis.component.scss'],
   standalone: true,
   imports: [
     ToolbarModule,

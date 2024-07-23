@@ -25,7 +25,6 @@ import { FilterService } from 'app/features/youtube/services/filter.service';
     SidebarModule,
   ],
   templateUrl: './filter.component.html',
-  styleUrl: './filter.component.scss',
 })
 export default class FilterComponent implements OnInit {
   public filterItems: MenuItem[] | undefined;

@@ -17,7 +17,6 @@ import { ToolbarModule } from 'primeng/toolbar';
 @Component({
   selector: 'app-search-item',
   templateUrl: './search-item.component.html',
-  styleUrls: ['./search-item.component.scss'],
   imports: [
     ColoredBorderDirective,
     ToolbarModule,
