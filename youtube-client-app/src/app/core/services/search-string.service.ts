@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/features/auth/services/auth.service';
-import { FiltService } from 'app/features/youtube/services/filter.service';
+import { FilterService } from 'app/features/youtube/services/filter.service';
 import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class SearchStringService {
   public searchInputHeader: string = '';
 
   constructor(
-    public filtService: FiltService,
+    public filterService: FilterService,
     private router: Router,
     private searchResultService: SearchResultsService,
     public authService: AuthService,

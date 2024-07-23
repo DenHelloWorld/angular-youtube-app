@@ -7,15 +7,14 @@ import { ButtonModule } from 'primeng/button';
   standalone: true,
   imports: [ButtonModule],
   templateUrl: './custom-button.component.html',
-  styleUrl: './custom-button.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CustomButtonComponent {
   @Input() public config?: CustomButtonConfig;
 
-  @Output() private customEvent = new EventEmitter<void>();
+  @Output() private event = new EventEmitter<void>();
 
-  public handleCustomEvent() {
-    this.customEvent.emit();
+  public handleEvent() {
+    this.event.emit();
   }
 }

@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { SidebarModule } from 'primeng/sidebar';
 import { FilterItemsService } from 'app/features/youtube/services/filter-items.service';
-import { FiltService } from 'app/features/youtube/services/filter.service';
+import { FilterService } from 'app/features/youtube/services/filter.service';
 
 @Component({
   selector: 'app-filter',
@@ -25,20 +25,22 @@ import { FiltService } from 'app/features/youtube/services/filter.service';
     SidebarModule,
   ],
   templateUrl: './filter.component.html',
-  styleUrl: './filter.component.scss',
 })
 export default class FilterComponent implements OnInit {
   public filterItems: MenuItem[] | undefined;
 
   public placeHolder: string = 'Name';
 
-  constructor(public filtService: FiltService, private filtItemService: FilterItemsService) {}
+  constructor(
+    public filterService: FilterService,
+    private filterItemService: FilterItemsService,
+  ) {}
 
   public ngOnInit() {
-    this.filterItems = this.filtItemService.getItems();
+    this.filterItems = this.filterItemService.getItems();
   }
 
   public ngOnDestroy() {
-    this.filtService.removeSubscriptions();
+    this.filterService.removeSubscriptions();
   }
 }

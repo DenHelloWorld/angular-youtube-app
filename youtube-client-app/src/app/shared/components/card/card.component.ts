@@ -10,7 +10,6 @@ import { CustomButtonComponent } from 'app/shared/components/custom-button/custo
   standalone: true,
   imports: [ScrollPanelModule, CardModule, CustomButtonComponent, CommonModule],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss',
 })
 export default class CardComponent {
   @Input() public config?: CardConfig;

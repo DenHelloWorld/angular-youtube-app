@@ -4,7 +4,6 @@ import { SearchResultsService } from 'app/features/youtube/services/search-resul
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
-  styleUrl: './search-results.component.scss',
 })
 export default class SearchResultsComponent implements OnDestroy {
   public title: string = 'Search Results';

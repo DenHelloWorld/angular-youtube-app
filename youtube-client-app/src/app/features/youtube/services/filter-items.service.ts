@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { FiltService } from 'app/features/youtube/services/filter.service';
+import { FilterService } from 'app/features/youtube/services/filter.service';
 import { MenuItem } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FilterItemsService {
-  constructor(private filtService: FiltService) {}
+  constructor(private filterService: FilterService) {}
 
   public getItems(): MenuItem[] {
     return [
@@ -17,12 +17,12 @@ export class FilterItemsService {
           {
             label: 'Ascending',
             icon: 'pi pi-calendar-plus',
-            command: () => this.filtService.handleMenubar('Date:Ascending'),
+            command: () => this.filterService.handleMenubar('Date:Ascending'),
           },
           {
             label: 'Descending',
             icon: 'pi pi-calendar-minus',
-            command: () => this.filtService.handleMenubar('Date:Descending'),
+            command: () => this.filterService.handleMenubar('Date:Descending'),
           },
         ],
       },
@@ -33,12 +33,12 @@ export class FilterItemsService {
           {
             label: 'Ascending',
             icon: 'pi pi-arrow-circle-up',
-            command: () => this.filtService.handleMenubar('Views:Ascending'),
+            command: () => this.filterService.handleMenubar('Views:Ascending'),
           },
           {
             label: 'Descending',
             icon: 'pi pi-arrow-circle-down',
-            command: () => this.filtService.handleMenubar('Views:Descending'),
+            command: () => this.filterService.handleMenubar('Views:Descending'),
           },
         ],
       },

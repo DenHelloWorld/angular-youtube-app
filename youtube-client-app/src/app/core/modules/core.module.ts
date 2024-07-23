@@ -8,7 +8,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToolbarModule } from 'primeng/toolbar';
-import { FilterService } from 'primeng/api';
 import FilterComponent from 'app/features/youtube/components/filter/filter.component';
 import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
 import { FieldsetModule } from 'primeng/fieldset';
@@ -32,7 +31,7 @@ import { SearchStringService } from 'app/core/services/search-string.service';
   ],
   declarations: [HeaderComponent, NotFoundComponent],
   exports: [HeaderComponent, NotFoundComponent],
-  providers: [FilterService, SearchResultsService, SearchStringService],
+  providers: [SearchResultsService, SearchStringService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CoreModule {}

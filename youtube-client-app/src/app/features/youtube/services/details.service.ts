@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { DetalisData } from 'app/features/youtube/models/detalis-data';
 import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
 import { YoutubeService } from 'app/features/youtube/services/youtube.service';
-import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +35,7 @@ export class DetailsService {
 
   constructor(private router: Router, private youtubeService: YoutubeService) {}
 
-  turnOffSubscribes() {
+  public turnOffSubscribes() {
     this.routeSubscription?.unsubscribe();
   }
 
@@ -59,7 +58,7 @@ export class DetailsService {
     this.router.navigate(['/main/details', id]);
   }
 
-  handleButtonBack() {
+  public handleButtonBack() {
     this.router.navigate(['/main']);
   }
 }
