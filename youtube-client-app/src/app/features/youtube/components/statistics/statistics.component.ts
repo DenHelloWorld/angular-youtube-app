@@ -14,7 +14,6 @@ export class StatisticsComponent {
   @Input() statistics?: YouTubeVideoStatistics = {
     viewCount: '',
     likeCount: '',
-    dislikeCount: '',
     favoriteCount: '',
     commentCount: '',
   };

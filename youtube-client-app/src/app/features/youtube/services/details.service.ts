@@ -14,7 +14,6 @@ export class DetailsService {
   public detailsData: DetalisData = {
     statistics: {
       likeCount: '',
-      dislikeCount: '',
       viewCount: '',
       favoriteCount: '',
       commentCount: '',
