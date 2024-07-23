@@ -8,13 +8,10 @@ import { YoutubeService } from 'app/features/youtube/services/youtube.service';
   providedIn: 'root',
 })
 export class DetailsService {
-  id: string = '';
 
-  routeSubscription?: PushSubscription;
+  private routeSubscription?: PushSubscription;
 
-  subscriptions: Subscription[] = [];
-
-  detailsData: DetalisData = {
+  public detailsData: DetalisData = {
     statistics: {
       likeCount: '',
       dislikeCount: '',
@@ -54,7 +51,7 @@ export class DetailsService {
     });
   }
 
-  openDetails(id: string) {
+  public openDetails(id: string) {
     this.router.navigate(['/main/details', id]);
   }
 
