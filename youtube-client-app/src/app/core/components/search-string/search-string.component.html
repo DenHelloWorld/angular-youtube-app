@@ -1,0 +1,9 @@
+<span class="p-input-icon-left">
+  <i class="pi pi-search"></i>
+  <input
+    (keydown.enter)="searchStringService.showSearchResults()"
+    [(ngModel)]="searchStringService.searchInputHeader"
+    pInputText
+    placeholder="Search"
+  />
+</span>

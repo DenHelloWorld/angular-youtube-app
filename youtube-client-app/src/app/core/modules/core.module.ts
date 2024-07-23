@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import { AvatarModule } from 'primeng/avatar';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputTextModule } from 'primeng/inputtext';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToolbarModule } from 'primeng/toolbar';
 import FilterComponent from 'app/features/youtube/components/filter/filter.component';
@@ -14,6 +13,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import HeaderComponent from 'app/core/components/header/header.component';
 import { NotFoundComponent } from 'app/core/components/not-found/not-found.component';
 import { SearchStringService } from 'app/core/services/search-string.service';
+import { SearchStringComponent } from 'app/core/components/search-string/search-string.component';
 
 @NgModule({
   imports: [
@@ -22,12 +22,12 @@ import { SearchStringService } from 'app/core/services/search-string.service';
     ToolbarModule,
     CustomButtonComponent,
     SplitButtonModule,
-    InputTextModule,
     DropdownModule,
     AvatarModule,
     FilterComponent,
     FormsModule,
     FieldsetModule,
+    SearchStringComponent,
   ],
   declarations: [HeaderComponent, NotFoundComponent],
   exports: [HeaderComponent, NotFoundComponent],

@@ -4,23 +4,9 @@
   </div>
 
   <div *ngIf="searchStringService.authService.isAuth()" class="p-toolbar-group-center">
-    <span class="p-input-icon-left">
-      <i class="pi pi-search"></i>
-      <input
-        (keydown.enter)="searchStringService.showSearchResults()"
-        [(ngModel)]="searchStringService.searchInputHeader"
-        pInputText
-        placeholder="Search"
-      />
-    </span>
 
-    <app-custom-button
-      (click)="searchStringService.showSearchResults()"
-      [config]="{ raised: true, severity: 'primary' }"
-      class="mr-2"
-      >Search</app-custom-button
-    >
-
+    <app-search-string></app-search-string>
+    
     <app-custom-button
       (click)="filterService.toggleView()"
       [config]="{ icon: 'pi pi-sliders-v', raised: !filterService.showFilter }"

@@ -25,7 +25,7 @@ export class SearchResultsService {
   ) {
     this.subscriptions = [];
     this.handleFiltersChange();
-    this.allOrSearchedItems();
+    // this.allOrSearchedItems();
   }
 
   private handleFiltersChange() {
@@ -61,7 +61,6 @@ export class SearchResultsService {
       .getByTitle(title)
       .subscribe((data: YouTubeVideoDetailsData[]) => {
         this.SearchResultsData.searchedItems = data;
-        console.log(data);
       });
   }
 

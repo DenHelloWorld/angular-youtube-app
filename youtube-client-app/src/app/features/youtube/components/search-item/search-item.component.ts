@@ -61,7 +61,6 @@ export default class SearchItemComponent implements OnInit {
 
   private setId(): void {
     this.id = this.itemData?.id ?? '';
-    console.log(this.itemData);
   }
 
   private setPublishedAt(): void {
