@@ -12,5 +12,11 @@ import { InputTextModule } from 'primeng/inputtext';
 export class SearchStringComponent implements OnInit {
   constructor(public searchStringService: SearchStringService) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.searchStringService.turnOnSubscriptions();
+  }
+
+  ngOnDestroy(): void {
+    this.searchStringService.turnOffSubscriptions();
+  }
 }

@@ -1,7 +1,7 @@
 <span class="p-input-icon-left">
   <i class="pi pi-search"></i>
   <input
-    (keydown.enter)="searchStringService.showSearchResults()"
+    (input)="searchStringService.updateSearchInput(searchStringService.searchInputHeader)"
     [(ngModel)]="searchStringService.searchInputHeader"
     pInputText
     placeholder="Search"
