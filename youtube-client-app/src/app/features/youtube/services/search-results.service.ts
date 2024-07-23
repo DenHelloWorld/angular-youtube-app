@@ -25,7 +25,6 @@ export class SearchResultsService {
   ) {
     this.subscriptions = [];
     this.handleFiltersChange();
-    // this.allOrSearchedItems();
   }
 
   private handleFiltersChange() {
@@ -64,10 +63,8 @@ export class SearchResultsService {
       });
   }
 
-  public allOrSearchedItems(): YouTubeVideoDetailsData[] {
+  public searchedItems(): YouTubeVideoDetailsData[] {
     this.searchByTitle(this.SearchResultsData.searchInputHeader);
-    // console.log(this.SearchResultsData.searchedItems);
-
     return this.SearchResultsData.searchedItems;
   }
 }

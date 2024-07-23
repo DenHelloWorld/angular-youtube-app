@@ -14,6 +14,7 @@ import HeaderComponent from 'app/core/components/header/header.component';
 import { NotFoundComponent } from 'app/core/components/not-found/not-found.component';
 import { SearchStringService } from 'app/core/services/search-string.service';
 import { SearchStringComponent } from 'app/core/components/search-string/search-string.component';
+import { AuthButtonComponent } from 'app/core/components/auth-button/auth-button.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { SearchStringComponent } from 'app/core/components/search-string/search-
     FormsModule,
     FieldsetModule,
     SearchStringComponent,
+    AuthButtonComponent,
   ],
   declarations: [HeaderComponent, NotFoundComponent],
   exports: [HeaderComponent, NotFoundComponent],

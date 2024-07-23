@@ -3,29 +3,23 @@
     <i class="pi pi-youtube mr-2" style="color: red; font-size: 60px"></i>
   </div>
 
-  <div *ngIf="searchStringService.authService.isAuth()" class="p-toolbar-group-center">
-
+  <div *ngIf="authService.isAuth()" class="p-toolbar-group-center">
     <app-search-string></app-search-string>
-    
+
     <app-custom-button
       (click)="filterService.toggleView()"
       [config]="{ icon: 'pi pi-sliders-v', raised: !filterService.showFilter }"
     />
   </div>
 
-  <div *ngIf="searchStringService.authService.isAuth()" class="p-toolbar-group-end">
-    <div
-      class="flex items-center gap-2"
-    >
+  <div class="p-toolbar-group-end">
+    <div *ngIf="authService.isAuth()" class="mr-1 flex items-center gap-2">
       <span class="font-bold text-bluegray-50">User</span>
       <app-custom-button
         [config]="{ raised: true, icon: 'pi pi-user', rounded: true }"
       />
-      <app-custom-button
-        (click)="searchStringService.authService.logout()"
-        [config]="{ icon: 'pi pi-sign-out', raised: true, rounded: true }"
-      />
     </div>
+    <app-auth-button></app-auth-button>
   </div>
 </p-toolbar>
 

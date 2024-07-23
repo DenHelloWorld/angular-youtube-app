@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'app/features/auth/services/auth.service';
+// import { AuthService } from 'app/features/auth/services/auth.service';
 import { FilterService } from 'app/features/youtube/services/filter.service';
 import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
 import { Subject, Subscription } from 'rxjs';
@@ -20,7 +20,7 @@ export class SearchStringService {
     public filterService: FilterService,
     private router: Router,
     private searchResultService: SearchResultsService,
-    public authService: AuthService,
+    // public authService: AuthService,
   ) {}
 
   public turnOnSubscriptions() {
@@ -51,7 +51,7 @@ export class SearchStringService {
   public handleSearchString() {
     this.searchResultService.SearchResultsData.searchInputHeader =
       this.searchInputHeader;
-    this.searchResultService.allOrSearchedItems();
+    this.searchResultService.searchedItems();
     this.searchResultService.listenSearchResultsData();
   }
 }
