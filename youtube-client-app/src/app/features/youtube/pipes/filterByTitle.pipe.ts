@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
+import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
 
 @Pipe({
   name: 'filterByTitle',
@@ -7,9 +7,9 @@ import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data
 })
 export class FilterByTitlePipe implements PipeTransform {
   public transform(
-    items: YouTubeVideoData[],
+    items: YouTubeVideoDetailsData[],
     searchText: string,
-  ): YouTubeVideoData[] {
+  ): YouTubeVideoDetailsData[] {
     if (!items || !searchText) return items;
     searchText = searchText.toLowerCase();
     return items.filter((item) =>

@@ -4,7 +4,7 @@ import { YouTubeVideoStatistics } from './youtube-video-statistics.interface';
 export interface YouTubeVideoDetailsData {
   kind: string;
   etag: string;
-  id: { kind: ''; videoId: '' };
+  id: string;
   snippet: YouTubeVideoSnippet;
   statistics: YouTubeVideoStatistics;
 }

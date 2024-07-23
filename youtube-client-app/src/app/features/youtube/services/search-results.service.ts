@@ -3,16 +3,13 @@ import { YoutubeService } from './youtube.service';
 import { Subscription } from 'rxjs';
 import { SharedService } from 'app/shared/services/shared.service';
 import { SearchResultsData } from 'app/features/youtube/models/search-results-data';
-import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
-import { DetailsService } from 'app/features/youtube/services/details.service';
+import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchResultsService {
   private subscriptions: Subscription[];
-
-  private mockItems: YouTubeVideoData[] = [];
 
   public SearchResultsData: SearchResultsData = {
     filterTitle: '',
@@ -25,19 +22,11 @@ export class SearchResultsService {
   constructor(
     private youtubeService: YoutubeService,
     private sharedService: SharedService,
-    private detailsService: DetailsService,
   ) {
     this.subscriptions = [];
-    // this.getAllYoutubeItems();
     this.handleFiltersChange();
     this.allOrSearchedItems();
   }
-
-  // private getAllYoutubeItems() {
-  //   this.youtubeService.getAll().subscribe((response: YouTubeResponse) => {
-  //     this.mockItems = response.items;
-  //   });
-  // }
 
   private handleFiltersChange() {
     this.sharedService.filterTitle$.subscribe((value) => {
@@ -63,10 +52,6 @@ export class SearchResultsService {
     this.sharedService.setSearchResultsData(this.SearchResultsData);
   }
 
-  public get allItems() {
-    return this.mockItems;
-  }
-
   public destroyListeners() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
@@ -74,17 +59,16 @@ export class SearchResultsService {
   searchByTitle(title: string) {
     this.youtubeService
       .getByTitle(title)
-      .subscribe((data: YouTubeVideoData[]) => {
+      .subscribe((data: YouTubeVideoDetailsData[]) => {
         this.SearchResultsData.searchedItems = data;
+        console.log(data);
       });
   }
 
-  public allOrSearchedItems(): YouTubeVideoData[] {
-    if (this.SearchResultsData.searchInputHeader.trim() === '') {
-      this.SearchResultsData.searchedItems = this.allItems;
-    } else {
-      this.searchByTitle(this.SearchResultsData.searchInputHeader);
-    }
+  public allOrSearchedItems(): YouTubeVideoDetailsData[] {
+    this.searchByTitle(this.SearchResultsData.searchInputHeader);
+    // console.log(this.SearchResultsData.searchedItems);
+
     return this.SearchResultsData.searchedItems;
   }
 }

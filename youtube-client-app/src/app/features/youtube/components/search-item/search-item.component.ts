@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { StatisticsComponent } from 'app/features/youtube/components/statistics/statistics.component';
-import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
+import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
 import { SearchItemService } from 'app/features/youtube/services/search-item.service';
 import CardComponent from 'app/shared/components/card/card.component';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
@@ -29,7 +29,7 @@ import { ToolbarModule } from 'primeng/toolbar';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export default class SearchItemComponent implements OnInit {
-  @Input() itemData?: YouTubeVideoData;
+  @Input() itemData?: YouTubeVideoDetailsData;
 
   public id: string = '';
 
@@ -49,8 +49,7 @@ export default class SearchItemComponent implements OnInit {
   }
 
   private setImgDefaultUrl(): void {
-    this.imgDefaultUrl =
-      this.itemData?.snippet?.thumbnails?.medium?.url ?? '';
+    this.imgDefaultUrl = this.itemData?.snippet?.thumbnails?.medium?.url ?? '';
   }
 
   private setTitle(): void {
@@ -61,8 +60,8 @@ export default class SearchItemComponent implements OnInit {
   }
 
   private setId(): void {
-    this.id = this.itemData?.id.videoId ?? '';
-    console.log(this.id);
+    this.id = this.itemData?.id ?? '';
+    console.log(this.itemData);
   }
 
   private setPublishedAt(): void {
