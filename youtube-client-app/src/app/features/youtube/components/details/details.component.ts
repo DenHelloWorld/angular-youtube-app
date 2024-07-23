@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { DetailsService } from '../../services/details.service';
 import { StatisticsComponent } from 'app/features/youtube/components/statistics/statistics.component';
-import { DetalisService } from 'app/features/youtube/services/detalis.service';
 
 @Component({
   selector: 'app-detalis',

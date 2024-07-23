@@ -51,7 +51,7 @@ export default class SearchItemComponent implements OnInit {
 
   private setImgDefaultUrl(): void {
     this.imgDefaultUrl =
-      this.itemData?.snippet?.thumbnails?.standard?.url ?? '';
+      this.itemData?.snippet?.thumbnails?.medium?.url ?? '';
   }
 
   private setTitle(): void {
