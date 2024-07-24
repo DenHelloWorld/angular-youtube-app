@@ -1,0 +1,49 @@
+<p-fieldset
+  styleClass="w-5/6 mx-auto my-8"
+  [legend]="detalisService.datalisData.channelTitle"
+>
+  <div class="flex row justify-between">
+    <app-custom-button
+      [config]="{
+        raised: true,
+        icon: 'pi pi-angle-double-left'
+      }"
+      (click)="handleButtonBack()"
+    />
+    <div class="flex gap-2 flex-col justify-start align-items-center">
+      <div class="m-1">
+        <img
+          class="block max-w-none overflow-hidden"
+          alt="Video Preview"
+          [src]="detalisService.datalisData.img.url"
+        />
+      </div>
+      <app-statistics
+        [appColoredBorder]="detalisService.datalisData.publishedAt"
+        [statistics]="detalisService.datalisData.statistics"
+      ></app-statistics>
+      <p
+        [appColoredBorder]="detalisService.datalisData.publishedAt"
+        class="text-center font-medium p-2 border-r-2 shadow-md"
+      >
+        {{ detalisService.datalisData.title }}
+      </p>
+      <p
+        [appColoredBorder]="detalisService.datalisData.publishedAt"
+        class="font-medium text-center p-2 border-r-2 shadow-md"
+      >
+        {{ detalisService.datalisData.publishedAt | date }}
+      </p>
+    </div>
+    <p-divider layout="vertical" />
+    <div class="flex flex-col gap-2 align-items-center justifyt-center">
+      <p-scrollPanel
+        [appColoredBorder]="detalisService.datalisData.publishedAt"
+        class="p-2 border-r-2 shadow-md max-h-full"
+        [style]="{ width: '100%' }"
+      >
+        <p>{{ detalisService.datalisData.description }}</p>
+      </p-scrollPanel>
+    </div>
+  </div>
+</p-fieldset>

@@ -1,0 +1,13 @@
+<p-button
+  [rounded]="config?.rounded"
+  [icon]="config?.icon"
+  [label]="config?.label"
+  [raised]="config?.raised"
+  [severity]="config?.severity"
+  [outlined]="config?.outlined"
+  [styleClass]="config?.styleClass"
+  [type]="config?.type || 'button'"
+  (click)="handleEvent()"
+>
+  <ng-content></ng-content
+></p-button>
