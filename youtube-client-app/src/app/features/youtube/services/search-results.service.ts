@@ -55,7 +55,7 @@ export class SearchResultsService {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  searchByTitle(title: string) {
+  public searchByTitle(title: string) {
     this.youtubeService
       .getByTitle(title)
       .subscribe((data: YouTubeVideoDetailsData[]) => {

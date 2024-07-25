@@ -20,7 +20,6 @@ export class SearchStringService {
     public filterService: FilterService,
     private router: Router,
     private searchResultService: SearchResultsService,
-    // public authService: AuthService,
   ) {}
 
   public turnOnSubscriptions() {

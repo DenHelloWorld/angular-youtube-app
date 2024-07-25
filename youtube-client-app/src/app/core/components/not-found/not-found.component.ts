@@ -10,7 +10,7 @@ export class NotFoundComponent implements OnInit {
 
   constructor(public authService: AuthService) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.authService.getAuthStatus().subscribe((status) => {
       this.isAuthenticated = status;
     });

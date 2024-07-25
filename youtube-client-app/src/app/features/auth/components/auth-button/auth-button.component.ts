@@ -18,7 +18,7 @@ export class AuthButtonComponent
     super();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.authService.getAuthStatus().subscribe((status) => {
       this.isAuthenticated = status;
     });

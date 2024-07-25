@@ -39,7 +39,6 @@ export class DetailsService {
     this.youtubeService
       .getById(id)
       .subscribe((data: YouTubeVideoDetailsData[]) => {
-        console.log('loadDetailsById', data);
         if (data.length > 0) {
           const video = data[0];
           this.detailsData.channelTitle = video.snippet.channelTitle;

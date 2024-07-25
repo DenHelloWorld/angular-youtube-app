@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { BUILDED_URLS } from 'app/features/youtube/models/builded-urls.model';
 import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
@@ -15,11 +15,8 @@ export class YoutubeService {
 
   public getById(id: string): Observable<YouTubeVideoDetailsData[]> {
     const url = BUILDED_URLS.detailsByVideoId(id);
-    // this.loadingService.show(); построить сервис
     return this.http.get<YouTubeDetailsResponse>(url).pipe(
-      tap((response) => console.log(response.items)),
       map((response: YouTubeDetailsResponse) => response.items),
-      // finalize(() => this.loadingService.hide())
     );
   }
 

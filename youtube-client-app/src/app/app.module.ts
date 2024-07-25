@@ -7,7 +7,6 @@ import { AppRoutingModule } from 'app/app-routing.module';
 import AppComponent from 'app/app.component';
 import { CoreModule } from 'app/core/modules/core.module';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
-
 import { HttpClientModule } from '@angular/common/http';
 
 

@@ -15,7 +15,7 @@ export class YoutubeInterceptor implements HttpInterceptor {
 
   private readonly apiKey: string = API_KEY;
 
-  intercept(
+  public intercept(
     req: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
