@@ -15,6 +15,8 @@ import { NotFoundComponent } from 'app/core/components/not-found/not-found.compo
 import { SearchStringService } from 'app/core/services/search-string.service';
 import { SearchStringComponent } from 'app/core/components/search-string/search-string.component';
 import { AuthButtonComponent } from 'app/features/auth/components/auth-button/auth-button.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { YoutubeInterceptor } from 'app/shared/interceptors/youtube.interceptor';
 
 @NgModule({
   imports: [
@@ -33,7 +35,16 @@ import { AuthButtonComponent } from 'app/features/auth/components/auth-button/au
   ],
   declarations: [HeaderComponent, NotFoundComponent],
   exports: [HeaderComponent, NotFoundComponent],
-  providers: [SearchResultsService, SearchStringService],
+  providers: [
+    SearchResultsService,
+    SearchStringService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: YoutubeInterceptor,
+      multi: true,
+    },
+  ],
+
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CoreModule {}
