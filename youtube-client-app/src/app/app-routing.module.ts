@@ -5,7 +5,7 @@ import { authGuard } from 'app/features/auth/guards/auth.guard';
 import { preventAuthGuard } from 'app/features/auth/guards/unAuth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/main', pathMatch: 'full' },
+  { path: '', redirectTo: '/admin', pathMatch: 'full' },
   { path: '404', component: NotFoundComponent },
   {
     path: 'main',

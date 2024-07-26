@@ -36,10 +36,7 @@
 
         <small
           class="text-green-500"
-          *ngIf="
-            !loginForm.get('username')?.hasError('email') &&
-            !loginForm.get('username')?.hasError('required')
-          "
+          *ngIf="!loginForm.get('username')?.errors"
         >
           The login email is valid.
         </small>
@@ -64,9 +61,7 @@
       <small
         class="text-green-500"
         *ngIf="
-          !loginForm.get('password')?.hasError('required') &&
-          !loginForm.get('password')?.hasError('customValidator')
-        "
+          !loginForm.get('password')?.errors"
       >
         The password is valid.
       </small>

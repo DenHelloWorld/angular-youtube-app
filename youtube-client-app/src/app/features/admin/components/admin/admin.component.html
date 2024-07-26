@@ -1,5 +1,51 @@
-<p-fieldset legend="Create new card"  class="w-full text-center m-4">
-    <p>
-        Lorem ipsum dolor sit amet...
-    </p>
+<p-fieldset legend="Create new card" class="w-full text-center m-4">
+  <form
+    class="flex flex-col gap-3"
+    [formGroup]="adminForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div>
+      <div class="text-center flex flex-col">
+        <p-iconField iconPosition="right">
+          <p-inputIcon styleClass="pi pi-pencil" />
+          <input
+            placeholder="Title"
+            icon="pi pi-user"
+            formControlName="title"
+            pInputText
+            id="title"
+            type="text"
+            aria-describedby="title"
+          />
+        </p-iconField>
+        <small
+          class="font-extralight"
+          *ngIf="adminForm.get('title')?.hasError('required')"
+        >
+          Please enter a title
+        </small>
+        <small
+          class="font-extralight text-red-500"
+          *ngIf="adminForm.get('title')?.hasError('minlength')"
+        >
+          The title is too short
+        </small>
+        <small
+          class="font-extralight text-red-500"
+          *ngIf="adminForm.get('title')?.hasError('maxlength')"
+        >
+          The title is too long
+        </small>
+        <small
+          class="text-green-500"
+          *ngIf="!adminForm.get('title')?.errors"
+        >
+          The title is valid.
+        </small>
+      </div>
+      <div class="text-center flex flex-col">
+        
+      </div>
+    </div>
+  </form>
 </p-fieldset>

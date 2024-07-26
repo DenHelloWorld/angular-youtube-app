@@ -17,11 +17,22 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.adminForm = this.formBuilder.group({
-      title: ['', [Validators.required]],
+      title: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ],
+      ],
       description: ['', [Validators.maxLength(255)]],
       linkImg: ['', [Validators.required]],
       linkVideo: ['', [Validators.required]],
       creationDate: ['', [Validators.required, creationDateValidator()]],
     });
+  }
+
+  public onSubmit(): void {
+
   }
 }
