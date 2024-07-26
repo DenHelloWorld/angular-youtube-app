@@ -8,5 +8,6 @@ export interface CustomButtonConfig {
   rounded?: boolean;
   outlined?: boolean;
   styleClass?: string;
+  disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
 }

@@ -34,6 +34,15 @@
         >
           The login email is invalid.
         </p>
+        <p
+          class="text-green-500"
+          *ngIf="
+            !loginForm.get('username')?.hasError('email') &&
+            !loginForm.get('username')?.hasError('required')
+          "
+        >
+          The login email is valid.
+        </p>
       </div>
 
       <div class="text-center">
@@ -50,14 +59,21 @@
       >
         Please enter a password
       </p>
-      <p class="font-extralight"
-        *ngIf="loginForm.get('password')?.errors?.['PasswordNotStrongEnough']"
+      <p
+        class="text-green-500"
+        *ngIf="
+          !loginForm.get('password')?.hasError('required') &&
+          !loginForm.get('password')?.hasError('PasswordNotStrongEnough')
+        "
       >
+        The password is valid.
+      </p>
+      <p class="font-extralight" *ngIf="loginForm.get('password')?.value != ''">
         {{ loginForm.get('password')?.errors?.['PasswordNotStrongEnough'] }}
       </p>
       <div class="text-center">
         <app-custom-button
-          [config]="{ type: 'submit' }"
+          [config]="{ type: 'submit', disabled: !loginForm.valid }"
           class="app-custom-button"
           >Login</app-custom-button
         >

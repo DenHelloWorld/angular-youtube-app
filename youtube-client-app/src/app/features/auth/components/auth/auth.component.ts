@@ -23,7 +23,9 @@ export class AuthComponent implements OnInit {
   }
 
   public onSubmit() {
-    const { username, password } = this.loginForm.value;
-    this.authService.login(username, password);
+    if (this.loginForm.valid) {
+      const { username, password } = this.loginForm.value;
+      this.authService.login(username, password);
+    }
   }
 }
