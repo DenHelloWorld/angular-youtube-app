@@ -21,6 +21,11 @@ const routes: Routes = [
       import('./features/auth/modules/auth.module').then((m) => m.AuthModule),
     canActivate: [preventAuthGuard],
   },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./features/admin/modules/admin/admin.module').then((m) => m.AdminModule),
+  },
   { path: '**', redirectTo: '/404' },
 ];
 

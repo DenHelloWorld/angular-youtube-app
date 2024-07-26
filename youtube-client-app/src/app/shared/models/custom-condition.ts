@@ -1,4 +1,4 @@
 export interface CustomCondition {
-  condition: (password: string) => boolean;
+  condition: (value: string) => boolean;
   message: string;
 }
