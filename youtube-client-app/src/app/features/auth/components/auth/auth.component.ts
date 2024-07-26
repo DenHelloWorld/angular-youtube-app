@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { authPasswordValidator } from 'app/features/auth/guards/auth-password.validator';
+import { authPasswordValidator } from 'app/features/auth/utilits/auth-password.validator';
 import { AuthService } from 'app/features/auth/services/auth.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class AuthComponent implements OnInit {
   public ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, authPasswordValidator]],
+      password: ['', [Validators.required, , authPasswordValidator()]],
     });
   }
 

@@ -63,13 +63,13 @@
         class="text-green-500"
         *ngIf="
           !loginForm.get('password')?.hasError('required') &&
-          !loginForm.get('password')?.hasError('PasswordNotStrongEnough')
+          !loginForm.get('password')?.hasError('customValidator')
         "
       >
         The password is valid.
       </p>
-      <p class="font-extralight" *ngIf="loginForm.get('password')?.value != ''">
-        {{ loginForm.get('password')?.errors?.['PasswordNotStrongEnough'] }}
+      <p class="font-extralight text-red-500" *ngIf="loginForm.get('password')?.value != ''">
+        {{ loginForm.get('password')?.errors?.['customValidator'] }}
       </p>
       <div class="text-center">
         <app-custom-button
