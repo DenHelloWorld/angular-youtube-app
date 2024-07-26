@@ -21,14 +21,22 @@
           />
         </p-iconField>
       </div>
-      <div *ngIf="loginForm.get('username')?.hasError('required')">
-        Please enter a login email
-      </div>
-      <div *ngIf="loginForm.get('username')?.hasError('email')">
-        The login email is invalid.
+      <div>
+        <p
+          class="font-extralight"
+          *ngIf="loginForm.get('username')?.hasError('required')"
+        >
+          Please enter a login email
+        </p>
+        <p
+          class="text-red-500"
+          *ngIf="loginForm.get('username')?.hasError('email')"
+        >
+          The login email is invalid.
+        </p>
       </div>
 
-      <div class="mb-4 text-center">
+      <div class="text-center">
         <p-password
           [toggleMask]="true"
           placeholder="password"
@@ -36,6 +44,17 @@
           [feedback]="false"
         ></p-password>
       </div>
+      <p
+        class="font-extralight"
+        *ngIf="loginForm.get('password')?.hasError('required')"
+      >
+        Please enter a password
+      </p>
+      <p class="font-extralight"
+        *ngIf="loginForm.get('password')?.errors?.['PasswordNotStrongEnough']"
+      >
+        {{ loginForm.get('password')?.errors?.['PasswordNotStrongEnough'] }}
+      </p>
       <div class="text-center">
         <app-custom-button
           [config]="{ type: 'submit' }"
