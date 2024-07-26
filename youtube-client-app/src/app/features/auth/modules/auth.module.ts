@@ -12,6 +12,8 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from 'app/features/auth/components/auth/auth.component';
 import { AuthRoutingModule } from 'app/features/auth/modules/auth-routing.module';
+import { ToolbarModule } from 'primeng/toolbar';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @NgModule({
   declarations: [AuthComponent],
@@ -28,6 +30,8 @@ import { AuthRoutingModule } from 'app/features/auth/modules/auth-routing.module
     InputIconModule,
     IconFieldModule,
     ReactiveFormsModule,
+    ToolbarModule,
+    FieldsetModule,
   ],
   exports: [AuthComponent],
 })

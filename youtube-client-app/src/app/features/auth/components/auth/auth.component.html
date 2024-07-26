@@ -1,13 +1,10 @@
-<div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
-  <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-    <h1 class="title-font font-medium text-3xl text-gray-900">Authorization</h1>
-    <p class="leading-relaxed mt-4">Please log in to use yours service.</p>
-  </div>
-  <div
-    class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col w-full mt-10 md:mt-0 text-center"
+<p-fieldset legend="Sign In" class="w-full text-center m-4">
+  <form
+    class="flex flex-col gap-3"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
   >
-    <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Sign In</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
       <div class="text-center">
         <p-iconField iconPosition="right">
           <p-inputIcon styleClass="pi pi-sign-in" />
@@ -18,23 +15,26 @@
             pInputText
             id="username"
             type="text"
+            aria-describedby="username-help"
           />
         </p-iconField>
       </div>
       <div>
-        <p
+        <small
           class="font-extralight"
           *ngIf="loginForm.get('username')?.hasError('required')"
         >
           Please enter a login email
-        </p>
-        <p
+        </small>
+
+        <small
           class="text-red-500"
           *ngIf="loginForm.get('username')?.hasError('email')"
         >
           The login email is invalid.
-        </p>
-        <p
+        </small>
+
+        <small
           class="text-green-500"
           *ngIf="
             !loginForm.get('username')?.hasError('email') &&
@@ -42,9 +42,11 @@
           "
         >
           The login email is valid.
-        </p>
+        </small>
       </div>
+    </div>
 
+    <div>
       <div class="text-center">
         <p-password
           [toggleMask]="true"
@@ -53,13 +55,13 @@
           [feedback]="false"
         ></p-password>
       </div>
-      <p
+      <small
         class="font-extralight"
         *ngIf="loginForm.get('password')?.hasError('required')"
       >
         Please enter a password
-      </p>
-      <p
+      </small>
+      <small
         class="text-green-500"
         *ngIf="
           !loginForm.get('password')?.hasError('required') &&
@@ -67,17 +69,21 @@
         "
       >
         The password is valid.
-      </p>
-      <p class="font-extralight text-red-500" *ngIf="loginForm.get('password')?.value != ''">
+      </small>
+      <small
+        class="font-extralight text-red-500"
+        *ngIf="loginForm.get('password')?.value != ''"
+      >
         {{ loginForm.get('password')?.errors?.['customValidator'] }}
-      </p>
-      <div class="text-center">
-        <app-custom-button
-          [config]="{ type: 'submit', disabled: !loginForm.valid }"
-          class="app-custom-button"
-          >Login</app-custom-button
-        >
-      </div>
-    </form>
-  </div>
-</div>
+      </small>
+    </div>
+
+    <div class="text-center">
+      <app-custom-button
+        [config]="{ type: 'submit', disabled: !loginForm.valid }"
+        class="app-custom-button"
+        >Login</app-custom-button
+      >
+    </div>
+  </form>
+</p-fieldset>
