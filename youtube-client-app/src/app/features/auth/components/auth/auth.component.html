@@ -8,7 +8,7 @@
   >
     <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Sign In</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="mb-4 text-center">
+      <div class="text-center">
         <p-iconField iconPosition="right">
           <p-inputIcon styleClass="pi pi-sign-in" />
           <input
@@ -21,6 +21,13 @@
           />
         </p-iconField>
       </div>
+      <div *ngIf="loginForm.get('username')?.hasError('required')">
+        Please enter a login email
+      </div>
+      <div *ngIf="loginForm.get('username')?.hasError('email')">
+        The login email is invalid.
+      </div>
+
       <div class="mb-4 text-center">
         <p-password
           [toggleMask]="true"
