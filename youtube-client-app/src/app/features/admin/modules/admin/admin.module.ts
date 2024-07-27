@@ -8,6 +8,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CalendarModule } from 'primeng/calendar';
+import { ChipsModule } from 'primeng/chips';
+import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 
 @NgModule({
   imports: [
@@ -19,6 +23,10 @@ import { InputTextModule } from 'primeng/inputtext';
     InputIconModule,
     IconFieldModule,
     InputTextModule,
+    InputTextareaModule,
+    CalendarModule,
+    ChipsModule,
+    CustomButtonComponent,
   ],
   declarations: [AdminComponent],
 })

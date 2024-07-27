@@ -1,19 +1,14 @@
-<p-fieldset legend="Create new card" class="w-full text-center m-4">
-  <form
-    class="flex flex-col gap-3"
-    [formGroup]="adminForm"
-    (ngSubmit)="onSubmit()"
-  >
-    <div>
+<p-fieldset legend="Create new card" class="text-center m-4">
+  <form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+    <div class="text-center flex flex-col gap-3">
       <div class="text-center flex flex-col">
         <p-iconField iconPosition="right">
           <p-inputIcon styleClass="pi pi-pencil" />
           <input
             placeholder="Title"
-            icon="pi pi-user"
             formControlName="title"
             pInputText
-            id="title"
+            id="create-card-title"
             type="text"
             aria-describedby="title"
           />
@@ -36,15 +31,91 @@
         >
           The title is too long
         </small>
-        <small
-          class="text-green-500"
-          *ngIf="!adminForm.get('title')?.errors"
-        >
+        <small class="text-green-500" *ngIf="!adminForm.get('title')?.errors">
           The title is valid.
         </small>
       </div>
       <div class="text-center flex flex-col">
-        
+        <p-iconField iconPosition="right">
+          <p-inputIcon styleClass="pi pi-link" />
+          <input
+            placeholder="Link to Image"
+            formControlName="linkImg"
+            pInputText
+            id="linkImg"
+            type="text"
+            aria-describedby="create-card-link-img"
+          />
+        </p-iconField>
+        <small
+          class="font-extralight"
+          *ngIf="adminForm.get('linkImg')?.hasError('required')"
+        >
+          Please enter a link to image
+        </small>
+        <small class="text-green-500" *ngIf="!adminForm.get('linkImg')?.errors">
+          The link to image is valid.
+        </small>
+      </div>
+      <div class="text-center flex flex-col">
+        <!-- <p-calendar
+          formControlName="creationDate"
+          placeholder="Date(not future)"
+          [showIcon]="true"
+          [iconDisplay]="'input'"
+        /> -->
+        <small
+          class="font-extralight"
+          *ngIf="adminForm.get('creationDate')?.hasError('required')"
+        >
+          Please enter a creation date
+        </small>
+        <small
+          class="font-extralight text-red-500"
+          *ngIf="adminForm.get('creationDate')?.value != ''"
+        >
+          {{ adminForm.get('creationDate')?.errors?.['customValidator'] }}
+        </small>
+        <small
+          class="text-green-500"
+          *ngIf="!adminForm.get('creationDate')?.errors"
+        >
+          The creation date is valid.
+        </small>
+      </div>
+
+      <div class="text-center flex flex-col">
+        <textarea
+          id="description"
+          placeholder="Description(up to 255 symbols)"
+          pInputTextarea
+          formControlName="description"
+        >
+        </textarea>
+        <small
+          class="text-green-500"
+          *ngIf="!adminForm.get('description')?.errors"
+        >
+          Description is valid
+        </small>
+        <small
+          class="font-extralight text-red-500"
+          *ngIf="adminForm.get('description')?.hasError('maxlength')"
+        >
+          The description is too long
+        </small>
+      </div>
+      <div class="text-center flex flex-col">
+        <!-- <form formArrayName="tags">
+          <div class="text-center flex flex-col"></div>
+        </form> -->
+      </div>
+      <div class="text-center flex flex-col">
+        <app-custom-button
+          class="app-custom-button"
+          [config]="{ type: 'submit', disabled: !adminForm.valid }"
+          >Create Card</app-custom-button
+        >
       </div>
     </div>
   </form>

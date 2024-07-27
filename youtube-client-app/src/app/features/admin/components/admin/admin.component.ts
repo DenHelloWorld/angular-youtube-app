@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from './../../srvices/admin.service';
 import { Component, OnInit } from '@angular/core';
-import { creationDateValidator } from 'app/features/admin/utilits/auth-password.validator';
+// import { creationDateValidator } from 'app/features/admin/utilits/craetion-date.validator';
 
 @Component({
   selector: 'app-admin',
@@ -27,12 +27,19 @@ export class AdminComponent implements OnInit {
       ],
       description: ['', [Validators.maxLength(255)]],
       linkImg: ['', [Validators.required]],
-      linkVideo: ['', [Validators.required]],
-      creationDate: ['', [Validators.required, creationDateValidator()]],
+      // забыл линк видео добавить
+      // linkVideo: ['', [Validators.required]],
+      // creationDate: ['', [Validators.required, creationDateValidator()]],
+      // tags: this.formBuilder.array([]),
     });
   }
 
-  public onSubmit(): void {
+  // public addTag(): void {
+  //   const tagsArray = this.adminForm.get('tags') as FormArray;
+  //   tagsArray.push(this.formBuilder.control(''));
+  // }
 
+  public onSubmit(): void {
+    console.log(this.adminForm.valid);
   }
 }
