@@ -1,7 +1,7 @@
 <p-fieldset legend="Sign In" class="w-full text-center m-4">
   <form
     class="flex flex-col gap-3"
-    [formGroup]="loginForm"
+    [formGroup]="authFormService.loginForm"
     (ngSubmit)="onSubmit()"
   >
     <div>
@@ -22,21 +22,21 @@
       <div>
         <small
           class="font-extralight"
-          *ngIf="loginForm.get('username')?.hasError('required')"
+          *ngIf="authFormService.loginForm.get('username')?.hasError('required')"
         >
           Please enter a login email
         </small>
 
         <small
           class="text-red-500"
-          *ngIf="loginForm.get('username')?.hasError('email')"
+          *ngIf="authFormService.loginForm.get('username')?.hasError('email')"
         >
           The login email is invalid.
         </small>
 
         <small
           class="text-green-500"
-          *ngIf="!loginForm.get('username')?.errors"
+          *ngIf="!authFormService.loginForm.get('username')?.errors"
         >
           The login email is valid.
         </small>
@@ -54,28 +54,28 @@
       </div>
       <small
         class="font-extralight"
-        *ngIf="loginForm.get('password')?.hasError('required')"
+        *ngIf="authFormService.loginForm.get('password')?.hasError('required')"
       >
         Please enter a password
       </small>
       <small
         class="text-green-500"
         *ngIf="
-          !loginForm.get('password')?.errors"
+          !authFormService.loginForm.get('password')?.errors"
       >
         The password is valid.
       </small>
       <small
         class="font-extralight text-red-500"
-        *ngIf="loginForm.get('password')?.value != ''"
+        *ngIf="authFormService.loginForm.get('password')?.value != ''"
       >
-        {{ loginForm.get('password')?.errors?.['customValidator'] }}
+        {{ authFormService.loginForm.get('password')?.errors?.['customValidator'] }}
       </small>
     </div>
 
     <div class="text-center">
       <app-custom-button
-        [config]="{raised: loginForm.valid, type: 'submit', disabled: !loginForm.valid }"
+        [config]="{raised: authFormService.loginForm.valid, type: 'submit', disabled: !authFormService.loginForm.valid }"
         class="app-custom-button"
         >Login</app-custom-button
       >

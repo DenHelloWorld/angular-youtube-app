@@ -1,31 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { authPasswordValidator } from 'app/features/auth/utilits/auth-password.validator';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from 'app/features/auth/services/auth.service';
+import { AuthFormService } from 'app/features/auth/services/auth-form.service';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
 })
-export class AuthComponent implements OnInit {
-  public loginForm!: FormGroup;
-
+export class AuthComponent implements OnInit, OnDestroy {
   constructor(
     public authService: AuthService,
-    private formBuilder: FormBuilder,
+    public authFormService: AuthFormService,
   ) {}
 
   public ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, , authPasswordValidator()]],
-    });
+    this.authFormService.initForm();
+  }
+
+  public ngOnDestroy() {
+    this.authFormService.onReset();
   }
 
   public onSubmit() {
-    if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      this.authService.login(username, password);
-    }
+    this.authFormService.onSubmit();
   }
 }
