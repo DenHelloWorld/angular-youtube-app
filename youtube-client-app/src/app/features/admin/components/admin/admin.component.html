@@ -9,7 +9,7 @@
       [routerLink]="['/main']"
     ></app-custom-button>
   </div>
-  <form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="adminService.adminForm" (ngSubmit)="onSubmit()">
     <div class="text-center flex flex-col gap-3">
       <div class="text-center flex flex-col">
         <p-iconField iconPosition="right">
@@ -25,23 +25,23 @@
         </p-iconField>
         <small
           class="font-extralight"
-          *ngIf="adminForm.get('title')?.hasError('required')"
+          *ngIf="adminService.adminForm.get('title')?.hasError('required')"
         >
           Please enter a title
         </small>
         <small
           class="font-extralight text-red-500"
-          *ngIf="adminForm.get('title')?.hasError('minlength')"
+          *ngIf="adminService.adminForm.get('title')?.hasError('minlength')"
         >
           The title is too short
         </small>
         <small
           class="font-extralight text-red-500"
-          *ngIf="adminForm.get('title')?.hasError('maxlength')"
+          *ngIf="adminService.adminForm.get('title')?.hasError('maxlength')"
         >
           The title is too long
         </small>
-        <small class="text-green-500" *ngIf="!adminForm.get('title')?.errors">
+        <small class="text-green-500" *ngIf="!adminService.adminForm.get('title')?.errors">
           The title is valid.
         </small>
       </div>
@@ -59,11 +59,11 @@
         </p-iconField>
         <small
           class="font-extralight"
-          *ngIf="adminForm.get('linkImg')?.hasError('required')"
+          *ngIf="adminService.adminForm.get('linkImg')?.hasError('required')"
         >
           Please enter a link to image
         </small>
-        <small class="text-green-500" *ngIf="!adminForm.get('linkImg')?.errors">
+        <small class="text-green-500" *ngIf="!adminService.adminForm.get('linkImg')?.errors">
           The link to image is valid.
         </small>
       </div>
@@ -81,13 +81,13 @@
         </p-iconField>
         <small
           class="font-extralight"
-          *ngIf="adminForm.get('linkVideo')?.hasError('required')"
+          *ngIf="adminService.adminForm.get('linkVideo')?.hasError('required')"
         >
           Please enter a link to video
         </small>
         <small
           class="text-green-500"
-          *ngIf="!adminForm.get('linkVideo')?.errors"
+          *ngIf="!adminService.adminForm.get('linkVideo')?.errors"
         >
           The link to video is valid.
         </small>
@@ -101,19 +101,19 @@
         />
         <small
           class="font-extralight"
-          *ngIf="adminForm.get('creationDate')?.hasError('required')"
+          *ngIf="adminService.adminForm.get('creationDate')?.hasError('required')"
         >
           Please enter a creation date
         </small>
         <small
           class="font-extralight text-red-500"
-          *ngIf="adminForm.get('creationDate')?.value != ''"
+          *ngIf="adminService.adminForm.get('creationDate')?.value != ''"
         >
-          {{ adminForm.get('creationDate')?.errors?.['customValidator'] }}
+          {{ adminService.adminForm.get('creationDate')?.errors?.['customValidator'] }}
         </small>
         <small
           class="text-green-500"
-          *ngIf="!adminForm.get('creationDate')?.errors"
+          *ngIf="!adminService.adminForm.get('creationDate')?.errors"
         >
           The creation date is valid.
         </small>
@@ -129,20 +129,20 @@
         </textarea>
         <small
           class="text-green-500"
-          *ngIf="!adminForm.get('description')?.errors"
+          *ngIf="!adminService.adminForm.get('description')?.errors"
         >
           Description is valid
         </small>
         <small
           class="font-extralight text-red-500"
-          *ngIf="adminForm.get('description')?.hasError('maxlength')"
+          *ngIf="adminService.adminForm.get('description')?.hasError('maxlength')"
         >
           The description is too long
         </small>
       </div>
 
       <p-fieldset legend="Tags" class="text-center m-4">
-        <form [formGroup]="adminForm" formArrayName="tags">
+        <form [formGroup]="adminService.adminForm" formArrayName="tags">
           <div *ngFor="let tag of tags.controls; let tagIndex = index">
             <p-chips
               [formControlName]="tagIndex"
@@ -166,9 +166,9 @@
         <app-custom-button
           class="app-custom-button"
           [config]="{
-            raised: adminForm.valid,
+            raised: adminService.adminForm.valid,
             type: 'submit',
-            disabled: !adminForm.valid
+            disabled: !adminService.adminForm.valid
           }"
           >Create Card</app-custom-button
         >
