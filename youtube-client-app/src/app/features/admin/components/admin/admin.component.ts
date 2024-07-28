@@ -1,21 +1,29 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { AdminService } from './../../srvices/admin.service';
-import { Component, OnInit } from '@angular/core';
-// import { creationDateValidator } from 'app/features/admin/utilits/craetion-date.validator';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { creationDateValidator } from 'app/features/admin/utilits/craetion-date.validator';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
   public adminForm!: FormGroup;
+
+  private initAdminFormState: unknown;
 
   constructor(
     public adminService: AdminService,
     private formBuilder: FormBuilder,
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.adminForm = this.formBuilder.group({
       title: [
         '',
@@ -27,19 +35,33 @@ export class AdminComponent implements OnInit {
       ],
       description: ['', [Validators.maxLength(255)]],
       linkImg: ['', [Validators.required]],
-      // забыл линк видео добавить
-      // linkVideo: ['', [Validators.required]],
-      // creationDate: ['', [Validators.required, creationDateValidator()]],
-      // tags: this.formBuilder.array([]),
+      linkVideo: ['', [Validators.required]],
+      creationDate: ['', [Validators.required, creationDateValidator()]],
+      tags: this.formBuilder.array(this.initTags()),
     });
+    this.initAdminFormState = this.adminForm.value;
   }
 
-  // public addTag(): void {
-  //   const tagsArray = this.adminForm.get('tags') as FormArray;
-  //   tagsArray.push(this.formBuilder.control(''));
-  // }
+  public ngOnDestroy() {
+    this.onReset();
+  }
+
+  private initTags(): AbstractControl[] {
+    const tags = [['Tag']];
+    return tags.map((tag) =>
+      this.formBuilder.control(tag, [Validators.required]),
+    );
+  }
+
+  public get tags(): FormArray {
+    return this.adminForm.get('tags') as FormArray;
+  }
+
+  public onReset(): void {
+    this.adminForm.reset(this.initAdminFormState);
+  }
 
   public onSubmit(): void {
-    console.log(this.adminForm.valid);
+    this.adminForm.reset();
   }
 }

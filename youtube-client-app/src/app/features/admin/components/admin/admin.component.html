@@ -58,12 +58,37 @@
         </small>
       </div>
       <div class="text-center flex flex-col">
-        <!-- <p-calendar
+        <p-iconField iconPosition="right">
+          <p-inputIcon styleClass="pi pi-link" />
+          <input
+            placeholder="Link to Video"
+            formControlName="linkVideo"
+            pInputText
+            id="linkVideo"
+            type="text"
+            aria-describedby="create-card-link-video"
+          />
+        </p-iconField>
+        <small
+          class="font-extralight"
+          *ngIf="adminForm.get('linkVideo')?.hasError('required')"
+        >
+          Please enter a link to video
+        </small>
+        <small
+          class="text-green-500"
+          *ngIf="!adminForm.get('linkVideo')?.errors"
+        >
+          The link to video is valid.
+        </small>
+      </div>
+      <div class="text-center flex flex-col">
+        <p-calendar
           formControlName="creationDate"
           placeholder="Date(not future)"
           [showIcon]="true"
           [iconDisplay]="'input'"
-        /> -->
+        />
         <small
           class="font-extralight"
           *ngIf="adminForm.get('creationDate')?.hasError('required')"
@@ -105,16 +130,39 @@
           The description is too long
         </small>
       </div>
-      <div class="text-center flex flex-col">
-        <!-- <form formArrayName="tags">
-          <div class="text-center flex flex-col"></div>
-        </form> -->
-      </div>
-      <div class="text-center flex flex-col">
+
+      <p-fieldset legend="Tags" class="text-center m-4">
+        <form [formGroup]="adminForm" formArrayName="tags">
+          <div *ngFor="let tag of tags.controls; let tagIndex = index">
+            <p-chips
+              [formControlName]="tagIndex"
+              placeholder="Enter to add tag"
+            ></p-chips>
+          </div>
+          <small class="text-red-500" *ngIf="tags.invalid">
+            Tag is invalid
+          </small>
+          <small class="text-green-500" *ngIf="tags.valid">
+            Tag is valid
+          </small>
+        </form>
+      </p-fieldset>
+
+      <div class="text-center flex justify-center gap-4">
         <app-custom-button
           class="app-custom-button"
-          [config]="{ type: 'submit', disabled: !adminForm.valid }"
+          [config]="{
+            raised: adminForm.valid,
+            type: 'submit',
+            disabled: !adminForm.valid
+          }"
           >Create Card</app-custom-button
+        >
+        <app-custom-button
+          class="app-custom-button"
+          [config]="{ raised: true }"
+          (click)="onReset()"
+          >Reset Card</app-custom-button
         >
       </div>
     </div>

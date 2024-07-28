@@ -2,11 +2,7 @@ import { CustomCondition } from 'app/shared/models/custom-condition';
 
 
 export const PASSWORD_CONDITIONS: CustomCondition[] = [
-  {
-    condition: (password: string) => /^[A-Za-z0-9!@#?]*$/.test(password),
-    message:
-      'Password must contain only Latin letters, digits, and special characters.',
-  },
+
   {
     condition: (password: string) => /[A-Z]/.test(password),
     message: 'Password must contain at least one uppercase letter.',

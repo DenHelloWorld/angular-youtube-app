@@ -12,7 +12,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { ChipsModule } from 'primeng/chips';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
-
+import { ChipModule } from 'primeng/chip';
 @NgModule({
   imports: [
     ReactiveFormsModule,
@@ -27,6 +27,7 @@ import { CustomButtonComponent } from 'app/shared/components/custom-button/custo
     CalendarModule,
     ChipsModule,
     CustomButtonComponent,
+    ChipModule,
   ],
   declarations: [AdminComponent],
 })

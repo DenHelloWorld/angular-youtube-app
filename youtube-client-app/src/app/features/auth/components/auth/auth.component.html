@@ -9,7 +9,7 @@
         <p-iconField iconPosition="right">
           <p-inputIcon styleClass="pi pi-sign-in" />
           <input
-            placeholder="login"
+            placeholder="mail@example.com"
             icon="pi pi-user"
             formControlName="username"
             pInputText
@@ -75,7 +75,7 @@
 
     <div class="text-center">
       <app-custom-button
-        [config]="{ type: 'submit', disabled: !loginForm.valid }"
+        [config]="{raised: loginForm.valid, type: 'submit', disabled: !loginForm.valid }"
         class="app-custom-button"
         >Login</app-custom-button
       >
