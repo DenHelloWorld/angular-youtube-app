@@ -1,7 +1,7 @@
 import {
-  AbstractControl,
   FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -37,7 +37,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       linkImg: ['', [Validators.required]],
       linkVideo: ['', [Validators.required]],
       creationDate: ['', [Validators.required, creationDateValidator()]],
-      tags: this.formBuilder.array(this.initTags()),
+      tags: this.formBuilder.array([this.createTagControl()]),
     });
     this.initAdminFormState = this.adminForm.value;
   }
@@ -46,11 +46,8 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.onReset();
   }
 
-  private initTags(): AbstractControl[] {
-    const tags = [['Tag']];
-    return tags.map((tag) =>
-      this.formBuilder.control(tag, [Validators.required]),
-    );
+  private createTagControl(): FormControl {
+    return this.formBuilder.control([], [Validators.required]);
   }
 
   public get tags(): FormArray {

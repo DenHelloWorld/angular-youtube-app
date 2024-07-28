@@ -150,11 +150,14 @@
               [max]="5"
             ></p-chips>
           </div>
-          <small class="text-red-500" *ngIf="tags.invalid">
+          <small class="text-red-500" *ngIf="tags.invalid && tags.touched">
             Tags is invalid
           </small>
           <small class="text-green-500" *ngIf="tags.valid">
             Tags is valid
+          </small>
+          <small class="font-extralight" *ngIf="!tags.dirty">
+            Please add tags
           </small>
         </form>
       </p-fieldset>
