@@ -5,7 +5,7 @@ import { creationDateValidator } from 'app/features/admin/utilits/craetion-date.
 @Injectable({
   providedIn: 'root',
 })
-export class AdminService {
+export class AdminFormService {
   public adminForm!: FormGroup;
 
   private initAdminFormState: unknown;

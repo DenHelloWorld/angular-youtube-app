@@ -1,16 +1,16 @@
 import { FormArray } from '@angular/forms';
-import { AdminService } from './../../srvices/admin.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AdminFormService } from 'app/features/admin/srvices/admin-form.service';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
 })
 export class AdminComponent implements OnInit, OnDestroy {
-  constructor(public adminService: AdminService) {}
+  constructor(public adminFormService: AdminFormService) {}
 
   public ngOnInit() {
-    this.adminService.initForm();
+    this.adminFormService.initForm();
   }
 
   public ngOnDestroy() {
@@ -18,14 +18,14 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   public get tags(): FormArray {
-    return this.adminService.tags;
+    return this.adminFormService.tags;
   }
 
   public onReset(): void {
-    this.adminService.onReset();
+    this.adminFormService.onReset();
   }
 
   public onSubmit(): void {
-    this.adminService.onSubmit();
+    this.adminFormService.onSubmit();
   }
 }

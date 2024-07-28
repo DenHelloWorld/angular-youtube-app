@@ -13,7 +13,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { ChipsModule } from 'primeng/chips';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import { ChipModule } from 'primeng/chip';
-import { AdminService } from 'app/features/admin/srvices/admin.service';
+import { AdminFormService } from 'app/features/admin/srvices/admin-form.service';
 @NgModule({
   imports: [
     ReactiveFormsModule,
@@ -31,6 +31,6 @@ import { AdminService } from 'app/features/admin/srvices/admin.service';
     ChipModule,
   ],
   declarations: [AdminComponent],
-  providers: [AdminService],
+  providers: [AdminFormService],
 })
 export class AdminModule {}
