@@ -146,7 +146,8 @@
           <div *ngFor="let tag of tags.controls; let tagIndex = index">
             <p-chips
               [formControlName]="tagIndex"
-              placeholder="Enter to add tag"
+              placeholder="Maximum 5 tags"
+              [max]="5"
             ></p-chips>
           </div>
           <small class="text-red-500" *ngIf="tags.invalid">
