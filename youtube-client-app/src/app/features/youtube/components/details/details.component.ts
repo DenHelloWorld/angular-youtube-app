@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToolbarModule } from 'primeng/toolbar';
 import { FieldsetModule } from 'primeng/fieldset';
@@ -25,7 +25,7 @@ import { StatisticsComponent } from 'app/features/youtube/components/statistics/
     ScrollPanelModule,
   ],
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, OnDestroy {
   private id: string = '';
 
   constructor(
@@ -37,16 +37,16 @@ export class DetailsComponent implements OnInit {
     this.turnOnSubscribes();
   }
 
+  public ngOnDestroy(): void {
+    this.detailsService.turnOffSubscribes();
+  }
+
   public turnOnSubscribes() {
     this.activatedRoute.params.subscribe((params) => {
       const id = params['id'];
       this.id = id;
     });
     this.detailsService.loadDetailsById(this.id);
-  }
-
-  public ngOnDestroy(): void {
-    this.detailsService.turnOffSubscribes();
   }
 
   public handleButtonBack() {
