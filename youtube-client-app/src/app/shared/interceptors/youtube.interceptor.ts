@@ -27,6 +27,10 @@ export class YoutubeInterceptor implements HttpInterceptor {
     this.currentQueue = (this.currentQueue + 1) % this.apiKeys.length;
   }
 
+  private isRetryableError(status: number): boolean {
+    return status === 403 || status === 429 || status === 400;
+  }
+
   private handleRequest(
     req: HttpRequest<unknown>,
     next: HttpHandler,
@@ -42,9 +46,7 @@ export class YoutubeInterceptor implements HttpInterceptor {
     return next.handle(apiReq).pipe(
       catchError((error: HttpErrorResponse) => {
         if (
-          (error.status === 403 ||
-            error.status === 429 ||
-            error.status === 400) &&
+          this.isRetryableError(error.status) &&
           retryCount < this.apiKeys.length
         ) {
           this.switchApiKey();
