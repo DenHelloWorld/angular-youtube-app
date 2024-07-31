@@ -59,6 +59,7 @@ export class SearchResultsService {
     this.youtubeService
       .getByTitle(title)
       .subscribe((data: YouTubeVideoDetailsData[]) => {
+        console.log('searchByTitle', data);
         this.SearchResultsData.searchedItems = data;
       });
   }

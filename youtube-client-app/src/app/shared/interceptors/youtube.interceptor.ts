@@ -17,48 +17,51 @@ export class YoutubeInterceptor implements HttpInterceptor {
 
   private readonly apiKeys: string[] = API_KEYS;
 
-  private currentKeyIndex: number = 0;
+  private currentQueue: number = 0;
 
-  private get apiKey(): string {
-    return this.apiKeys[this.currentKeyIndex];
+  private getApiKey(): string {
+    return this.apiKeys[this.currentQueue];
   }
 
   private switchApiKey(): void {
-    this.currentKeyIndex = (this.currentKeyIndex + 1) % this.apiKeys.length;
+    this.currentQueue = (this.currentQueue + 1) % this.apiKeys.length;
   }
 
-  private handleError(
-    error: HttpErrorResponse,
+  private handleRequest(
     req: HttpRequest<unknown>,
     next: HttpHandler,
+    retryCount: number = 0,
   ): Observable<HttpEvent<unknown>> {
-    if (error.status === 403 || error.status === 429) {
-      this.switchApiKey();
-      const newApiReq = req.clone({
-        url: `${this.baseUrl}${req.url}`,
-        setParams: {
-          key: this.apiKey,
-        },
-      });
-      return next.handle(newApiReq);
-    }
+    const apiReq = req.clone({
+      url: `${this.baseUrl}${req.url}`,
+      setParams: {
+        key: this.getApiKey(),
+      },
+    });
 
-    return throwError(() => error);
+    return next.handle(apiReq).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (
+          (error.status === 403 ||
+            error.status === 429 ||
+            error.status === 400) &&
+          retryCount < this.apiKeys.length
+        ) {
+          this.switchApiKey();
+          return this.handleRequest(req, next, retryCount + 1);
+        }
+        return throwError(() => new Error('All API keys exhausted'));
+      }),
+    );
   }
 
   public intercept(
     req: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    const apiReq = req.clone({
-      url: `${this.baseUrl}${req.url}`,
-      setParams: {
-        key: this.apiKey,
-      },
-    });
-
-    return next
-      .handle(apiReq)
-      .pipe(catchError((error) => this.handleError(error, req, next)));
+    return this.handleRequest(req, next);
   }
 }
+
+
+
