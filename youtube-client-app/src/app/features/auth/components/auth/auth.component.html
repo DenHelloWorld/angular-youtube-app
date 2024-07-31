@@ -22,16 +22,18 @@
       <div>
         <small
           class="font-extralight"
-          *ngIf="authFormService.loginForm.get('username')?.hasError('required')"
+          *ngIf="
+            authFormService.loginForm.get('username')?.hasError('required')
+          "
         >
           Please enter a login email
         </small>
 
         <small
-          class="text-red-500"
-          *ngIf="authFormService.loginForm.get('username')?.hasError('email')"
+          class="font-extralight text-red-500"
+          *ngIf="authFormService.loginForm.get('username')?.value != ''"
         >
-          The login email is invalid.
+          {{ authFormService.loginForm.get('username')?.errors?.['customValidator'] }}
         </small>
 
         <small
@@ -60,8 +62,7 @@
       </small>
       <small
         class="text-green-500"
-        *ngIf="
-          !authFormService.loginForm.get('password')?.errors"
+        *ngIf="!authFormService.loginForm.get('password')?.errors"
       >
         The password is valid.
       </small>
@@ -75,7 +76,11 @@
 
     <div class="text-center">
       <app-custom-button
-        [config]="{raised: authFormService.loginForm.valid, type: 'submit', disabled: !authFormService.loginForm.valid }"
+        [config]="{
+          raised: authFormService.loginForm.valid,
+          type: 'submit',
+          disabled: !authFormService.loginForm.valid
+        }"
         class="app-custom-button"
         >Login</app-custom-button
       >

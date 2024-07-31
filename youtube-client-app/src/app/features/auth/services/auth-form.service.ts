@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'app/features/auth/services/auth.service';
+import { emaildValidator } from 'app/features/auth/utilits/auth-email.validator';
 import { authPasswordValidator } from 'app/features/auth/utilits/auth-password.validator';
 
 @Injectable({
@@ -18,7 +19,7 @@ export class AuthFormService {
 
   public initForm(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, emaildValidator()]],
       password: ['', [Validators.required, , authPasswordValidator()]],
     });
     this.initLoginFormState = this.loginForm.value;
