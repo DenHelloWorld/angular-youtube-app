@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/features/auth/services/auth.service';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-auth-button',
@@ -11,17 +12,25 @@ import { CustomButtonComponent } from 'app/shared/components/custom-button/custo
 })
 export class AuthButtonComponent
   extends CustomButtonComponent
-  implements OnInit {
+  implements OnInit, OnDestroy {
   private isAuthenticated: boolean = false;
+
+  private authStatusSubscription?: Subscription;
 
   constructor(private authService: AuthService, private router: Router) {
     super();
   }
 
   public ngOnInit(): void {
-    this.authService.getAuthStatus().subscribe((status) => {
-      this.isAuthenticated = status;
-    });
+    this.authStatusSubscription = this.authService
+      .getAuthStatus()
+      .subscribe((status) => {
+        this.isAuthenticated = status;
+      });
+  }
+
+  public ngOnDestroy(): void {
+    this.authStatusSubscription?.unsubscribe();
   }
 
   public authIcon(): string {

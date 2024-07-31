@@ -11,13 +11,16 @@ import { YouTubeSearchResponse } from 'app/features/youtube/models/youtube-searc
   providedIn: 'root',
 })
 export class YoutubeService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+
+  ) {}
 
   public getById(id: string): Observable<YouTubeVideoDetailsData[]> {
     const url = BUILDED_URLS.detailsByVideoId(id);
-    return this.http.get<YouTubeDetailsResponse>(url).pipe(
-      map((response: YouTubeDetailsResponse) => response.items),
-    );
+    return this.http
+      .get<YouTubeDetailsResponse>(url)
+      .pipe(map((response: YouTubeDetailsResponse) => response.items));
   }
 
   public getByTitle(title: string): Observable<YouTubeVideoDetailsData[]> {
@@ -31,4 +34,3 @@ export class YoutubeService {
     );
   }
 }
-
