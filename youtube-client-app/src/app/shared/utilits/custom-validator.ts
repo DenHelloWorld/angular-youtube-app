@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { CustomCondition } from 'app/shared/models/custom-condition';
+import { CustomCondition } from 'app/shared/models/custom-condition.interface';
 
 export const customValidator: (
   customConditions: CustomCondition[]

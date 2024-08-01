@@ -38,7 +38,5 @@ import { HeaderComponent } from 'app/core/components/header/header.component';
       multi: true,
     },
   ],
-
-  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CoreModule {}

@@ -1,4 +1,4 @@
-import { CustomCondition } from 'app/shared/models/custom-condition';
+import { CustomCondition } from 'app/shared/models/custom-condition.interface';
 
 export const CHECK_EMAIL: CustomCondition[] = [
   {

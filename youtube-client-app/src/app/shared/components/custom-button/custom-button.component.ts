@@ -4,7 +4,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { CustomButtonConfig } from 'app/features/youtube/models/custom-button-config.interface';
+import { CustomButtonConfig } from 'app/shared/models/custom-button-config.interface';
 import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
 
 @Component({
