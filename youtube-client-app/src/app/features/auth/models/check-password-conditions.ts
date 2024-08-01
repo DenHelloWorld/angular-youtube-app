@@ -1,7 +1,7 @@
 import { CustomCondition } from 'app/shared/models/custom-condition';
 
 
-export const PASSWORD_CONDITIONS: CustomCondition[] = [
+export const CHECK_PASSWORD_CONDITIONS: CustomCondition[] = [
   {
     condition: (password: string) => /[A-Z]/.test(password),
     message: 'Password must contain at least one uppercase English letter.',

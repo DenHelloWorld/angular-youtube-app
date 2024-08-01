@@ -1,34 +1,26 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AdminComponent } from '../../components/admin/admin.component';
-import { AdminRoutingModule } from 'app/features/admin/modules/admin/admin-routing.module';
-import { FieldsetModule } from 'primeng/fieldset';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { InputIconModule } from 'primeng/inputicon';
-import { IconFieldModule } from 'primeng/iconfield';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { CalendarModule } from 'primeng/calendar';
-import { ChipsModule } from 'primeng/chips';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
-import { ChipModule } from 'primeng/chip';
 import { AdminFormService } from 'app/features/admin/srvices/admin-form.service';
+import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
+import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
+import { AdminRoutingModule } from 'app/features/admin/modules/admin/admin-routing.module';
+
 @NgModule({
   imports: [
-    ReactiveFormsModule,
-    CommonModule,
     AdminRoutingModule,
-    FieldsetModule,
-    FormsModule,
-    InputIconModule,
-    IconFieldModule,
-    InputTextModule,
-    InputTextareaModule,
-    CalendarModule,
-    ChipsModule,
     CustomButtonComponent,
-    ChipModule,
+    ANGULAG_MODULES.FormsModule,
+    ANGULAG_MODULES.ReactiveFormsModule,
+    ANGULAG_MODULES.CommonModule,
+    PRIME_NG_MODULES.FieldsetModule,
+    PRIME_NG_MODULES.InputIconModule,
+    PRIME_NG_MODULES.IconFieldModule,
+    PRIME_NG_MODULES.InputTextModule,
+    PRIME_NG_MODULES.InputTextareaModule,
+    PRIME_NG_MODULES.CalendarModule,
+    PRIME_NG_MODULES.ChipsModule,
+    PRIME_NG_MODULES.ChipModule,
   ],
   declarations: [AdminComponent],
   providers: [AdminFormService],

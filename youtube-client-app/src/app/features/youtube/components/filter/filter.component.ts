@@ -1,32 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { ToolbarModule } from 'primeng/toolbar';
-import { CommonModule } from '@angular/common';
-import { FieldsetModule } from 'primeng/fieldset';
 import { MenuItem } from 'primeng/api';
-import { MenubarModule } from 'primeng/menubar';
-import { AutoCompleteModule } from 'primeng/autocomplete';
-import { FormsModule } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
-import { SidebarModule } from 'primeng/sidebar';
 import { FilterItemsService } from 'app/features/youtube/services/filter-items.service';
 import { FilterService } from 'app/features/youtube/services/filter.service';
+import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
+import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
 
 @Component({
   selector: 'app-filter',
   standalone: true,
   imports: [
-    AutoCompleteModule,
-    MenubarModule,
-    ToolbarModule,
-    CommonModule,
-    FieldsetModule,
-    FormsModule,
-    InputTextModule,
-    SidebarModule,
+    ANGULAG_MODULES.FormsModule,
+    ANGULAG_MODULES.CommonModule,
+    PRIME_NG_MODULES.MenubarModule,
+    PRIME_NG_MODULES.ToolbarModule,
+    PRIME_NG_MODULES.FieldsetModule,
+    PRIME_NG_MODULES.InputTextModule,
+    PRIME_NG_MODULES.SidebarModule,
   ],
   templateUrl: './filter.component.html',
 })
-export default class FilterComponent implements OnInit {
+export class FilterComponent implements OnInit {
   public filterItems: MenuItem[] | undefined;
 
   public placeHolder: string = 'Name';

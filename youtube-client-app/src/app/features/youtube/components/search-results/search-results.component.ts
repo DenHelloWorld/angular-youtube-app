@@ -5,7 +5,7 @@ import { SearchResultsService } from 'app/features/youtube/services/search-resul
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
 })
-export default class SearchResultsComponent implements OnDestroy {
+export class SearchResultsComponent implements OnDestroy {
   public title: string = 'Search Results';
 
   constructor(public searchResultsService: SearchResultsService) {}
