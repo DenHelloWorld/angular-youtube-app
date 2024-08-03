@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { creationDateValidator } from 'app/features/admin/utilits/craetion-date.validator';
 
 @Injectable({
@@ -26,13 +32,16 @@ export class CeationCardFormService {
       linkImg: ['', [Validators.required]],
       linkVideo: ['', [Validators.required]],
       creationDate: ['', [Validators.required, creationDateValidator()]],
-      tags: this.formBuilder.array([this.createTagControl()]),
+      tags: this.formBuilder.array(
+        [this.createTagControl()],
+        [Validators.required],
+      ),
     });
     this.initAdminFormState = this.adminForm.value;
   }
 
   private createTagControl(): FormControl {
-    return this.formBuilder.control([], [Validators.required]);
+    return this.formBuilder.control(['Tag'], [Validators.required]);
   }
 
   public get tags(): FormArray {
