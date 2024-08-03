@@ -12,36 +12,17 @@
           aria-describedby="title"
         />
       </p-iconField>
-      <small
-        class="font-extralight"
-        *ngIf="
-          creationCardFormService.adminForm.get('title')?.hasError('required')
-        "
-      >
-        Please enter a title
-      </small>
-      <small
-        class="font-extralight text-red-500"
-        *ngIf="
-          creationCardFormService.adminForm.get('title')?.hasError('minlength')
-        "
-      >
-        The title is too short
-      </small>
-      <small
-        class="font-extralight text-red-500"
-        *ngIf="
-          creationCardFormService.adminForm.get('title')?.hasError('maxlength')
-        "
-      >
-        The title is too long
-      </small>
-      <small
-        class="text-green-500"
-        *ngIf="!creationCardFormService.adminForm.get('title')?.errors"
-      >
-        The title is valid.
-      </small>
+      <app-custom-validation-info
+        [config]="{
+          control: creationCardFormService.adminForm.get('title'),
+          requiredMessage: 'Please enter a title',
+          validMessage: 'The title is valid',
+          errorMessages: [
+            { key: 'minlength', message: 'The title is too short' },
+            { key: 'maxlength', message: 'The title is too long' }
+          ]
+        }"
+      ></app-custom-validation-info>
     </div>
 
     <div class="text-center flex flex-col">

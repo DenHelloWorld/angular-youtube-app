@@ -1,0 +1,11 @@
+<small *ngIf="config.control?.hasError('required')" class="font-extralight">
+  {{ config.requiredMessage }}
+</small>
+<ng-container *ngFor="let error of config.errorMessages">
+  <small class="font-extralight text-red-500" *ngIf="config.control?.hasError(error['key'])">
+    {{ error['message'] }}
+  </small>
+</ng-container>
+<small *ngIf="!config.control?.errors" class="text-green-500">
+  {{ config.validMessage }}
+</small>

@@ -6,11 +6,13 @@ import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
 import { AdminRoutingModule } from 'app/features/admin/modules/admin/admin-routing.module';
 import { CeationCardFormService } from 'app/features/admin/srvices/creation-card-form.service';
 import { CreationCardFormComponent } from 'app/features/admin/components/creation-card-form/creation-card-form.component';
+import { CustomValidationInfoComponent } from 'app/shared/components/custom-validation-info/custom-validation-info.component';
 
 @NgModule({
   imports: [
     AdminRoutingModule,
     CustomButtonComponent,
+    CustomValidationInfoComponent,
     ANGULAG_MODULES.FormsModule,
     ANGULAG_MODULES.ReactiveFormsModule,
     ANGULAG_MODULES.CommonModule,
