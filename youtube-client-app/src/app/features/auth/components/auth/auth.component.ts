@@ -1,25 +1,26 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from 'app/features/auth/services/auth.service';
+import { AuthFormService } from 'app/features/auth/services/auth-form.service';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
 })
-export class AuthComponent {
-
-  public loginForm: FormGroup = this.formBuilder.group({
-    username: [''],
-    password: [''],
-  });
-
+export class AuthComponent implements OnInit, OnDestroy {
   constructor(
     public authService: AuthService,
-    private formBuilder: FormBuilder,
+    public authFormService: AuthFormService,
   ) {}
 
+  public ngOnInit() {
+    this.authFormService.initForm();
+  }
+
+  public ngOnDestroy() {
+    this.authFormService.onReset();
+  }
+
   public onSubmit() {
-    const { username, password } = this.loginForm.value;
-    this.authService.login(username, password);
+    this.authFormService.onSubmit();
   }
 }

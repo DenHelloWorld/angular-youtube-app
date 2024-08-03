@@ -1,4 +1,4 @@
-import { CustomButtonSeverity } from 'app/features/youtube/models/custom-button-severity';
+import { CustomButtonSeverity } from 'app/shared/models/custom-button-severity';
 
 export interface CustomButtonConfig {
   label?: string;
@@ -8,5 +8,6 @@ export interface CustomButtonConfig {
   rounded?: boolean;
   outlined?: boolean;
   styleClass?: string;
+  disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
 }

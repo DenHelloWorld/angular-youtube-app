@@ -4,7 +4,7 @@ import { Directive, ElementRef, Renderer2, Input } from '@angular/core';
   selector: '[appColoredBorder]',
   standalone: true,
 })
-export default class ColoredBorderDirective {
+export class ColoredBorderDirective {
   @Input() public set appColoredBorder(publicationDate: string) {
     const currentDate = new Date();
     const publishedDate = new Date(publicationDate);

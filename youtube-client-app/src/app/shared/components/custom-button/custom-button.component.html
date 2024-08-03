@@ -8,6 +8,7 @@
   [styleClass]="config?.styleClass"
   [type]="config?.type || 'button'"
   (click)="handleEvent()"
+  [disabled]="config?.disabled"
 >
   <ng-content></ng-content
 ></p-button>

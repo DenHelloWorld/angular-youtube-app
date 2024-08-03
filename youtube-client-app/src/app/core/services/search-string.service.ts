@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-// import { AuthService } from 'app/features/auth/services/auth.service';
 import { FilterService } from 'app/features/youtube/services/filter.service';
 import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
 import { Subject, Subscription } from 'rxjs';
@@ -10,6 +9,8 @@ import { debounceTime, filter } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class SearchStringService {
+  public searchHint: string = 'Start typing for the search';
+
   public searchInputHeader: string = '';
 
   private searchSubject = new Subject<string>();
