@@ -1,0 +1,148 @@
+<form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+  <div class="text-center flex flex-col gap-3">
+    <div class="text-center flex flex-col">
+      <p-iconField iconPosition="right">
+        <p-inputIcon styleClass="pi pi-pencil" />
+        <input
+          placeholder="Title"
+          formControlName="title"
+          pInputText
+          id="create-card-title"
+          type="text"
+          aria-describedby="title"
+        />
+      </p-iconField>
+      <app-custom-validation-info
+        [config]="{
+          control: creationCardFormService.adminForm.get('title'),
+          requiredMessage: 'Please enter a title',
+          validMessage: 'The title is valid',
+          errorMessages: [
+            { key: 'minlength', message: 'The title is too short' },
+            { key: 'maxlength', message: 'The title is too long' }
+          ]
+        }"
+      ></app-custom-validation-info>
+    </div>
+
+    <div class="text-center flex flex-col">
+      <p-iconField iconPosition="right">
+        <p-inputIcon styleClass="pi pi-link" />
+        <input
+          placeholder="Link to Image"
+          formControlName="linkImg"
+          pInputText
+          id="linkImg"
+          type="text"
+          aria-describedby="create-card-link-img"
+        />
+      </p-iconField>
+      <app-custom-validation-info
+        [config]="{
+          control: creationCardFormService.adminForm.get('linkImg'),
+          requiredMessage: 'Please enter a link to image',
+          validMessage: 'The link to image is valid.',
+        }"
+      ></app-custom-validation-info>
+    </div>
+    <div class="text-center flex flex-col">
+      <p-iconField iconPosition="right">
+        <p-inputIcon styleClass="pi pi-link" />
+        <input
+          placeholder="Link to Video"
+          formControlName="linkVideo"
+          pInputText
+          id="linkVideo"
+          type="text"
+          aria-describedby="create-card-link-video"
+        />
+      </p-iconField>
+      <app-custom-validation-info
+        [config]="{
+        control: creationCardFormService.adminForm.get('linkVideo'),
+        requiredMessage: 'Please enter a link to video',
+        validMessage: 'The link to video is valid',
+      }"
+      ></app-custom-validation-info>
+    </div>
+
+    <div class="text-center flex flex-col">
+      <p-calendar
+        formControlName="creationDate"
+        placeholder="Date(not future)"
+        [showIcon]="true"
+        [iconDisplay]="'input'"
+      />
+      <app-custom-validation-info
+        [config]="{
+        control: creationCardFormService.adminForm.get('creationDate'),
+        requiredMessage: 'Please enter a creation date',
+        validMessage: 'The creation date is valid',
+        errorMessages: [],
+        customErrorMessages: {
+          customValidator: creationCardFormService.adminForm.get('creationDate')?.errors?.['customValidator']
+        }
+      }"
+      ></app-custom-validation-info>
+    </div>
+
+    <div class="text-center flex flex-col">
+      <textarea
+        id="description"
+        placeholder="Description(up to 255 symbols)"
+        pInputTextarea
+        formControlName="description"
+      >
+      </textarea>
+      <app-custom-validation-info
+        [config]="{
+          control: creationCardFormService.adminForm.get('description'),
+          validMessage: 'Description is valid',
+          errorMessages: [
+            { key: 'maxlength', message: 'The description is too long' }
+          ]
+        }"
+      ></app-custom-validation-info>
+    </div>
+
+    <p-fieldset legend="Tags" class="text-center m-4">
+      <form
+        [formGroup]="creationCardFormService.adminForm"
+        formArrayName="tags"
+      >
+        <div *ngFor="let tag of tags.controls; let tagIndex = index">
+          <p-chips
+            [formControlName]="tagIndex"
+            placeholder="1 to 5 tags are expected"
+            [max]="5"
+          ></p-chips>
+        </div>
+        <app-custom-validation-info
+          [config]="{
+            control: creationCardFormService.adminForm.get('tags'),
+            requiredMessage: 'Tags are invalid',
+            validMessage: 'Tags are valid',
+            initialMessage: 'Just type and hit Enter'
+          }"
+        ></app-custom-validation-info>
+      </form>
+    </p-fieldset>
+
+    <div class="text-center flex justify-center gap-4">
+      <app-custom-button
+        class="app-custom-button"
+        [config]="{
+          raised: creationCardFormService.adminForm.valid,
+          type: 'submit',
+          disabled: !creationCardFormService.adminForm.valid
+        }"
+        >Create Card</app-custom-button
+      >
+      <app-custom-button
+        class="app-custom-button"
+        [config]="{ raised: true, label: 'Reset Card' }"
+        (click)="onReset()"
+      ></app-custom-button>
+    </div>
+  </div>
+</form>

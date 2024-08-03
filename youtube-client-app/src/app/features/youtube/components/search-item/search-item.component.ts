@@ -1,35 +1,32 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
-  CUSTOM_ELEMENTS_SCHEMA,
   Input,
   OnInit,
 } from '@angular/core';
 import { StatisticsComponent } from 'app/features/youtube/components/statistics/statistics.component';
-import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
+import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
 import { SearchItemService } from 'app/features/youtube/services/search-item.service';
-import CardComponent from 'app/shared/components/card/card.component';
+import { CardComponent } from 'app/shared/components/card/card.component';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
-import ColoredBorderDirective from 'app/shared/directives/colored-border.directive';
-import { ToolbarModule } from 'primeng/toolbar';
-
+import { ColoredBorderDirective } from 'app/shared/directives/colored-border.directive';
+import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
+import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
 
 @Component({
   selector: 'app-search-item',
   templateUrl: './search-item.component.html',
   imports: [
     ColoredBorderDirective,
-    ToolbarModule,
     CardComponent,
     CustomButtonComponent,
-    CommonModule,
     StatisticsComponent,
+    ANGULAG_MODULES.CommonModule,
+    PRIME_NG_MODULES.ToolbarModule,
   ],
   standalone: true,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export default class SearchItemComponent implements OnInit {
-  @Input() itemData?: YouTubeVideoData;
+export class SearchItemComponent implements OnInit {
+  @Input() itemData?: YouTubeVideoDetailsData;
 
   public id: string = '';
 
@@ -49,8 +46,7 @@ export default class SearchItemComponent implements OnInit {
   }
 
   private setImgDefaultUrl(): void {
-    this.imgDefaultUrl =
-      this.itemData?.snippet?.thumbnails?.standard?.url ?? '';
+    this.imgDefaultUrl = this.itemData?.snippet?.thumbnails?.medium?.url ?? '';
   }
 
   private setTitle(): void {
@@ -68,7 +64,7 @@ export default class SearchItemComponent implements OnInit {
     this.publishedAt = this.itemData?.snippet?.publishedAt ?? '';
   }
 
-  public openDetalis() {
-    this.searchItemService.openDetalis(this.id);
+  public openDetails() {
+    this.searchItemService.openDetails(this.id);
   }
 }

@@ -1,27 +1,25 @@
-import { FormsModule } from '@angular/forms';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppRoutingModule } from 'app/app-routing.module';
-import AppComponent from 'app/app.component';
 import { CoreModule } from 'app/core/modules/core.module';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
+import { AppComponent } from 'app/app.component';
 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     CoreModule,
-    FormsModule,
+    ANGULAG_MODULES.FormsModule,
     RouterOutlet,
-    BrowserModule,
-    CommonModule,
+    ANGULAG_MODULES.BrowserModule,
+    ANGULAG_MODULES.CommonModule,
     CustomButtonComponent,
     AppRoutingModule,
+    HttpClientModule,
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

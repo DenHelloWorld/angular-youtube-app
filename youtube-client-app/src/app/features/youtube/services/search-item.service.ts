@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { DetalisService } from 'app/features/youtube/services/detalis.service';
+import { DetailsService } from './details.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchItemService {
+  constructor(private detailsService: DetailsService) {}
 
-  constructor(private detalisService: DetalisService) {}
-
-  public openDetalis(id: string) {
-    this.detalisService.openDetalis(id);
+  public openDetails(id: string) {
+    this.detailsService.openDetails(id);
   }
 }

@@ -5,13 +5,10 @@ import { PrimeNGConfig } from 'primeng/api';
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-
-class AppComponent implements OnInit {
-
+export class AppComponent implements OnInit {
   constructor(private primengConfig: PrimeNGConfig) {}
 
   public ngOnInit() {
     this.primengConfig.ripple = true;
   }
 }
-export default AppComponent;

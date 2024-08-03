@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
+import { YoutubeService } from './youtube.service';
 import { Subscription } from 'rxjs';
 import { SharedService } from 'app/shared/services/shared.service';
 import { SearchResultsData } from 'app/features/youtube/models/search-results-data';
-import { YouTubeResponse } from 'app/features/youtube/models/youtube-response.interface';
-import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
-import { YoutubeService } from 'app/features/youtube/services/youtube.service';
+import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchResultsService {
   private subscriptions: Subscription[];
-
-  private mockItems: YouTubeVideoData[] = [];
 
   public SearchResultsData: SearchResultsData = {
     filterTitle: '',
@@ -27,18 +24,10 @@ export class SearchResultsService {
     private sharedService: SharedService,
   ) {
     this.subscriptions = [];
-    this.getAllYoutubeItems();
-    this.handleFiltersChange();
-    this.allOrSearchedItems();
+    this.searchByTitle('RSSchool');
   }
 
-  private getAllYoutubeItems() {
-    this.youtubeService.getAll().subscribe((response: YouTubeResponse) => {
-      this.mockItems = response.items;
-    });
-  }
-
-  private handleFiltersChange() {
+  public turnOnListeners() {
     this.sharedService.filterTitle$.subscribe((value) => {
       this.SearchResultsData.filterTitle = value;
       this.listenSearchResultsData();
@@ -62,25 +51,20 @@ export class SearchResultsService {
     this.sharedService.setSearchResultsData(this.SearchResultsData);
   }
 
-  public get allItems() {
-    return this.mockItems;
-  }
-
   public destroyListeners() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   public searchByTitle(title: string) {
-    this.SearchResultsData.searchedItems =
-      this.youtubeService.getByTitle(title);
+    this.youtubeService
+      .getByTitle(title)
+      .subscribe((data: YouTubeVideoDetailsData[]) => {
+        this.SearchResultsData.searchedItems = data;
+      });
   }
 
-  public allOrSearchedItems(): YouTubeVideoData[] {
-    if (this.SearchResultsData.searchInputHeader.trim() === '') {
-      this.SearchResultsData.searchedItems = this.allItems;
-    } else {
-      this.searchByTitle(this.SearchResultsData.searchInputHeader);
-    }
+  public searchedItems(): YouTubeVideoDetailsData[] {
+    this.searchByTitle(this.SearchResultsData.searchInputHeader);
     return this.SearchResultsData.searchedItems;
   }
 }

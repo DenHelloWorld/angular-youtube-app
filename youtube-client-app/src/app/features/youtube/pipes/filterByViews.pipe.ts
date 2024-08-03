@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data.interface';
+import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
 
 @Pipe({
   name: 'filterByViews',
@@ -7,9 +7,9 @@ import { YouTubeVideoData } from 'app/features/youtube/models/youtube-video-data
 })
 export class FilterByViewsPipe implements PipeTransform {
   public transform(
-    items: YouTubeVideoData[],
+    items: YouTubeVideoDetailsData[],
     order: string,
-  ): YouTubeVideoData[] {
+  ): YouTubeVideoDetailsData[] {
     return (
       items?.sort((a, b) => {
         const viewCountA = +(a.statistics?.viewCount ?? 0);
