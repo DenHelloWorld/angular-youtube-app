@@ -17,9 +17,12 @@ import { PasswordModule } from 'primeng/password';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { MenubarModule } from 'primeng/menubar';
 import { SidebarModule } from 'primeng/sidebar';
-import { TagModule } from 'primeng/tag';import { ButtonModule } from 'primeng/button';
+import { TagModule } from 'primeng/tag';
+import { ButtonModule } from 'primeng/button';
+import { MessagesModule } from 'primeng/messages';
 
 export const PRIME_NG_MODULES = {
+  MessagesModule: [MessagesModule],
   ButtonModule: [ButtonModule],
   TagModule: [TagModule],
   SidebarModule: [SidebarModule],

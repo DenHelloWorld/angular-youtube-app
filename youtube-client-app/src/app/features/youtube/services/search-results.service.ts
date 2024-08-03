@@ -24,10 +24,10 @@ export class SearchResultsService {
     private sharedService: SharedService,
   ) {
     this.subscriptions = [];
-    this.handleFiltersChange();
+    this.searchByTitle('RSSchool');
   }
 
-  private handleFiltersChange() {
+  public turnOnListeners() {
     this.sharedService.filterTitle$.subscribe((value) => {
       this.SearchResultsData.filterTitle = value;
       this.listenSearchResultsData();
@@ -59,7 +59,6 @@ export class SearchResultsService {
     this.youtubeService
       .getByTitle(title)
       .subscribe((data: YouTubeVideoDetailsData[]) => {
-        console.log('searchByTitle', data);
         this.SearchResultsData.searchedItems = data;
       });
   }

@@ -9,6 +9,8 @@ import { debounceTime, filter } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class SearchStringService {
+  public searchHint: string = 'Start typing for the search';
+
   public searchInputHeader: string = '';
 
   private searchSubject = new Subject<string>();

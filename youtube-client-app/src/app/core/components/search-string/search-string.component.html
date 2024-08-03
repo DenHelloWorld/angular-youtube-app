@@ -1,9 +1,21 @@
-<span class="p-input-icon-left">
+<span class="relative p-input-icon-left">
   <i class="pi pi-search"></i>
   <input
-    (input)="searchStringService.updateSearchInput(searchStringService.searchInputHeader)"
+    (input)="
+      searchStringService.updateSearchInput(
+        searchStringService.searchInputHeader
+      )
+    "
     [(ngModel)]="searchStringService.searchInputHeader"
     pInputText
-    placeholder="Search"
+    placeholder="Search from 3 characters"
+  />
+  <p-messages
+    class="z-50 absolute left-0 top-full"
+    [value]="[{ severity: 'info', summary: searchStringService.searchHint }]"
   />
 </span>
+<app-custom-button
+  (click)="filterService.toggleView()"
+  [config]="{ icon: 'pi pi-sliders-v', raised: !filterService.showFilter }"
+/>

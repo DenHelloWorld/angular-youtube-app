@@ -17,11 +17,6 @@
     class="p-toolbar-group-center"
   >
     <app-search-string></app-search-string>
-
-    <app-custom-button
-      (click)="filterService.toggleView()"
-      [config]="{ icon: 'pi pi-sliders-v', raised: !filterService.showFilter }"
-    />
   </div>
 
   <div class="p-toolbar-group-end">
