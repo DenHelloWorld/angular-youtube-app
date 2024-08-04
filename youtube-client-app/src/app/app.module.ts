@@ -7,8 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
 import { AppComponent } from 'app/app.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './redux';
-
+import { youtubeCardReducer } from 'app/redux/reducers/youtube-cards.reducer';
+import { metaReducers } from 'app/redux';
+import { BrowserModule } from '@angular/platform-browser';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,9 +24,25 @@ import { reducers, metaReducers } from './redux';
     CustomButtonComponent,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-    }),
+    BrowserModule,
+    StoreModule.forRoot(
+      {
+        youtubeCards: youtubeCardReducer,
+      },
+      {
+        metaReducers,
+      },
+    ),
+    !environment.production
+      ? StoreDevtoolsModule.instrument({
+        maxAge: 25,
+        logOnly: !environment.production,
+        autoPause: true,
+        trace: false,
+        traceLimit: 75,
+        connectInZone: true,
+      })
+      : [],
   ],
   bootstrap: [AppComponent],
 })

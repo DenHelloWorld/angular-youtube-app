@@ -1,19 +1,8 @@
-import { isDevMode } from '@angular/core';
-import {
-  // ActionReducer,
-  ActionReducerMap,
-  // createFeatureSelector,
-  // createSelector,
-  MetaReducer,
-} from '@ngrx/store';
+import { MetaReducer } from '@ngrx/store';
+import { logger } from 'app/redux/reducers/meta.reducer';
+import { AppState } from 'app/redux/reducers/youtube-cards.reducer';
+import { environment } from 'environments/environment';
 
-export interface State {
-
-}
-
-export const reducers: ActionReducerMap<State> = {
-
-};
-
-
-export const metaReducers: MetaReducer<State>[] = isDevMode() ? [] : [];
+export const metaReducers: MetaReducer<AppState>[] = !environment.production
+  ? [logger]
+  : [];

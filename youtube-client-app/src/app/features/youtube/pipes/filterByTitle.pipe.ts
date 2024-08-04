@@ -12,7 +12,7 @@ export class FilterByTitlePipe implements PipeTransform {
   ): YouTubeVideoDetailsData[] {
     if (!items || !searchText) return items;
     searchText = searchText.toLowerCase();
-    return items.filter((item) =>
+    return [...items].filter((item) =>
       item.snippet.title.toLowerCase().includes(searchText),
     );
   }

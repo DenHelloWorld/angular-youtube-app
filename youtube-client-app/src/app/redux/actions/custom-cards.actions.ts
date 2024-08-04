@@ -9,7 +9,7 @@ export interface CustomCard {
   videoUrl: string;
   creationDate: string;
 }
-
+// В квадратных скобках пишут, где это было, а завтем само событие
 export const loadCards = createAction('[Card] Load Cards');
 export const loadCardsSuccess = createAction(
   '[Card] Load Cards Success',

@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { SharedService } from 'app/shared/services/shared.service';
 import { SearchResultsData } from 'app/features/youtube/models/search-results-data';
 import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
+import { Store } from '@ngrx/store';
+import { clearYouTubeCards, loadYouTubeCards, loadYouTubeCardsFailure, loadYouTubeCardsSuccess } from 'app/redux/actions/youtube-cards.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -22,9 +24,10 @@ export class SearchResultsService {
   constructor(
     private youtubeService: YoutubeService,
     private sharedService: SharedService,
+    private store: Store,
   ) {
     this.subscriptions = [];
-    this.searchByTitle('RSSchool');
+    // this.searchByTitle('RSSchool');
   }
 
   public turnOnListeners() {
@@ -56,11 +59,21 @@ export class SearchResultsService {
   }
 
   public searchByTitle(title: string) {
-    this.youtubeService
-      .getByTitle(title)
-      .subscribe((data: YouTubeVideoDetailsData[]) => {
+    this.store.dispatch(loadYouTubeCards());
+
+    this.youtubeService.getByTitle(title).subscribe(
+      (data: YouTubeVideoDetailsData[]) => {
         this.SearchResultsData.searchedItems = data;
-      });
+        this.store.dispatch(loadYouTubeCardsSuccess({ cards: data }));
+      },
+      (error) => {
+        this.store.dispatch(loadYouTubeCardsFailure({ error: error.message }));
+      },
+    );
+  }
+
+  public clearCards() {
+    this.store.dispatch(clearYouTubeCards());
   }
 
   public searchedItems(): YouTubeVideoDetailsData[] {

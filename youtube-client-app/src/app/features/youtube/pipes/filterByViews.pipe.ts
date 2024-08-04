@@ -10,14 +10,14 @@ export class FilterByViewsPipe implements PipeTransform {
     items: YouTubeVideoDetailsData[],
     order: string,
   ): YouTubeVideoDetailsData[] {
-    return (
-      items?.sort((a, b) => {
+    return items
+      ? [...items].sort((a, b) => {
         const viewCountA = +(a.statistics?.viewCount ?? 0);
         const viewCountB = +(b.statistics?.viewCount ?? 0);
         return order === 'asc'
           ? viewCountA - viewCountB
           : viewCountB - viewCountA;
-      }) || []
-    );
+      })
+      : [];
   }
 }
