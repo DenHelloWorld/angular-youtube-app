@@ -6,6 +6,8 @@ import { CustomButtonComponent } from 'app/shared/components/custom-button/custo
 import { HttpClientModule } from '@angular/common/http';
 import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
 import { AppComponent } from 'app/app.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './redux';
 
 
 @NgModule({
@@ -19,6 +21,9 @@ import { AppComponent } from 'app/app.component';
     CustomButtonComponent,
     AppRoutingModule,
     HttpClientModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+    }),
   ],
   bootstrap: [AppComponent],
 })
