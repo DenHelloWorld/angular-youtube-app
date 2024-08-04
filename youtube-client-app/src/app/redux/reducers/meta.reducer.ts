@@ -6,7 +6,6 @@ export function logger(
   reducer: ActionReducer<AppState>,
 ): ActionReducer<AppState> {
   return (state: AppState | undefined, action: Action): AppState => {
-    console.log('Logger called');
     const nextState = reducer(state, action);
     console.groupCollapsed(action.type);
     console.log('prev state', state);

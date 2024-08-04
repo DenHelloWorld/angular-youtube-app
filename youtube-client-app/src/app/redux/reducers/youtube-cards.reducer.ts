@@ -3,26 +3,41 @@ import { CustomCard } from 'app/redux/actions/custom-cards.actions';
 import { createReducer, on } from '@ngrx/store';
 import { clearYouTubeCards, loadYouTubeCards, loadYouTubeCardsFailure, loadYouTubeCardsSuccess } from 'app/redux/actions/youtube-cards.actions';
 
-export interface CardsState {
-  youtubeCards: YouTubeVideoDetailsData[];
+export interface CustomCardsState {
   customCards: CustomCard[];
   error: string | null;
 }
-export const initialState: CardsState = {
-  youtubeCards: [],
+
+export const initialCustomCardsState: CustomCardsState = {
   customCards: [],
   error: null,
 };
-export interface AppState {
-  youtubeCards: CardsState;
+
+export interface YouTubeCardsState {
+  youtubeCards: YouTubeVideoDetailsData[];
+  error: string | null;
 }
 
+export const initialYouTubeCardsState: YouTubeCardsState = {
+  youtubeCards: [],
+  error: null,
+};
+
+export interface AppState {
+  customCards: CustomCardsState;
+  youtubeCards: YouTubeCardsState;
+}
+
+
 export const youtubeCardReducer = createReducer(
-  initialState,
-  on(loadYouTubeCards, (state): CardsState => ({ ...state, error: null })),
+  initialYouTubeCardsState,
+  on(
+    loadYouTubeCards,
+    (state): YouTubeCardsState => ({ ...state, error: null }),
+  ),
   on(
     loadYouTubeCardsSuccess,
-    (state, { cards }): CardsState => ({
+    (state, { cards }): YouTubeCardsState => ({
       ...state,
       youtubeCards: cards,
       error: null,
@@ -30,7 +45,11 @@ export const youtubeCardReducer = createReducer(
   ),
   on(
     loadYouTubeCardsFailure,
-    (state, { error }): CardsState => ({ ...state, error }),
+    (state, { error }): YouTubeCardsState => ({ ...state, error }),
   ),
-  on(clearYouTubeCards, (state): CardsState => ({ ...state, youtubeCards: [] })),
+  on(
+    clearYouTubeCards,
+    (state): YouTubeCardsState => ({ ...state, youtubeCards: [] }),
+  ),
 );
+

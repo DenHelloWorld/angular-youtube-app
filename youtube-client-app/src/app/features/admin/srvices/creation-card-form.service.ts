@@ -6,7 +6,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { creationDateValidator } from 'app/features/admin/utilits/craetion-date.validator';
+import { addCard } from 'app/redux/actions/custom-cards.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +18,7 @@ export class CeationCardFormService {
 
   private initAdminFormState: unknown;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private store: Store) {}
 
   public initForm(): void {
     this.adminForm = this.formBuilder.group({
@@ -53,6 +55,9 @@ export class CeationCardFormService {
   }
 
   public onSubmit(): void {
+    const customCard = this.adminForm.value;
+    console.log('Dispatching addCard action with card:', customCard);
+    this.store.dispatch(addCard({ card: customCard }));
     this.adminForm.reset(this.initAdminFormState);
   }
 }
