@@ -4,9 +4,10 @@
       <app-custom-button
         (click)="openDetails()"
         [config]="{ raised: true }"
-        class="m-auto"
+
         >More</app-custom-button
       >
+      <app-favorite-button [id]="id"></app-favorite-button>
       <app-statistics [statistics]="itemData?.statistics"></app-statistics>
     </app-card>
   </ng-content>

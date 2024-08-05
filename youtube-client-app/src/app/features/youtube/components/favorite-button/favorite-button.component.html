@@ -1,0 +1,8 @@
+<app-custom-button
+  [id]="id"
+  (click)="favoriteProcess()"
+  [config]="{
+    icon: 'pi ' + favoriteIcon(),
+    raised: !isFavoriteStatus,
+  }"
+></app-custom-button>

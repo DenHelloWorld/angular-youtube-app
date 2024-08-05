@@ -3,6 +3,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
+import { FavoriteButtonComponent } from 'app/features/youtube/components/favorite-button/favorite-button.component';
 import { StatisticsComponent } from 'app/features/youtube/components/statistics/statistics.component';
 import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
 import { SearchItemService } from 'app/features/youtube/services/search-item.service';
@@ -16,6 +17,7 @@ import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
   selector: 'app-search-item',
   templateUrl: './search-item.component.html',
   imports: [
+    FavoriteButtonComponent,
     ColoredBorderDirective,
     CardComponent,
     CustomButtonComponent,
