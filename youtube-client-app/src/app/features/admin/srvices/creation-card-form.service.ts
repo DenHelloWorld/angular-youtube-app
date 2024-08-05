@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { creationDateValidator } from 'app/features/admin/utilits/craetion-date.validator';
-import { addCard } from 'app/redux/actions/custom-cards.actions';
+import { addCard } from 'app/redux/actions/custom-card.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -56,7 +56,6 @@ export class CeationCardFormService {
 
   public onSubmit(): void {
     const customCard = this.adminForm.value;
-    console.log('Dispatching addCard action with card:', customCard);
     this.store.dispatch(addCard({ card: customCard }));
     this.adminForm.reset(this.initAdminFormState);
   }

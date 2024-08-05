@@ -1,4 +1,4 @@
-import { LocalStorageService } from 'angular-web-storage';
+import { concatLatestFrom } from '@ngrx/operators';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, tap } from 'rxjs/operators';
@@ -6,26 +6,23 @@ import {
   addCard,
   loadCards,
   loadCardsSuccess,
-} from 'app/redux/actions/custom-cards.actions';
+} from 'app/redux/actions/custom-card.actions';
+import { Store } from '@ngrx/store';
+import { selectCustomCards } from 'app/redux/selectors/custom-card.selectors';
 
 @Injectable()
 export class CardEffects {
-  constructor(
-    private actions$: Actions,
-    private localStorageService: LocalStorageService,
-  ) {}
+  constructor(private actions$: Actions, private store: Store) {}
 
   saveCustomCard$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(addCard),
-        tap((action) => {
+        concatLatestFrom(() => this.store.select(selectCustomCards)),
+        tap(([action, currentCards]) => {
           console.log('Effect triggered for action:', action);
-          const currentCards =
-            this.localStorageService.get('customCards') || [];
-          currentCards.push(action.card);
-          this.localStorageService.set('customCards', currentCards);
-          console.log('Updated customCards in local storage:', currentCards);
+          const updatedCards = [[...currentCards], action.card];
+          console.log('Updated customCards:', updatedCards);
         }),
       );
     },
@@ -35,10 +32,8 @@ export class CardEffects {
   loadCustomCards$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(loadCards),
-      map(() => {
-        const cards = this.localStorageService.get('customCards') || [];
-        return loadCardsSuccess({ cards });
-      }),
+      concatLatestFrom(() => this.store.select(selectCustomCards)),
+      map(([, cards]) => loadCardsSuccess({ cards })),
     );
   });
 }

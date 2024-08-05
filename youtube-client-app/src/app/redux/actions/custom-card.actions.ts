@@ -1,15 +1,6 @@
-
 import { createAction, props } from '@ngrx/store';
+import { CustomCard } from 'app/features/youtube/models/custom-card.interface';
 
-export interface CustomCard {
-  id: number | string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  videoUrl: string;
-  creationDate: string;
-}
-// В квадратных скобках пишут, где это было, а завтем само событие
 export const loadCards = createAction('[Card] Load Cards');
 export const loadCardsSuccess = createAction(
   '[Card] Load Cards Success',

@@ -1,6 +1,5 @@
 import { ActionReducer, Action } from '@ngrx/store';
-import { AppState } from 'app/redux/reducers/youtube-cards.reducer';
-
+import { AppState } from 'app/redux/states/app.state';
 
 export function logger(
   reducer: ActionReducer<AppState>,
@@ -15,6 +14,3 @@ export function logger(
     return nextState;
   };
 }
-
-
-

@@ -1,0 +1,16 @@
+<div
+  class="hover:drop-shadow-2xl transition-all"
+  [appColoredBorder]="creationDate"
+>
+  <ng-content>
+    <app-card
+      [id]="customItemData?.id"
+      [config]="{
+        imageUrl: customItemData?.linkImg,
+        headerText: customItemData?.title
+      }"
+    >
+    </app-card>
+  </ng-content>
+</div>
+
