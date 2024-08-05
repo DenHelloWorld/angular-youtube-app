@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { effect, Injectable } from '@angular/core';
 import { YoutubeService } from './youtube.service';
 import { Observable, Subscription } from 'rxjs';
 import { SharedService } from 'app/shared/services/shared.service';
@@ -57,7 +57,30 @@ export class SearchResultsService {
     private store: Store,
   ) {
     this.subscriptions = [];
+    this.initializeEffects();
     // this.searchByTitle('RSSchool');
+  }
+
+  private initializeEffects() {
+    effect(
+      () => {
+        const data = YoutubeService.videoDetailsByTitleSignal();
+        if (data.length > 0) {
+          this.store.dispatch(loadYouTubeCardsSuccess({ cards: data }));
+        }
+      },
+      { allowSignalWrites: true },
+    );
+
+    effect(
+      () => {
+        const error = YoutubeService.errorSignal();
+        if (error) {
+          this.store.dispatch(loadYouTubeCardsFailure({ error }));
+        }
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   public turnOnListeners() {
@@ -97,15 +120,7 @@ export class SearchResultsService {
 
   public searchByTitle(title: string) {
     this.store.dispatch(loadYouTubeCards());
-
-    this.youtubeService.getByTitle(title).subscribe(
-      (data: YouTubeVideoDetailsData[]) => {
-        this.store.dispatch(loadYouTubeCardsSuccess({ cards: data }));
-      },
-      (error) => {
-        this.store.dispatch(loadYouTubeCardsFailure({ error: error.message }));
-      },
-    );
+    this.youtubeService.getByTitle(title);
   }
 
   public clearCards() {
