@@ -13,7 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'environments/environment';
 import { reducers } from 'app/redux/reducers/index.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { CardEffects } from 'app/redux/effects/card.effects';
+import { CustomCardEffects } from 'app/redux/effects/custom-card.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,11 +28,10 @@ import { CardEffects } from 'app/redux/effects/card.effects';
     HttpClientModule,
     BrowserModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([CardEffects]),
+    EffectsModule.forRoot([CustomCardEffects]),
     !environment.production
       ? StoreDevtoolsModule.instrument({
         maxAge: 25,
-        // logOnly: !environment.production,
         autoPause: true,
         trace: false,
         traceLimit: 75,

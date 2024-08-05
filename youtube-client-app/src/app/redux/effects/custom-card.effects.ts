@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 import { selectCustomCards } from 'app/redux/selectors/custom-card.selectors';
 
 @Injectable()
-export class CardEffects {
+export class CustomCardEffects {
   constructor(private actions$: Actions, private store: Store) {}
 
   saveCustomCard$ = createEffect(
@@ -19,11 +19,6 @@ export class CardEffects {
       return this.actions$.pipe(
         ofType(addCard),
         concatLatestFrom(() => this.store.select(selectCustomCards)),
-        // tap(([action, currentCards]) => {
-        // console.log('Effect triggered for action:', action);
-        // const updatedCards = [[...currentCards], action.card];
-        // console.log('Updated customCards:', updatedCards);
-        // }),
       );
     },
     { dispatch: false },

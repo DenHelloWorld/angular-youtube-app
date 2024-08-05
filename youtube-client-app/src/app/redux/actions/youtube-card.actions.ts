@@ -15,3 +15,11 @@ export const loadYouTubeCardsFailure = createAction(
 export const clearYouTubeCards = createAction(
   '[YouTubeCard] Clear YouTube Cards',
 );
+export const addYouTubeCardToFavorites = createAction(
+  '[YouTubeCard] Add YouTube Card to Favorites',
+  props<{ cardId: string }>(),
+);
+export const removeYouTubeCardFromFavorites = createAction(
+  '[YouTubeCard] Remove YouTube Card from Favorites',
+  props<{ cardId: string }>(),
+);
