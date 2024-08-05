@@ -16,11 +16,12 @@
         [config]="{ raised: !visibleDialog }"
         >Show Description</app-custom-button
       >
-      <div
-        class="card flex gap-2 flex-wrap p-4 justify-center"
-        *ngFor="let tag of customItemData?.tags | flatten"
-      >
-        <p-tag [value]="tag" icon="pi pi-hashtag"></p-tag>
+      <div class="card flex gap-2 flex-wrap p-4 justify-center">
+        <p-tag
+          *ngFor="let tag of customItemData?.tags | flatten"
+          [value]="tag"
+          icon="pi pi-hashtag"
+        ></p-tag>
       </div>
     </app-card>
   </ng-content>
