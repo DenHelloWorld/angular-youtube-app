@@ -5,7 +5,7 @@ import {
   SearchResultsData,
 } from 'app/features/youtube/models/search-results-data';
 import { selectCustomCards } from 'app/redux/selectors/custom-card.selectors';
-import { selectYoutubeCards } from 'app/redux/selectors/youtube-card.selectors';
+import { selectAllVideosArray } from 'app/redux/selectors/youtube-card.selectors';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -29,7 +29,7 @@ export class SharedService {
       filterViews: '',
       searchInputHeader: '',
     },
-    searchedItems$: this.store.select(selectYoutubeCards),
+    searchedItems$: this.store.select(selectAllVideosArray),
   });
 
   private customCardsData = new BehaviorSubject<CustomCardsData>({

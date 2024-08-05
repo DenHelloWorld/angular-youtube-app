@@ -15,8 +15,8 @@ import {
   loadYouTubeCardsSuccess,
 } from 'app/redux/actions/youtube-card.actions';
 import { selectCustomCards } from 'app/redux/selectors/custom-card.selectors';
-import { selectYoutubeCards } from 'app/redux/selectors/youtube-card.selectors';
 import { CustomCard } from 'app/features/youtube/models/custom-card.interface';
+import { selectAllVideosArray } from 'app/redux/selectors/youtube-card.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -28,9 +28,8 @@ export class SearchResultsService {
 
   customItems: CustomCard[] = [];
 
-  searchedItems$: Observable<YouTubeVideoDetailsData[]> = new Observable<
-  YouTubeVideoDetailsData[]
-  >();
+  searchedItems$: Observable<YouTubeVideoDetailsData[]> =
+    this.store.select(selectAllVideosArray);
 
   public SearchResultsData: SearchResultsData = {
     filters: {
@@ -39,7 +38,7 @@ export class SearchResultsService {
       filterViews: '',
       searchInputHeader: '',
     },
-    searchedItems$: this.store.select(selectYoutubeCards),
+    searchedItems$: this.store.select(selectAllVideosArray),
   };
 
   public CustomCardsData: CustomCardsData = {
@@ -64,28 +63,26 @@ export class SearchResultsService {
   public turnOnListeners() {
     this.sharedService.filterTitle$.subscribe((value) => {
       this.SearchResultsData.filters.filterTitle = value;
-      // this.CustomCardsData.filters.filterTitle = value;
+      this.CustomCardsData.filters.filterTitle = value;
       this.listenSearchResultsData();
     });
     this.sharedService.filterDate$.subscribe((value) => {
       this.SearchResultsData.filters.filterDate = value;
-      // this.CustomCardsData.filters.filterDate = value;
+      this.CustomCardsData.filters.filterDate = value;
       this.listenSearchResultsData();
     });
     this.sharedService.filterView$.subscribe((value) => {
       this.SearchResultsData.filters.filterViews = value;
-      // this.CustomCardsData.filters.filterViews = value;
+      this.CustomCardsData.filters.filterViews = value;
       this.listenSearchResultsData();
     });
     this.subscriptions.push(
       this.sharedService.searchResultsData$.subscribe((value) => {
         this.SearchResultsData = value;
       }),
-      this.CustomCardsData.customItems$.subscribe(
-        (items) => {
-          this.customItems = items;
-        },
-      ),
+      this.CustomCardsData.customItems$.subscribe((items) => {
+        this.customItems = items;
+      }),
     );
   }
 
