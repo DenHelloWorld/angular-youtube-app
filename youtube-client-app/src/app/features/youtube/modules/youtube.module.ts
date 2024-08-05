@@ -17,6 +17,7 @@ import { FilterYouTubeCardByTitlePipe } from 'app/features/youtube/pipes/youtube
 import { SortYouTubeByDatePipe } from 'app/features/youtube/pipes/youtubeCardPipes/sortYouTubeCardByDate.pipe';
 import { SortYoutubeCardByViewsPipe } from 'app/features/youtube/pipes/youtubeCardPipes/sortYoutubeCardByViews.pipe';
 import { SortCustomCardByDatePipe } from 'app/features/youtube/pipes/customCardPipes/sortCustomCardByDate.pipe';
+import { FlattenPipe } from 'app/shared/pipes/flatten.pipe';
 
 @NgModule({
   declarations: [SearchResultsComponent, MainComponent],
@@ -31,6 +32,7 @@ import { SortCustomCardByDatePipe } from 'app/features/youtube/pipes/customCardP
     SortYouTubeByDatePipe,
     CustomButtonComponent,
     CardComponent,
+    FlattenPipe,
     YoutubeRoutingModule,
     StatisticsComponent,
     DetailsComponent,

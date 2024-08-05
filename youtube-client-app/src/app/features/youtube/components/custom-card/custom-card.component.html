@@ -10,7 +10,29 @@
         headerText: customItemData?.title
       }"
     >
+      <app-custom-button
+        *ngIf="customItemData?.description !== ''"
+        (click)="showDialog()"
+        [config]="{ raised: !visibleDialog }"
+        >Show Description</app-custom-button
+      >
+      <div
+        class="card flex gap-2 flex-wrap p-4 justify-center"
+        *ngFor="let tag of customItemData?.tags | flatten"
+      >
+        <p-tag [value]="tag" icon="pi pi-hashtag"></p-tag>
+      </div>
     </app-card>
   </ng-content>
 </div>
-
+<p-dialog
+  [header]="customItemData?.title"
+  [modal]="true"
+  [(visible)]="visibleDialog"
+  [style]="{ width: '50rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+  <p>
+    {{ customItemData?.description }}
+  </p>
+</p-dialog>
