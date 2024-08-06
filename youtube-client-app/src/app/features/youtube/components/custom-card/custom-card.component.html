@@ -10,12 +10,17 @@
         headerText: customItemData?.title
       }"
     >
+      <p-toolbar>
+        <p class="w-full text-center">
+          Creation Date:
+          {{ customItemData?.creationDate | date : "mediumDate" }}
+        </p>
+      </p-toolbar>
       <app-custom-button
         (clickEmitter)="showDescription()"
         [config]="{
-          raised: !visibleDialog,
+          raised: !visibleDescription,
           disabled: customItemData?.description === '',
-
         }"
         >Show Description</app-custom-button
       >
@@ -32,7 +37,7 @@
 <p-dialog
   [header]="customItemData?.title"
   [modal]="true"
-  [(visible)]="visibleDialog"
+  [(visible)]="visibleDescription"
   [style]="{ width: '50rem' }"
   [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
 >

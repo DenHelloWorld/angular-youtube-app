@@ -20,6 +20,7 @@ import { v4 as uuidv4 } from 'uuid';
     PRIME_NG_MODULES.PanelModule,
     PRIME_NG_MODULES.DialogModule,
     PRIME_NG_MODULES.TagModule,
+    PRIME_NG_MODULES.ToolbarModule,
   ],
   standalone: true,
 })
@@ -32,7 +33,7 @@ export class CustomCardComponent implements OnInit {
 
   public creationDate: string = '';
 
-  public visibleDialog: boolean = false;
+  public visibleDescription: boolean = false;
 
   public ngOnInit(): void {
     this.setimageUrl();
@@ -49,7 +50,7 @@ export class CustomCardComponent implements OnInit {
   }
 
   public showDescription() {
-    this.visibleDialog = true;
+    this.visibleDescription = true;
   }
 
   private setId() {
