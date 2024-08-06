@@ -18,9 +18,11 @@ import { SortYouTubeByDatePipe } from 'app/features/youtube/pipes/youtubeCardPip
 import { SortYoutubeCardByViewsPipe } from 'app/features/youtube/pipes/youtubeCardPipes/sortYoutubeCardByViews.pipe';
 import { SortCustomCardByDatePipe } from 'app/features/youtube/pipes/customCardPipes/sortCustomCardByDate.pipe';
 import { FlattenPipe } from 'app/shared/pipes/flatten.pipe';
+import { FavoritePageComponent } from 'app/features/youtube/pages/favorite-page/favorite-page.component';
+import { FavoriteItemsComponent } from 'app/features/youtube/components/favorite-items/favorite-items.component';
 
 @NgModule({
-  declarations: [SearchResultsComponent, MainComponent],
+  declarations: [SearchResultsComponent, MainComponent, FavoritePageComponent, FavoriteItemsComponent],
   imports: [
     SortCustomCardByDatePipe,
     FilterCustomCardByTitlePipe,
@@ -42,6 +44,6 @@ import { FlattenPipe } from 'app/shared/pipes/flatten.pipe';
     PRIME_NG_MODULES.ToolbarModule,
   ],
   providers: [DetailsService],
-  exports: [MainComponent],
+  exports: [MainComponent, FavoritePageComponent],
 })
 export class YoutubeModule {}
