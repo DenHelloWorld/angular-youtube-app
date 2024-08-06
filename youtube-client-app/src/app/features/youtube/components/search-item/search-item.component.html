@@ -2,7 +2,7 @@
   <ng-content>
     <app-card [config]="{ imageUrl: imgDefaultUrl, headerText: title }">
       <app-custom-button
-        (click)="openDetails()"
+        (clickEmitter)="openDetails()"
         [config]="{ raised: true }"
 
         >More</app-custom-button

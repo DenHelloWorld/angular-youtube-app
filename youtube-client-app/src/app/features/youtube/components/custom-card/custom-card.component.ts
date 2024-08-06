@@ -6,7 +6,6 @@ import { ColoredBorderDirective } from 'app/shared/directives/colored-border.dir
 import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
 import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
 import { FlattenPipe } from 'app/shared/pipes/flatten.pipe';
-
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -49,22 +48,11 @@ export class CustomCardComponent implements OnInit {
     this.creationDate = this.customItemData?.creationDate ?? '';
   }
 
-  public showDialog() {
-    console.log(this.customItemData?.tags);
+  public showDescription() {
     this.visibleDialog = true;
   }
 
   private setId() {
     this.id = uuidv4();
   }
-  // private setCustomItemData(): void {
-  //   const { id, title, description, imageUrl, videoUrl, creationDate } =
-  //     this.customItemData;
-  //   this.id = id;
-  //   this.title = title;
-  //   this.description = description;
-  //   this.imageUrl = imageUrl;
-  //   this.videoUrl = videoUrl;
-  //   this.creationDate = creationDate;
-  // }
 }

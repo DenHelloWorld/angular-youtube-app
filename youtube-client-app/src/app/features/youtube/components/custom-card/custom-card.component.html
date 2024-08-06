@@ -11,9 +11,12 @@
       }"
     >
       <app-custom-button
-        *ngIf="customItemData?.description !== ''"
-        (click)="showDialog()"
-        [config]="{ raised: !visibleDialog }"
+        (clickEmitter)="showDescription()"
+        [config]="{
+          raised: !visibleDialog,
+          disabled: customItemData?.description === '',
+
+        }"
         >Show Description</app-custom-button
       >
       <div class="card flex gap-2 flex-wrap p-4 justify-center">
