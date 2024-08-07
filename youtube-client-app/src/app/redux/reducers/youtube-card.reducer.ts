@@ -1,10 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
 import {
+  addYouTubeCardToFavorites,
   clearYouTubeCards,
   loadYouTubeCards,
   loadYouTubeCardsFailure,
   loadYouTubeCardsSuccess,
+  removeYouTubeCardFromFavorites,
 } from 'app/redux/actions/youtube-card.actions';
 import {
   initialYouTubeCardsState,
@@ -45,4 +47,21 @@ export const youtubeCardReducer = createReducer(
       favoriteListIds: [],
     }),
   ),
+  on(addYouTubeCardToFavorites, (state, { cardId }): YouTubeCardsState => {
+    if (!state.favoriteListIds.includes(cardId)) {
+      return {
+        ...state,
+        favoriteListIds: [...state.favoriteListIds, cardId],
+      };
+    }
+    return state;
+  }),
+  on(removeYouTubeCardFromFavorites, (state, { cardId }): YouTubeCardsState => {
+    return {
+      ...state,
+      favoriteListIds: state.favoriteListIds.filter(
+        (favId) => favId !== cardId,
+      ),
+    };
+  }),
 );
