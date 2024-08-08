@@ -6,6 +6,7 @@ import { StatisticsComponent } from 'app/features/youtube/components/statistics/
 import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
 import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
 import { ColoredBorderDirective } from 'app/shared/directives/colored-border.directive';
+import { FavoriteButtonComponent } from 'app/features/youtube/components/favorite-button/favorite-button.component';
 
 @Component({
   selector: 'app-detalis',
@@ -15,6 +16,7 @@ import { ColoredBorderDirective } from 'app/shared/directives/colored-border.dir
     CustomButtonComponent,
     ColoredBorderDirective,
     StatisticsComponent,
+    FavoriteButtonComponent,
     ANGULAG_MODULES.CommonModule,
     PRIME_NG_MODULES.ToolbarModule,
     PRIME_NG_MODULES.FieldsetModule,
@@ -23,7 +25,7 @@ import { ColoredBorderDirective } from 'app/shared/directives/colored-border.dir
   ],
 })
 export class DetailsComponent implements OnInit, OnDestroy {
-  private id: string = '';
+  public id: string = '';
 
   constructor(
     public detailsService: DetailsService,
