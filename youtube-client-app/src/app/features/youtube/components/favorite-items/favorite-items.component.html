@@ -1,9 +1,9 @@
 <p-card class="card text-right">
   <div class="flex flex-wrap justify-center gap-3 p-4">
-    <ng-container *ngIf="favoriteVideosLength > 0; else noFavorites">
+    <ng-container *ngIf="favoriteItemsService.favoriteVideosLength > 0; else noFavorites">
       <div
         *ngFor="
-          let favoriteItem of favoriteVideos$
+          let favoriteItem of favoriteItemsService.favoriteVideos$
             | async
             | keyvalue
             | mapKeyValueToArray

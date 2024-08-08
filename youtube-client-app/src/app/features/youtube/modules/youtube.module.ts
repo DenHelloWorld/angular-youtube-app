@@ -21,7 +21,7 @@ import { FlattenPipe } from 'app/shared/pipes/flatten.pipe';
 import { FavoritePageComponent } from 'app/features/youtube/pages/favorite-page/favorite-page.component';
 import { FavoriteItemsComponent } from 'app/features/youtube/components/favorite-items/favorite-items.component';
 import { MapKeyValueToArrayPipe } from 'app/shared/pipes/mapKeyValueToArray.pipe';
-import { FavoriteButtonService } from 'app/features/youtube/services/favorite-button.service';
+import { FavoriteItemsService } from 'app/features/youtube/services/favorite-items.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,7 @@ import { FavoriteButtonService } from 'app/features/youtube/services/favorite-bu
     PRIME_NG_MODULES.CardModule,
     PRIME_NG_MODULES.ToolbarModule,
   ],
-  providers: [DetailsService, FavoriteButtonService],
+  providers: [DetailsService, FavoriteItemsService],
   exports: [MainComponent, FavoritePageComponent],
 })
 export class YoutubeModule {}

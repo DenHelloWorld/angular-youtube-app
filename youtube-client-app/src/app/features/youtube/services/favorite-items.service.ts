@@ -12,7 +12,7 @@ import { BehaviorSubject, distinctUntilChanged, map, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class FavoriteButtonService {
+export class FavoriteItemsService {
   public favoriteListIds: string[] = [];
 
   private favoriteVideosSubject = new BehaviorSubject<{
@@ -22,8 +22,6 @@ export class FavoriteButtonService {
   public favoriteVideos$ = this.favoriteVideosSubject.asObservable();
 
   private state$: Observable<AppState>;
-
-  // private destroy$ = new Subject<void>();
 
   constructor(
     private store: Store,
@@ -48,7 +46,6 @@ export class FavoriteButtonService {
       .pipe(
         map((state) => selectFavoriteListIdsArray(state)),
         distinctUntilChanged(),
-        // takeUntil(this.destroy$),
       )
       .subscribe((ids) => {
         this.favoriteListIds = ids;
