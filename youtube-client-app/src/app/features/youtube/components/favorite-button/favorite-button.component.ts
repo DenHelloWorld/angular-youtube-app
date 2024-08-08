@@ -4,9 +4,10 @@ import {
   addYouTubeCardToFavorites,
   removeYouTubeCardFromFavorites,
 } from 'app/redux/actions/youtube-card.actions';
-import { selectIsFavoriteObservable } from 'app/redux/selectors/youtube-card.selectors';
+import { selectIsFavoriteObservable } from 'app/redux/selectors/favorite-cards.selectors';
 import { AppState } from 'app/redux/states/app.state';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
+import { Subject, takeUntil } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
@@ -26,6 +27,8 @@ export class FavoriteButtonComponent
 
   private state$: Observable<AppState>;
 
+  private destroy$ = new Subject<void>();
+
   constructor(private store: Store) {
     super();
     this.state$ = store as Observable<AppState>;
@@ -34,13 +37,18 @@ export class FavoriteButtonComponent
   ngOnInit(): void {
     if (this.id) {
       this.isFavorite$ = selectIsFavoriteObservable(this.id, this.state$);
-      this.isFavorite$.subscribe((isFavorite) => {
-        this.isFavoriteStatus = isFavorite;
-      });
+      this.isFavorite$
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((isFavorite) => {
+          this.isFavoriteStatus = isFavorite;
+        });
     }
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   public favoriteIcon(): string {
     return this.isFavoriteStatus ? 'pi-heart-fill' : 'pi-heart';

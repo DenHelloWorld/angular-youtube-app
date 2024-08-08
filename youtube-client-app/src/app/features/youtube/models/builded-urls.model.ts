@@ -13,7 +13,7 @@ export const BUILDED_URLS = {
       }) ?? ''
     );
   },
-  // nextPageToken в ответе на запрос по тайтлу, что можно использовать для получения предидущей станицы
+
   videosByTitle(title: string): string {
     return (
       buildUrl(SEARCH_BY_TITLE_URL, {
@@ -21,7 +21,7 @@ export const BUILDED_URLS = {
           part: 'snippet',
           type: 'video',
           q: title,
-          maxResults: 7,
+          maxResults: 10,
         },
       }) ?? ''
     );
