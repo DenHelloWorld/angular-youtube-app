@@ -20,6 +20,7 @@ import { SortCustomCardByDatePipe } from 'app/features/youtube/pipes/customCardP
 import { FlattenPipe } from 'app/shared/pipes/flatten.pipe';
 import { FavoritePageComponent } from 'app/features/youtube/pages/favorite-page/favorite-page.component';
 import { FavoriteItemsComponent } from 'app/features/youtube/components/favorite-items/favorite-items.component';
+import { MapKeyValueToArrayPipe } from 'app/shared/pipes/mapKeyValueToArray.pipe';
 
 @NgModule({
   declarations: [SearchResultsComponent, MainComponent, FavoritePageComponent, FavoriteItemsComponent],
@@ -31,6 +32,7 @@ import { FavoriteItemsComponent } from 'app/features/youtube/components/favorite
     SearchItemComponent,
     ColoredBorderDirective,
     SortYoutubeCardByViewsPipe,
+    MapKeyValueToArrayPipe,
     SortYouTubeByDatePipe,
     CustomButtonComponent,
     CardComponent,

@@ -1,1 +1,25 @@
-<p-card class="card text-right"><p>favorite-items works!</p></p-card>
+<p-card class="card text-right">
+  <div class="flex flex-wrap justify-center gap-3 p-4">
+    <ng-container *ngIf="favoriteVideosLength > 0; else noFavorites">
+      <div
+        *ngFor="
+          let favoriteItem of favoriteVideos$
+            | async
+            | keyvalue
+            | mapKeyValueToArray
+            | sortrYouTubeByViews
+              : searchResultsService.SearchResultsData.filters.filterViews
+            | filterYouTubeByTitle
+              : searchResultsService.SearchResultsData.filters.filterTitle
+            | sortYouTubeByDate
+              : searchResultsService.SearchResultsData.filters.filterDate
+        "
+      >
+        <app-search-item [itemData]="favoriteItem"></app-search-item>
+      </div>
+    </ng-container>
+    <ng-template #noFavorites>
+      <p>No favorite videos found.</p>
+    </ng-template>
+  </div>
+</p-card>
