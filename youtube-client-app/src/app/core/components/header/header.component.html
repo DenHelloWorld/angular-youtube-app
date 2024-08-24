@@ -10,6 +10,15 @@
       }"
       [routerLink]="['/admin']"
     ></app-custom-button>
+    <app-custom-button
+      class="m-4"
+      [config]="{
+        severity: 'secondary',
+        label: 'favorite',
+        icon: 'pi pi-heart'
+      }"
+      [routerLink]="['/main/favorite']"
+    ></app-custom-button>
   </div>
 
   <div

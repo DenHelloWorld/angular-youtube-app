@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CustomButtonConfig } from 'app/shared/models/custom-button-config.interface';
 import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
 
@@ -16,9 +11,14 @@ import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
 export class CustomButtonComponent {
   @Input() public config?: CustomButtonConfig;
 
-  @Output() private event = new EventEmitter<void>();
+  @Output() public clickEmitter = new EventEmitter<void>();
 
-  public handleEvent() {
-    this.event.emit();
+  public handleEvent(event: Event) {
+    if (this.config?.disabled) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      return;
+    }
+    this.clickEmitter.emit();
   }
 }

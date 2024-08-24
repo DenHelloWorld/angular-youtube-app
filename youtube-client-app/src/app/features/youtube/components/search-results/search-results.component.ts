@@ -8,7 +8,9 @@ import { SearchResultsService } from 'app/features/youtube/services/search-resul
 export class SearchResultsComponent implements OnDestroy, OnInit {
   public title: string = 'Search Results';
 
-  constructor(public searchResultsService: SearchResultsService) {}
+  constructor(
+    public searchResultsService: SearchResultsService,
+  ) {}
 
   public ngOnInit() {
     this.searchResultsService.turnOnListeners();

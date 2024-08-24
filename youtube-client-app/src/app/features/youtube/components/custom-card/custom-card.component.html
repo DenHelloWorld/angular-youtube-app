@@ -1,0 +1,47 @@
+<div
+  class="hover:drop-shadow-2xl transition-all"
+  [appColoredBorder]="creationDate"
+>
+  <ng-content>
+    <app-card
+      [id]="customItemData?.id"
+      [config]="{
+        imageUrl: customItemData?.linkImg,
+        headerText: customItemData?.title
+      }"
+    >
+      <p-toolbar>
+        <p class="w-full text-center">
+          Creation Date:
+          {{ customItemData?.creationDate | date : "mediumDate" }}
+        </p>
+      </p-toolbar>
+      <app-custom-button
+        (clickEmitter)="showDescription()"
+        [config]="{
+          raised: !visibleDescription,
+          disabled: customItemData?.description === '',
+        }"
+        >Show Description</app-custom-button
+      >
+      <div class="card flex gap-2 flex-wrap p-4 justify-center">
+        <p-tag
+          *ngFor="let tag of customItemData?.tags | flatten"
+          [value]="tag"
+          icon="pi pi-hashtag"
+        ></p-tag>
+      </div>
+    </app-card>
+  </ng-content>
+</div>
+<p-dialog
+  [header]="customItemData?.title"
+  [modal]="true"
+  [(visible)]="visibleDescription"
+  [style]="{ width: '50rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+  <p>
+    {{ customItemData?.description }}
+  </p>
+</p-dialog>

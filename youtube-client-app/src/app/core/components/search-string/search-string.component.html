@@ -16,6 +16,6 @@
   />
 </span>
 <app-custom-button
-  (click)="filterService.toggleView()"
+  (clickEmitter)="filterService.toggleView()"
   [config]="{ icon: 'pi pi-sliders-v', raised: !filterService.showFilter }"
 />

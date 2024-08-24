@@ -20,8 +20,16 @@ import { SidebarModule } from 'primeng/sidebar';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
+import { PanelModule } from 'primeng/panel';
+import { StepperModule } from 'primeng/stepper';
+import { DialogModule } from 'primeng/dialog';
+import { ImageModule } from 'primeng/image';
 
 export const PRIME_NG_MODULES = {
+  ImageModule: [ImageModule],
+  DialogModule: [DialogModule],
+  StepperModule: [StepperModule],
+  PanelModule: [PanelModule],
   MessagesModule: [MessagesModule],
   ButtonModule: [ButtonModule],
   TagModule: [TagModule],
