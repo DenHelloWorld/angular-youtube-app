@@ -10,10 +10,6 @@
     pInputText
     placeholder="Search from 3 characters"
   />
-  <p-messages
-    class="z-50 absolute left-0 top-full"
-    [value]="[{ severity: 'info', summary: searchStringService.searchHint }]"
-  />
 </span>
 <app-custom-button
   (clickEmitter)="filterService.toggleView()"

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from 'app/core/components/not-found/not-found.component';
+import { NotFoundComponent } from 'app/core/pages/not-found/not-found.component';
 import { authGuard } from 'app/features/auth/guards/auth.guard';
 import { preventAuthGuard } from 'app/features/auth/guards/unAuth.guard';
+import { GreetingComponent } from './core/pages/greeting/greeting.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/main', pathMatch: 'full' },
+  { path: '', redirectTo: '/greeting', pathMatch: 'full' },
   { path: '404', component: NotFoundComponent },
+  { path: 'greeting', component: GreetingComponent },
   {
     path: 'main',
     loadChildren: () => import('./features/youtube/modules/youtube.module').then(m => m.YoutubeModule),

@@ -22,10 +22,12 @@ import { FavoritePageComponent } from 'app/features/youtube/pages/favorite-page/
 import { FavoriteItemsComponent } from 'app/features/youtube/components/favorite-items/favorite-items.component';
 import { MapKeyValueToArrayPipe } from 'app/shared/pipes/mapKeyValueToArray.pipe';
 import { FavoriteItemsService } from 'app/features/youtube/services/favorite-items.service';
+import { FilterComponent } from '../components/filter/filter.component';
 
 @NgModule({
   declarations: [SearchResultsComponent, MainComponent, FavoritePageComponent, FavoriteItemsComponent],
   imports: [
+    FilterComponent,
     SortCustomCardByDatePipe,
     FilterCustomCardByTitlePipe,
     FilterYouTubeCardByTitlePipe,

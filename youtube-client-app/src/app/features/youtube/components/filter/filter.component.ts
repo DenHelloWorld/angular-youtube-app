@@ -22,8 +22,6 @@ import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
 export class FilterComponent implements OnInit {
   public filterItems: MenuItem[] | undefined;
 
-  public placeHolder: string = 'Name';
-
   public filterService = inject(FilterService);
 
   private filterItemService = inject(FilterItemsService);
