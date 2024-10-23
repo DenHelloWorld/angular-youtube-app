@@ -34,8 +34,7 @@ export class DetailsService {
 
   private subscribeToSignals() {
     effect(() => {
-      const data: YouTubeVideoDetailsData[] =
-        YoutubeService.videoDetailsByIdSignal();
+      const data: YouTubeVideoDetailsData[] = YoutubeService.videoDetailsByIdSignal();
       if (data.length > 0) {
         const video = data[0];
         this.detailsData.channelTitle = video.snippet.channelTitle;

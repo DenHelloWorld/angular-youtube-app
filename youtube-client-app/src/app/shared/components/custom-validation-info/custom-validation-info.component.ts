@@ -13,8 +13,6 @@ export class CustomValidationInfoComponent {
   @Input() config!: CustomValidationInfoConfig;
 
   get customErrorKeys(): string[] {
-    return this.config.customErrorMessages
-      ? Object.keys(this.config.customErrorMessages)
-      : [];
+    return this.config.customErrorMessages ? Object.keys(this.config.customErrorMessages) : [];
   }
 }

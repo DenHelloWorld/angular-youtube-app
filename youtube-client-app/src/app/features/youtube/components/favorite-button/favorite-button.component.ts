@@ -1,9 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  addYouTubeCardToFavorites,
-  removeYouTubeCardFromFavorites,
-} from 'app/redux/actions/youtube-card.actions';
+import { addYouTubeCardToFavorites, removeYouTubeCardFromFavorites } from 'app/redux/actions/youtube-card.actions';
 import { selectIsFavoriteObservable } from 'app/redux/selectors/favorite-cards.selectors';
 import { AppState } from 'app/redux/states/app.state';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
@@ -16,9 +13,7 @@ import { Observable } from 'rxjs/internal/Observable';
   standalone: true,
   imports: [CustomButtonComponent],
 })
-export class FavoriteButtonComponent
-  extends CustomButtonComponent
-  implements OnInit, OnDestroy {
+export class FavoriteButtonComponent extends CustomButtonComponent implements OnInit, OnDestroy {
   @Input() public id?: string;
 
   public isFavoriteStatus: boolean = false;
@@ -37,11 +32,9 @@ export class FavoriteButtonComponent
   ngOnInit(): void {
     if (this.id) {
       this.isFavorite$ = selectIsFavoriteObservable(this.id, this.state$);
-      this.isFavorite$
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((isFavorite) => {
-          this.isFavoriteStatus = isFavorite;
-        });
+      this.isFavorite$.pipe(takeUntil(this.destroy$)).subscribe(isFavorite => {
+        this.isFavoriteStatus = isFavorite;
+      });
     }
   }
 
@@ -55,13 +48,11 @@ export class FavoriteButtonComponent
   }
 
   public addToFavorite(): void {
-    if (this.id)
-      this.store.dispatch(addYouTubeCardToFavorites({ cardId: this.id }));
+    if (this.id) this.store.dispatch(addYouTubeCardToFavorites({ cardId: this.id }));
   }
 
   public removeFromFavorite(): void {
-    if (this.id)
-      this.store.dispatch(removeYouTubeCardFromFavorites({ cardId: this.id }));
+    if (this.id) this.store.dispatch(removeYouTubeCardFromFavorites({ cardId: this.id }));
   }
 
   public favoriteProcess(): void {

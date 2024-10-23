@@ -5,10 +5,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './favorite-page.component.html',
 })
 export class FavoritePageComponent implements OnInit {
-
-  // constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

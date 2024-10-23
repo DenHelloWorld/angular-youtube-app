@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'app/features/auth/services/auth.service';
 import { emaildValidator } from 'app/features/auth/utilits/auth-email.validator';
@@ -12,10 +12,9 @@ export class AuthFormService {
 
   private initLoginFormState: unknown;
 
-  constructor(
-    public authService: AuthService,
-    private formBuilder: FormBuilder,
-  ) {}
+  public authService = inject(AuthService);
+
+  public formBuilder = inject(FormBuilder);
 
   public initForm(): void {
     this.loginForm = this.formBuilder.group({

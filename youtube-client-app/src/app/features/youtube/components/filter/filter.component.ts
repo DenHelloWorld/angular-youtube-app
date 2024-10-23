@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { FilterItemsService } from 'app/features/youtube/services/filter-items.service';
 import { FilterService } from 'app/features/youtube/services/filter.service';
@@ -24,10 +24,9 @@ export class FilterComponent implements OnInit {
 
   public placeHolder: string = 'Name';
 
-  constructor(
-    public filterService: FilterService,
-    private filterItemService: FilterItemsService,
-  ) {}
+  public filterService = inject(FilterService);
+
+  private filterItemService = inject(FilterItemsService);
 
   public ngOnInit() {
     this.filterItems = this.filterItemService.getItems();

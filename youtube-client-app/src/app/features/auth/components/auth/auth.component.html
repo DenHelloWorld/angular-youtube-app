@@ -1,9 +1,5 @@
 <p-fieldset legend="Sign In" class="w-full text-center m-4">
-  <form
-    class="flex flex-col gap-3"
-    [formGroup]="authFormService.loginForm"
-    (ngSubmit)="onSubmit()"
-  >
+  <form class="flex flex-col gap-3" [formGroup]="authFormService.loginForm" (ngSubmit)="onSubmit()">
     <div>
       <div class="text-center">
         <p-iconField iconPosition="right">
@@ -15,31 +11,19 @@
             pInputText
             id="username"
             type="text"
-            aria-describedby="username-help"
-          />
+            aria-describedby="username-help" />
         </p-iconField>
       </div>
       <div>
-        <small
-          class="font-extralight"
-          *ngIf="
-            authFormService.loginForm.get('username')?.hasError('required')
-          "
-        >
+        <small class="font-extralight" *ngIf="authFormService.loginForm.get('username')?.hasError('required')">
           Please enter a login email
         </small>
 
-        <small
-          class="font-extralight text-red-500"
-          *ngIf="authFormService.loginForm.get('username')?.value != ''"
-        >
+        <small class="font-extralight text-red-500" *ngIf="authFormService.loginForm.get('username')?.value != ''">
           {{ authFormService.loginForm.get('username')?.errors?.['customValidator'] }}
         </small>
 
-        <small
-          class="text-green-500"
-          *ngIf="!authFormService.loginForm.get('username')?.errors"
-        >
+        <small class="text-green-500" *ngIf="!authFormService.loginForm.get('username')?.errors">
           The login email is valid.
         </small>
       </div>
@@ -51,25 +35,15 @@
           [toggleMask]="true"
           placeholder="password"
           formControlName="password"
-          [feedback]="false"
-        ></p-password>
+          [feedback]="false"></p-password>
       </div>
-      <small
-        class="font-extralight"
-        *ngIf="authFormService.loginForm.get('password')?.hasError('required')"
-      >
+      <small class="font-extralight" *ngIf="authFormService.loginForm.get('password')?.hasError('required')">
         Please enter a password
       </small>
-      <small
-        class="text-green-500"
-        *ngIf="!authFormService.loginForm.get('password')?.errors"
-      >
+      <small class="text-green-500" *ngIf="!authFormService.loginForm.get('password')?.errors">
         The password is valid.
       </small>
-      <small
-        class="font-extralight text-red-500"
-        *ngIf="authFormService.loginForm.get('password')?.value != ''"
-      >
+      <small class="font-extralight text-red-500" *ngIf="authFormService.loginForm.get('password')?.value != ''">
         {{ authFormService.loginForm.get('password')?.errors?.['customValidator'] }}
       </small>
     </div>

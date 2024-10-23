@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from 'app/features/auth/services/auth.service';
 
 @Component({
@@ -8,10 +8,10 @@ import { AuthService } from 'app/features/auth/services/auth.service';
 export class NotFoundComponent implements OnInit {
   private isAuthenticated: boolean = false;
 
-  constructor(public authService: AuthService) {}
+  public authService = inject(AuthService);
 
   public ngOnInit() {
-    this.authService.getAuthStatus().subscribe((status) => {
+    this.authService.getAuthStatus().subscribe(status => {
       this.isAuthenticated = status;
     });
   }

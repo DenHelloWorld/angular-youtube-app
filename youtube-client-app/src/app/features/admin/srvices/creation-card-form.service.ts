@@ -1,11 +1,5 @@
-import { Injectable } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { inject, Injectable } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { creationDateValidator } from 'app/features/admin/utilits/craetion-date.validator';
 import { addCard } from 'app/redux/actions/custom-card.actions';
@@ -18,26 +12,18 @@ export class CeationCardFormService {
 
   private initAdminFormState: unknown;
 
-  constructor(private formBuilder: FormBuilder, private store: Store) {}
+  private formBuilder = inject(FormBuilder);
+
+  private store = inject(Store);
 
   public initForm(): void {
     this.adminForm = this.formBuilder.group({
-      title: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(20),
-        ],
-      ],
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       description: ['', [Validators.maxLength(255)]],
       linkImg: ['', [Validators.required]],
       linkVideo: ['', [Validators.required]],
       creationDate: ['', [Validators.required, creationDateValidator()]],
-      tags: this.formBuilder.array(
-        [this.createTagControl()],
-        [Validators.required],
-      ),
+      tags: this.formBuilder.array([this.createTagControl()], [Validators.required]),
     });
     this.initAdminFormState = this.adminForm.value;
   }

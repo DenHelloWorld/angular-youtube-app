@@ -2,10 +2,7 @@ import { effect, Injectable } from '@angular/core';
 import { YoutubeService } from './youtube.service';
 import { Observable, Subscription } from 'rxjs';
 import { SharedService } from 'app/shared/services/shared.service';
-import {
-  CustomCardsData,
-  SearchResultsData,
-} from 'app/features/youtube/models/search-results-data';
+import { CustomCardsData, SearchResultsData } from 'app/features/youtube/models/search-results-data';
 import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
 import { Store } from '@ngrx/store';
 import {
@@ -28,8 +25,7 @@ export class SearchResultsService {
 
   customItems: CustomCard[] = [];
 
-  searchedItems$: Observable<YouTubeVideoDetailsData[]> =
-    this.store.select(selectAllVideosArray);
+  searchedItems$: Observable<YouTubeVideoDetailsData[]> = this.store.select(selectAllVideosArray);
 
   public SearchResultsData: SearchResultsData = {
     filters: {
@@ -51,11 +47,7 @@ export class SearchResultsService {
     customItems$: this.store.select(selectCustomCards),
   };
 
-  constructor(
-    private youtubeService: YoutubeService,
-    private sharedService: SharedService,
-    private store: Store,
-  ) {
+  constructor(private youtubeService: YoutubeService, private sharedService: SharedService, private store: Store) {
     this.subscriptions = [];
     this.initializeEffects();
     // this.searchByTitle('RSSchool');
@@ -84,26 +76,26 @@ export class SearchResultsService {
   }
 
   public turnOnListeners() {
-    this.sharedService.filterTitle$.subscribe((value) => {
+    this.sharedService.filterTitle$.subscribe(value => {
       this.SearchResultsData.filters.filterTitle = value;
       this.CustomCardsData.filters.filterTitle = value;
       this.listenSearchResultsData();
     });
-    this.sharedService.filterDate$.subscribe((value) => {
+    this.sharedService.filterDate$.subscribe(value => {
       this.SearchResultsData.filters.filterDate = value;
       this.CustomCardsData.filters.filterDate = value;
       this.listenSearchResultsData();
     });
-    this.sharedService.filterView$.subscribe((value) => {
+    this.sharedService.filterView$.subscribe(value => {
       this.SearchResultsData.filters.filterViews = value;
       this.CustomCardsData.filters.filterViews = value;
       this.listenSearchResultsData();
     });
     this.subscriptions.push(
-      this.sharedService.searchResultsData$.subscribe((value) => {
+      this.sharedService.searchResultsData$.subscribe(value => {
         this.SearchResultsData = value;
       }),
-      this.CustomCardsData.customItems$.subscribe((items) => {
+      this.CustomCardsData.customItems$.subscribe(items => {
         this.customItems = items;
       }),
     );
@@ -115,7 +107,7 @@ export class SearchResultsService {
   }
 
   public destroyListeners() {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   public searchByTitle(title: string) {

@@ -44,10 +44,10 @@ export class FavoriteItemsService {
   private initState() {
     this.state$
       .pipe(
-        map((state) => selectFavoriteListIdsArray(state)),
+        map(state => selectFavoriteListIdsArray(state)),
         distinctUntilChanged(),
       )
-      .subscribe((ids) => {
+      .subscribe(ids => {
         this.favoriteListIds = ids;
         this.getFavoritesVideosById();
       });
@@ -59,7 +59,7 @@ export class FavoriteItemsService {
         const favoriteVideos = YoutubeService.videoDetailsByIdSignal();
         if (favoriteVideos.length > 0) {
           const updatedVideos = { ...this.favoriteVideosSubject.value };
-          favoriteVideos.forEach((video) => {
+          favoriteVideos.forEach(video => {
             updatedVideos[video.id] = video;
           });
           this.favoriteVideosSubject.next(updatedVideos);
@@ -81,20 +81,16 @@ export class FavoriteItemsService {
   }
 
   public getFavoritesVideosById(): void {
-    const newIds = this.favoriteListIds.filter(
-      (id) => !this.currentIds.includes(id),
-    );
-    const removedIds = this.currentIds.filter(
-      (id) => !this.favoriteListIds.includes(id),
-    );
+    const newIds = this.favoriteListIds.filter(id => !this.currentIds.includes(id));
+    const removedIds = this.currentIds.filter(id => !this.favoriteListIds.includes(id));
 
     const updatedVideos = { ...this.favoriteVideosSubject.value };
 
-    removedIds.forEach((id) => {
+    removedIds.forEach(id => {
       delete updatedVideos[id];
     });
 
-    newIds.forEach((id) => {
+    newIds.forEach(id => {
       this.youtubeService.getById(id);
     });
 

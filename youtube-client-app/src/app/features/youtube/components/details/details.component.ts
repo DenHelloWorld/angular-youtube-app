@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import { DetailsService } from '../../services/details.service';
@@ -27,10 +27,9 @@ import { FavoriteButtonComponent } from 'app/features/youtube/components/favorit
 export class DetailsComponent implements OnInit, OnDestroy {
   public id: string = '';
 
-  constructor(
-    public detailsService: DetailsService,
-    private activatedRoute: ActivatedRoute,
-  ) {}
+  public detailsService = inject(DetailsService);
+
+  private activatedRoute = inject(ActivatedRoute);
 
   public ngOnInit(): void {
     this.turnOnSubscribes();
@@ -41,7 +40,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   public turnOnSubscribes() {
-    this.activatedRoute.params.subscribe((params) => {
+    this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
       this.id = id;
     });

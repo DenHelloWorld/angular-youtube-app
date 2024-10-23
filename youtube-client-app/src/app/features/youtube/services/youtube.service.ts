@@ -13,9 +13,7 @@ import { YouTubeSearchResponse } from 'app/features/youtube/models/youtube-searc
 export class YoutubeService {
   public static videoDetailsByIdSignal = signal<YouTubeVideoDetailsData[]>([]);
 
-  public static videoDetailsByTitleSignal = signal<YouTubeVideoDetailsData[]>(
-    [],
-  );
+  public static videoDetailsByTitleSignal = signal<YouTubeVideoDetailsData[]>([]);
 
   public static errorSignal = signal<string | null>(null);
 
@@ -27,12 +25,12 @@ export class YoutubeService {
       .get<YouTubeDetailsResponse>(url)
       .pipe(
         map((response: YouTubeDetailsResponse) => response.items),
-        catchError((error) => {
+        catchError(error => {
           YoutubeService.errorSignal.set(error.message);
           return of([]);
         }),
       )
-      .subscribe((items) => YoutubeService.videoDetailsByIdSignal.set(items));
+      .subscribe(items => YoutubeService.videoDetailsByIdSignal.set(items));
   }
 
   public getByTitle(title: string): void {
@@ -40,25 +38,22 @@ export class YoutubeService {
     this.http
       .get<YouTubeSearchResponse>(url)
       .pipe(
-        map((response) => response.items.map((item) => item.id.videoId)),
+        map(response => response.items.map(item => item.id.videoId)),
         switchMap((videoIds: string[]) =>
           forkJoin(
-            videoIds.map((id) =>
+            videoIds.map(id =>
               this.http
                 .get<YouTubeDetailsResponse>(BUILDED_URLS.detailsByVideoId(id))
-                .pipe(map((response) => response.items)),
+                .pipe(map(response => response.items)),
             ),
           ),
         ),
         map((videos: YouTubeVideoDetailsData[][]) => videos.flat()),
-        catchError((error) => {
+        catchError(error => {
           YoutubeService.errorSignal.set(error.message);
           return of([]);
         }),
       )
-      .subscribe((videos) =>
-        YoutubeService.videoDetailsByTitleSignal.set(videos),
-      );
+      .subscribe(videos => YoutubeService.videoDetailsByTitleSignal.set(videos));
   }
-
 }

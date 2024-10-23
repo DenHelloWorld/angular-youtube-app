@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { CeationCardFormService } from 'app/features/admin/srvices/creation-card-form.service';
 
@@ -7,7 +7,7 @@ import { CeationCardFormService } from 'app/features/admin/srvices/creation-card
   templateUrl: './creation-card-form.component.html',
 })
 export class CreationCardFormComponent implements OnInit, OnDestroy {
-  constructor(public creationCardFormService: CeationCardFormService) {}
+  public creationCardFormService = inject(CeationCardFormService);
 
   public ngOnInit() {
     this.creationCardFormService.initForm();

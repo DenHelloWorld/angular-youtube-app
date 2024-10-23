@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
 
 @Component({
@@ -8,9 +8,7 @@ import { SearchResultsService } from 'app/features/youtube/services/search-resul
 export class SearchResultsComponent implements OnDestroy, OnInit {
   public title: string = 'Search Results';
 
-  constructor(
-    public searchResultsService: SearchResultsService,
-  ) {}
+  public searchResultsService = inject(SearchResultsService);
 
   public ngOnInit() {
     this.searchResultsService.turnOnListeners();

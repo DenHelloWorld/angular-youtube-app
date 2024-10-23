@@ -24,12 +24,7 @@ import { MapKeyValueToArrayPipe } from 'app/shared/pipes/mapKeyValueToArray.pipe
 import { FavoriteItemsService } from 'app/features/youtube/services/favorite-items.service';
 
 @NgModule({
-  declarations: [
-    SearchResultsComponent,
-    MainComponent,
-    FavoritePageComponent,
-    FavoriteItemsComponent,
-  ],
+  declarations: [SearchResultsComponent, MainComponent, FavoritePageComponent, FavoriteItemsComponent],
   imports: [
     SortCustomCardByDatePipe,
     FilterCustomCardByTitlePipe,

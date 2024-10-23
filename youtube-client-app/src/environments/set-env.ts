@@ -1,10 +1,6 @@
 import { writeFile } from 'node:fs';
 import path from 'node:path';
-import  'dotenv/config';
-
-// dotenv.config({
-//   path: 'src/environments/.env',
-// });
+import 'dotenv/config';
 
 const setEnv = () => {
   const envPath = path.resolve('src', 'environments', 'environment.ts');
@@ -25,14 +21,12 @@ const setEnv = () => {
   };
   `;
 
-  writeFile(envPath, envConfigFile, (err) => {
+  writeFile(envPath, envConfigFile, err => {
     if (err) {
       process.stderr.write(err.toString());
       throw err;
     } else {
-      process.stdout.write(
-        `Angular environment.ts file generated correctly at ${envPath} \n`,
-      );
+      process.stdout.write(`Angular environment.ts file generated correctly at ${envPath} \n`);
     }
   });
 };

@@ -1,9 +1,9 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { CustomCondition } from 'app/shared/models/custom-condition.interface';
 
-export const customValidator: (
-  customConditions: CustomCondition[]
-) => ValidatorFn = (customConditions: CustomCondition[]): ValidatorFn => {
+export const customValidator: (customConditions: CustomCondition[]) => ValidatorFn = (
+  customConditions: CustomCondition[],
+): ValidatorFn => {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value || '';
     const errors: { [key: string]: string[] } = { customValidator: [] };

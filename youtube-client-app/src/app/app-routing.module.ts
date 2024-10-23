@@ -9,22 +9,17 @@ const routes: Routes = [
   { path: '404', component: NotFoundComponent },
   {
     path: 'main',
-    loadChildren: () =>
-      import('./features/youtube/modules/youtube.module').then(
-        (m) => m.YoutubeModule,
-      ),
+    loadChildren: () => import('./features/youtube/modules/youtube.module').then(m => m.YoutubeModule),
     canActivate: [authGuard],
   },
   {
     path: 'login',
-    loadChildren: () =>
-      import('./features/auth/modules/auth.module').then((m) => m.AuthModule),
+    loadChildren: () => import('./features/auth/modules/auth.module').then(m => m.AuthModule),
     canActivate: [preventAuthGuard],
   },
   {
     path: 'admin',
-    loadChildren: () =>
-      import('./features/admin/modules/admin/admin.module').then((m) => m.AdminModule),
+    loadChildren: () => import('./features/admin/modules/admin/admin.module').then(m => m.AdminModule),
   },
   { path: '**', redirectTo: '/404' },
 ];

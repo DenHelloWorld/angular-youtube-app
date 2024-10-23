@@ -9,13 +9,17 @@
     {{ config.initialMessage }}
   </small>
   <ng-container *ngFor="let error of config.errorMessages">
-    <small class="font-extralight text-red-500" *ngIf="config.control.hasError(error['key']) && (config.control.touched || config.control.dirty)">
+    <small
+      class="font-extralight text-red-500"
+      *ngIf="config.control.hasError(error['key']) && (config.control.touched || config.control.dirty)">
       {{ error['message'] }}
     </small>
   </ng-container>
   <ng-container *ngIf="config.customErrorMessages">
     <ng-container *ngFor="let key of customErrorKeys">
-      <small class="font-extralight text-red-500" *ngIf="config.control.hasError(key) && (config.control.touched || config.control.dirty)">
+      <small
+        class="font-extralight text-red-500"
+        *ngIf="config.control.hasError(key) && (config.control.touched || config.control.dirty)">
         {{ config.customErrorMessages[key] }}
       </small>
     </ng-container>

@@ -10,9 +10,7 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [CustomButtonComponent],
 })
-export class AuthButtonComponent
-  extends CustomButtonComponent
-  implements OnInit, OnDestroy {
+export class AuthButtonComponent extends CustomButtonComponent implements OnInit, OnDestroy {
   private isAuthenticated: boolean = false;
 
   private authStatusSubscription?: Subscription;
@@ -22,11 +20,9 @@ export class AuthButtonComponent
   }
 
   public ngOnInit(): void {
-    this.authStatusSubscription = this.authService
-      .getAuthStatus()
-      .subscribe((status) => {
-        this.isAuthenticated = status;
-      });
+    this.authStatusSubscription = this.authService.getAuthStatus().subscribe(status => {
+      this.isAuthenticated = status;
+    });
   }
 
   public ngOnDestroy(): void {

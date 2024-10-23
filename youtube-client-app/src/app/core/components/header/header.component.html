@@ -1,6 +1,9 @@
 <p-toolbar>
   <div class="p-toolbar-group-start">
-    <i class="pi pi-youtube mr-2" style="color: red; font-size: 60px"></i>
+    <a [routerLink]="['/main']">
+      <i class="pi pi-youtube mr-2" style="color: red; font-size: 60px"></i>
+    </a>
+
     <app-custom-button
       *ngIf="authService.getAuthStatus() | async"
       [config]="{
@@ -8,8 +11,7 @@
         label: 'To admin panel',
         icon: 'pi pi-cog'
       }"
-      [routerLink]="['/admin']"
-    ></app-custom-button>
+      [routerLink]="['/admin']"></app-custom-button>
     <app-custom-button
       class="m-4"
       [config]="{
@@ -17,26 +19,17 @@
         label: 'favorite',
         icon: 'pi pi-heart'
       }"
-      [routerLink]="['/main/favorite']"
-    ></app-custom-button>
+      [routerLink]="['/main/favorite']"></app-custom-button>
   </div>
 
-  <div
-    *ngIf="authService.getAuthStatus() | async"
-    class="p-toolbar-group-center"
-  >
+  <div *ngIf="authService.getAuthStatus() | async" class="p-toolbar-group-center">
     <app-search-string></app-search-string>
   </div>
 
   <div class="p-toolbar-group-end">
-    <div
-      *ngIf="authService.getAuthStatus() | async"
-      class="mr-1 flex items-center gap-2"
-    >
+    <div *ngIf="authService.getAuthStatus() | async" class="mr-1 flex items-center gap-2">
       <span class="font-bold text-bluegray-50">User</span>
-      <app-custom-button
-        [config]="{ raised: true, icon: 'pi pi-user', rounded: true }"
-      />
+      <app-custom-button [config]="{ raised: true, icon: 'pi pi-user', rounded: true }" />
     </div>
     <app-auth-button></app-auth-button>
   </div>

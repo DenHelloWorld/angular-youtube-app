@@ -9,9 +9,7 @@ export abstract class AbstractFilterByTitlePipe<T> implements PipeTransform {
     if (!items) return [];
     if (!searchText) return items;
     searchText = searchText.toLowerCase();
-    return items.filter((item) =>
-      this.getTitle(item).toLowerCase().includes(searchText),
-    );
+    return items.filter(item => this.getTitle(item).toLowerCase().includes(searchText));
   }
 
   protected abstract getTitle(item: T): string;

@@ -5,10 +5,7 @@ import { CustomCard } from 'app/features/youtube/models/custom-card.interface';
   standalone: true,
 })
 export class SortCustomCardByDatePipe implements PipeTransform {
-  public transform(
-    items: CustomCard[] | null,
-    sortOrder: string = 'asc',
-  ): CustomCard[] {
+  public transform(items: CustomCard[] | null, sortOrder: string = 'asc'): CustomCard[] {
     if (!items) return [];
 
     return [...items].sort((a, b) => {

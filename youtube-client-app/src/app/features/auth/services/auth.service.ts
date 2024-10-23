@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-web-storage';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -7,13 +7,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router, private lsService: LocalStorageService) {}
+  private router = inject(Router);
+
+  private lsService = inject(LocalStorageService);
 
   private KEY: string = 'userCredentials';
 
-  private authStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    this.isAuth(),
-  );
+  private authStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isAuth());
 
   public login(username: string, password: string) {
     const credentials = { username, password };

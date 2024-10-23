@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  CustomCardsData,
-  SearchResultsData,
-} from 'app/features/youtube/models/search-results-data';
+import { CustomCardsData, SearchResultsData } from 'app/features/youtube/models/search-results-data';
 import { selectCustomCards } from 'app/redux/selectors/custom-card.selectors';
 import { selectAllVideosArray } from 'app/redux/selectors/youtube-card.selectors';
 import { BehaviorSubject } from 'rxjs';

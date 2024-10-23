@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { SharedService } from 'app/shared/services/shared.service';
 import { Subscription } from 'rxjs';
 
@@ -16,32 +16,32 @@ export class FilterService {
 
   public filterViews: string = '';
 
+  private sharedService = inject(SharedService);
+
   public toggleView() {
     this.showFilter = !this.showFilter;
   }
 
-  constructor(private sharedService: SharedService) {}
-
   public turnOnSubscriptions() {
     this.subscriptions.push(
-      this.sharedService.filterTitle$.subscribe((value) => {
+      this.sharedService.filterTitle$.subscribe(value => {
         this.filterTitle = value;
       }),
     );
     this.subscriptions.push(
-      this.sharedService.filterDate$.subscribe((value) => {
+      this.sharedService.filterDate$.subscribe(value => {
         this.filterDate = value;
       }),
     );
     this.subscriptions.push(
-      this.sharedService.filterView$.subscribe((value) => {
+      this.sharedService.filterView$.subscribe(value => {
         this.filterViews = value;
       }),
     );
   }
 
   public removeSubscriptions() {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   public handleMenubar(str: string) {

@@ -1,12 +1,6 @@
 import { BASE_YT_API_URL } from './../../features/youtube/constants/base-yt-api-url';
 import { Injectable } from '@angular/core';
-import {
-  HttpEvent,
-  HttpInterceptor,
-  HttpHandler,
-  HttpRequest,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { API_KEYS } from 'app/features/youtube/constants/api-key';
 import { catchError } from 'rxjs/operators';
@@ -45,10 +39,7 @@ export class YoutubeInterceptor implements HttpInterceptor {
 
     return next.handle(apiReq).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (
-          this.isRetryableError(error.status) &&
-          retryCount < this.apiKeys.length
-        ) {
+        if (this.isRetryableError(error.status) && retryCount < this.apiKeys.length) {
           this.switchApiKey();
           return this.handleRequest(req, next, retryCount + 1);
         }
@@ -57,13 +48,7 @@ export class YoutubeInterceptor implements HttpInterceptor {
     );
   }
 
-  public intercept(
-    req: HttpRequest<unknown>,
-    next: HttpHandler,
-  ): Observable<HttpEvent<unknown>> {
+  public intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return this.handleRequest(req, next);
   }
 }
-
-
-

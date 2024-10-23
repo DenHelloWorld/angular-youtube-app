@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from 'app/features/auth/services/auth.service';
 import { AuthFormService } from 'app/features/auth/services/auth-form.service';
 
@@ -7,10 +7,9 @@ import { AuthFormService } from 'app/features/auth/services/auth-form.service';
   templateUrl: './auth.component.html',
 })
 export class AuthComponent implements OnInit, OnDestroy {
-  constructor(
-    public authService: AuthService,
-    public authFormService: AuthFormService,
-  ) {}
+  public authService = inject(AuthService);
+
+  public authFormService = inject(AuthFormService);
 
   public ngOnInit() {
     this.authFormService.initForm();

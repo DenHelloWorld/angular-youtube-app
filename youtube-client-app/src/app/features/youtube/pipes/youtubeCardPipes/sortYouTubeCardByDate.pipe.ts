@@ -6,10 +6,7 @@ import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-vid
   standalone: true,
 })
 export class SortYouTubeByDatePipe implements PipeTransform {
-  public transform(
-    items: YouTubeVideoDetailsData[] | null,
-    sortOrder: string = 'asc',
-  ): YouTubeVideoDetailsData[] {
+  public transform(items: YouTubeVideoDetailsData[] | null, sortOrder: string = 'asc'): YouTubeVideoDetailsData[] {
     if (!items) return [];
 
     return [...items].sort((a, b) => {

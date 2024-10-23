@@ -1,8 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { FavoriteButtonComponent } from 'app/features/youtube/components/favorite-button/favorite-button.component';
 import { StatisticsComponent } from 'app/features/youtube/components/statistics/statistics.component';
 import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
@@ -38,7 +34,7 @@ export class SearchItemComponent implements OnInit {
 
   public publishedAt: string = '';
 
-  constructor(private searchItemService: SearchItemService) {}
+  private searchItemService = inject(SearchItemService);
 
   public ngOnInit(): void {
     this.setPublishedAt();
@@ -52,10 +48,7 @@ export class SearchItemComponent implements OnInit {
   }
 
   private setTitle(): void {
-    this.title =
-      this.itemData?.snippet?.title ??
-      this.itemData?.snippet?.localized?.title ??
-      '';
+    this.title = this.itemData?.snippet?.title ?? this.itemData?.snippet?.localized?.title ?? '';
   }
 
   private setId(): void {

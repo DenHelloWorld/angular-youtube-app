@@ -49,8 +49,7 @@ export class SearchStringService {
   }
 
   public handleSearchString() {
-    this.searchResultService.SearchResultsData.filters.searchInputHeader =
-      this.searchInputHeader;
+    this.searchResultService.SearchResultsData.filters.searchInputHeader = this.searchInputHeader;
     this.searchResultService.searchedItems();
     this.searchResultService.listenSearchResultsData();
   }

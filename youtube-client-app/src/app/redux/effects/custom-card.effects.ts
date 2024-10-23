@@ -2,11 +2,7 @@ import { concatLatestFrom } from '@ngrx/operators';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map } from 'rxjs/operators';
-import {
-  addCard,
-  loadCards,
-  loadCardsSuccess,
-} from 'app/redux/actions/custom-card.actions';
+import { addCard, loadCards, loadCardsSuccess } from 'app/redux/actions/custom-card.actions';
 import { Store } from '@ngrx/store';
 import { selectCustomCards } from 'app/redux/selectors/custom-card.selectors';
 

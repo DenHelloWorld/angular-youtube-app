@@ -15,8 +15,7 @@ export const CHECK_PASSWORD_CONDITIONS: CustomCondition[] = [
   },
   {
     condition: (password: string) => /[!@#?]/.test(password),
-    message:
-      'Password must contain at least one special character (!, @, #, ?).',
+    message: 'Password must contain at least one special character (!, @, #, ?).',
   },
   {
     condition: (password: string) => password.length >= 8,
