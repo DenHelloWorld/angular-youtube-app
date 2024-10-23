@@ -1,0 +1,38 @@
+<p-fieldset styleClass="w-5/6 mx-auto my-8" [legend]="detailsService.detailsData.channelTitle">
+  <div class="flex row justify-between">
+    <app-custom-button
+      [config]="{
+        raised: true,
+        icon: 'pi pi-angle-double-left'
+      }"
+      (clickEmitter)="handleButtonBack()" />
+    <app-favorite-button class="m-4" [id]="id"></app-favorite-button>
+    <div class="flex gap-2 flex-col justify-start align-items-center">
+      <div class="m-1">
+        <img class="block max-w-none overflow-hidden" alt="Video Preview" [src]="detailsService.detailsData.img.url" />
+      </div>
+      <app-statistics
+        [appColoredBorder]="detailsService.detailsData.publishedAt"
+        [statistics]="detailsService.detailsData.statistics"></app-statistics>
+      <p
+        [appColoredBorder]="detailsService.detailsData.publishedAt"
+        class="text-center font-medium p-2 border-r-2 shadow-md">
+        {{ detailsService.detailsData.title }}
+      </p>
+      <p
+        [appColoredBorder]="detailsService.detailsData.publishedAt"
+        class="font-medium text-center p-2 border-r-2 shadow-md">
+        {{ detailsService.detailsData.publishedAt | date }}
+      </p>
+    </div>
+    <p-divider layout="vertical" />
+    <div class="flex flex-col gap-2 align-items-center justifyt-center">
+      <p-scrollPanel
+        [appColoredBorder]="detailsService.detailsData.publishedAt"
+        class="p-2 border-r-2 shadow-md max-h-full"
+        [style]="{ width: '100%' }">
+        <p>{{ detailsService.detailsData.description }}</p>
+      </p-scrollPanel>
+    </div>
+  </div>
+</p-fieldset>
