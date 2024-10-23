@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-web-storage';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -13,17 +13,31 @@ export class AuthService {
 
   private KEY: string = 'userCredentials';
 
-  private authStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isAuth());
+  public userName = signal<string>('Guest');
 
-  public login(credentials: { userName: string; email: string; password: string }) {
+  public userData = signal<object>({});
+
+  private authStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    this.isAuth(),
+  );
+
+  public login(credentials: {
+    userName: string;
+    email: string;
+    password: string;
+  }) {
     this.lsService.set(this.KEY, { credentials });
     this.authStatus.next(this.isAuth());
+    this.userName.set(credentials.userName);
+    this.userData.set(credentials);
     this.router.navigate(['/greeting']);
   }
 
   public logout() {
     this.lsService.remove(this.KEY);
     this.authStatus.next(this.isAuth());
+    this.userName.set('Guest');
+    this.userData.set({});
     this.router.navigate(['/login']);
   }
 
@@ -35,7 +49,14 @@ export class AuthService {
     return this.authStatus.asObservable();
   }
 
-  public async getAuthData(): Promise<{ credentials: { userName: string; password: string; email: string } } | null> {
-    return this.lsService.get(this.KEY);
+  public async getUserData() {
+    const userData = await this.lsService.get(this.KEY);
+    this.userData.set(userData);
+  }
+
+  public async getUserName() {
+    const authData = await this.lsService.get(this.KEY);
+    const username = authData?.credentials?.userName || 'Guest';
+    this.userName.set(username);
   }
 }

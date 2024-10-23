@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../../../auth/services/auth.service';
 import { getProfileForm } from '../../utils/get-profile-form';
@@ -14,26 +14,13 @@ export class ProfileFormComponent implements OnInit {
 
   public form = this.fb.group({});
 
-  async ngOnInit() {
-    const username = await this.getUsername();
-    const email = await this.getEmail();
-    const password = await this.getPassword();
-    this.form = getProfileForm(this.fb, { username, email, password });
+  constructor() {
+    effect(() => {
+      this.form = getProfileForm(this.fb, this.authService.userData());
+    });
   }
 
-  private async getUsername(): Promise<string> {
-    const authData = await this.authService.getAuthData();
-
-    return authData?.credentials?.userName || 'Guest';
-  }
-
-  private async getEmail(): Promise<string> {
-    const authData = await this.authService.getAuthData();
-    return authData?.credentials?.email || 'Guest';
-  }
-
-  private async getPassword(): Promise<string> {
-    const authData = await this.authService.getAuthData();
-    return authData?.credentials?.password || '';
+  ngOnInit(): void {
+    this.authService.getUserData();
   }
 }

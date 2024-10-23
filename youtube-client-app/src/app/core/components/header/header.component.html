@@ -5,12 +5,16 @@
     </a>
   </div>
 
-  <div *ngIf="authService.getAuthStatus() | async" class="p-toolbar-group-center">
+  <div
+    *ngIf="authService.getAuthStatus() | async"
+    class="p-toolbar-group-center">
     <app-search-string></app-search-string>
   </div>
 
   <div class="p-toolbar-group-end">
-    <div *ngIf="authService.getAuthStatus() | async" class="mr-1 flex items-center gap-2">
+    <div
+      *ngIf="authService.getAuthStatus() | async"
+      class="mr-1 flex items-center gap-2">
       <app-custom-button
         [config]="{
           severity: 'secondary',
@@ -23,7 +27,10 @@
           icon: 'pi pi-heart'
         }"
         [routerLink]="['/main/favorite']"></app-custom-button>
-      <span class="font-bold text-bluegray-50">User</span>
+      <span class="font-bold text-bluegray-50">
+        {{ userName() }}
+      </span>
+
       <app-custom-button
         [config]="{ raised: true, icon: 'pi pi-user', rounded: true }"
         [routerLink]="['/profile']"></app-custom-button>

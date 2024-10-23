@@ -4,11 +4,19 @@ import { authPasswordValidator } from '../../auth/utilits/auth-password.validato
 
 export const getProfileForm = (
   fb: FormBuilder,
-  values: { username: string; email: string; password: string },
+  values: {
+    credentials?: { userName?: string; email?: string; password?: string };
+  } | null,
 ): FormGroup => {
   return fb.group({
-    username: [values.username || '', [Validators.required]],
-    email: [values.email || '', [Validators.required, emaildValidator()]],
-    password: [values.password || '', [Validators.required, authPasswordValidator()]],
+    username: [values?.credentials?.userName || '', [Validators.required]],
+    email: [
+      values?.credentials?.email || '',
+      [Validators.required, emaildValidator()],
+    ],
+    password: [
+      values?.credentials?.password || '',
+      [Validators.required, authPasswordValidator()],
+    ],
   });
 };
