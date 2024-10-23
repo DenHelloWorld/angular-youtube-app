@@ -12,7 +12,7 @@
     "lint--fix": "eslint . --ext .ts --fix",
     "prepare": "cd .. && husky youtube-client-app/.husky",
     "precommit": "npm run lint",
-    "config": "node --loader ts-node/esm src/environments/set-env.mjs"
+    "config": "tsx src/environments/set-env.ts"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +37,7 @@
     "redux-devtools-extension": "^2.13.9",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "tsx": "^4.19.1",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
