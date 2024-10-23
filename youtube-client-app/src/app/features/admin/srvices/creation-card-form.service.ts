@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { creationDateValidator } from 'app/features/admin/utilits/craetion-date.validator';
+import { creationDateValidator } from 'app/features/admin/utils/craetion-date.validator';
 import { addCard } from 'app/redux/actions/custom-card.actions';
 
 @Injectable({

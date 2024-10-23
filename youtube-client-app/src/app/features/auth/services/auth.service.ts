@@ -15,11 +15,10 @@ export class AuthService {
 
   private authStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isAuth());
 
-  public login(username: string, password: string) {
-    const credentials = { username, password };
+  public login(credentials: { userName: string; email: string; password: string }) {
     this.lsService.set(this.KEY, { credentials });
     this.authStatus.next(this.isAuth());
-    this.router.navigate(['/main']);
+    this.router.navigate(['/greeting']);
   }
 
   public logout() {
@@ -34,5 +33,9 @@ export class AuthService {
 
   public getAuthStatus(): Observable<boolean> {
     return this.authStatus.asObservable();
+  }
+
+  public async getAuthData(): Promise<{ credentials: { userName: string; password: string; email: string } } | null> {
+    return this.lsService.get(this.KEY);
   }
 }

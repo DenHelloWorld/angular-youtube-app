@@ -10,6 +10,11 @@ const routes: Routes = [
   { path: '404', component: NotFoundComponent },
   { path: 'greeting', component: GreetingComponent },
   {
+    path: 'profile',
+    loadChildren: () => import('./features/profile/modules/profile.module').then(m => m.ProfileModule),
+    canActivate: [authGuard],
+  },
+  {
     path: 'main',
     loadChildren: () => import('./features/youtube/modules/youtube.module').then(m => m.YoutubeModule),
     canActivate: [authGuard],

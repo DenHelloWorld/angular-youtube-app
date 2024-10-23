@@ -18,7 +18,8 @@ export class AuthFormService {
 
   public initForm(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required, emaildValidator()]],
+      userName: ['', [Validators.required]],
+      email: ['', [Validators.required, emaildValidator()]],
       password: ['', [Validators.required, , authPasswordValidator()]],
     });
     this.initLoginFormState = this.loginForm.value;
@@ -30,8 +31,7 @@ export class AuthFormService {
 
   public onSubmit(): void {
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      this.authService.login(username, password);
+      this.authService.login(this.loginForm.value);
     }
   }
 }

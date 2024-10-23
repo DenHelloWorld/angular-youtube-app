@@ -5,25 +5,50 @@
         <p-iconField iconPosition="right">
           <p-inputIcon styleClass="pi pi-sign-in" />
           <input
-            placeholder="mail@example.com"
+            placeholder="name"
             icon="pi pi-user"
-            formControlName="username"
+            formControlName="userName"
             pInputText
-            id="username"
+            id="userName"
             type="text"
-            aria-describedby="username-help" />
+            aria-describedby="userName-help" />
         </p-iconField>
       </div>
       <div>
-        <small class="font-extralight" *ngIf="authFormService.loginForm.get('username')?.hasError('required')">
+        <small class="font-extralight" *ngIf="authFormService.loginForm.get('userName')?.hasError('required')">
+          Please enter a name
+        </small>
+
+        <small class="text-green-500" *ngIf="!authFormService.loginForm.get('userName')?.errors">
+          The name is valid.
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <div class="text-center">
+        <p-iconField iconPosition="right">
+          <p-inputIcon styleClass="pi pi-sign-in" />
+          <input
+            placeholder="mail@example.com"
+            icon="pi pi-user"
+            formControlName="email"
+            pInputText
+            id="email"
+            type="text"
+            aria-describedby="email-help" />
+        </p-iconField>
+      </div>
+      <div>
+        <small class="font-extralight" *ngIf="authFormService.loginForm.get('email')?.hasError('required')">
           Please enter a login email
         </small>
 
-        <small class="font-extralight text-red-500" *ngIf="authFormService.loginForm.get('username')?.value != ''">
-          {{ authFormService.loginForm.get('username')?.errors?.['customValidator'] }}
+        <small class="font-extralight text-red-500" *ngIf="authFormService.loginForm.get('email')?.value != ''">
+          {{ authFormService.loginForm.get('email')?.errors?.['customValidator'] }}
         </small>
 
-        <small class="text-green-500" *ngIf="!authFormService.loginForm.get('username')?.errors">
+        <small class="text-green-500" *ngIf="!authFormService.loginForm.get('email')?.errors">
           The login email is valid.
         </small>
       </div>
