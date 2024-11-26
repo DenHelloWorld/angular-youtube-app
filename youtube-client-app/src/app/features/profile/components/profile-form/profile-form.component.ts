@@ -22,7 +22,7 @@ export class ProfileFormComponent implements OnInit {
   constructor() {
     this.form = getProfileForm(this.fb, this.authService.userData());
     effect(() => {
-      this.form.patchValue(this.authService.userData().credentials);
+      this.form.patchValue(this.authService.userData());
     });
   }
 
@@ -43,10 +43,8 @@ export class ProfileFormComponent implements OnInit {
 
   async processEdit() {
     if (this.isEditMode) {
-      this.lsService.set(this.authService.KEY, {
-        credentials: this.form.value,
-      });
-      this.authService.userData.set({ credentials: this.form.value });
+      this.lsService.set(this.authService.KEY, this.form.value);
+      this.authService.userData.set(this.form.value );
       this.form.disable();
     } else {
       this.form.enable();

@@ -1,22 +1,20 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emaildValidator } from '../../auth/utilits/auth-email.validator';
 import { authPasswordValidator } from '../../auth/utilits/auth-password.validator';
-import { Credentials } from '../../auth/models/user-data.interface';
+import {  UserData } from '../../auth/models/user-data.interface';
 
 export const getProfileForm = (
   fb: FormBuilder,
-  values: {
-    credentials?: Credentials;
-  } | null,
+  values: UserData | null,
 ): FormGroup => {
   return fb.group({
-    userName: [values?.credentials?.userName || '', [Validators.required]],
+    userName: [values?.userName || '', [Validators.required]],
     email: [
-      values?.credentials?.email || '',
+      values?.email || '',
       [Validators.required, emaildValidator()],
     ],
     password: [
-      values?.credentials?.password || '',
+      values?.password || '',
       [Validators.required, authPasswordValidator()],
     ],
   });

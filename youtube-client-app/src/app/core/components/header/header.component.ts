@@ -11,15 +11,15 @@ export class HeaderComponent implements OnInit {
 
   public authService = inject(AuthService);
 
-  public userName: string = '';
+  public userName?: string = 'Guest';
 
   constructor() {
     effect(() => {
-      this.userName = this.authService.userData().credentials.userName;
+      this.userName = this.authService.userData().userName;
     });
   }
 
   ngOnInit(): void {
-    this.authService.getUserName();
+    this.authService.getUserData();
   }
 }
