@@ -2,6 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-web-storage';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { UserData } from '../models/user-data.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,25 +12,29 @@ export class AuthService {
 
   private lsService = inject(LocalStorageService);
 
-  private KEY: string = 'userCredentials';
+  public KEY: string = 'userCredentials';
 
   public userName = signal<string>('Guest');
 
-  public userData = signal<object>({});
+  public initialUserData: UserData = {
+    credentials: {
+      userName: '',
+      email: '',
+      password: '',
+    },
+  };
+
+  public userData = signal<UserData>({ ...this.initialUserData });
 
   private authStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     this.isAuth(),
   );
 
-  public login(credentials: {
-    userName: string;
-    email: string;
-    password: string;
-  }) {
-    this.lsService.set(this.KEY, { credentials });
+  public login(userData: UserData) {
+    this.lsService.set(this.KEY, { userData });
     this.authStatus.next(this.isAuth());
-    this.userName.set(credentials.userName);
-    this.userData.set(credentials);
+    this.userName.set(userData.credentials.userName);
+    this.userData.set(userData);
     this.router.navigate(['/greeting']);
   }
 
@@ -37,7 +42,7 @@ export class AuthService {
     this.lsService.remove(this.KEY);
     this.authStatus.next(this.isAuth());
     this.userName.set('Guest');
-    this.userData.set({});
+    this.userData.set({ ...this.initialUserData });
     this.router.navigate(['/login']);
   }
 

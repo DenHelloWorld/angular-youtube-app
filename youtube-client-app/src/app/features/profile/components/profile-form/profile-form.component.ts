@@ -1,26 +1,56 @@
 import { Component, effect, inject, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../../auth/services/auth.service';
 import { getProfileForm } from '../../utils/get-profile-form';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-profile-form',
   templateUrl: './profile-form.component.html',
 })
 export class ProfileFormComponent implements OnInit {
-  private authService = inject(AuthService);
+  private authService: AuthService = inject(AuthService);
 
-  private fb = inject(FormBuilder);
+  private fb: FormBuilder = inject(FormBuilder);
 
-  public form = this.fb.group({});
+  private lsService = inject(LocalStorageService);
+
+  private form: FormGroup;
+
+  public isEditMode: boolean = false;
 
   constructor() {
+    this.form = getProfileForm(this.fb, this.authService.userData());
     effect(() => {
-      this.form = getProfileForm(this.fb, this.authService.userData());
+      this.form.patchValue(this.authService.userData().credentials);
     });
   }
 
+  public get profaileForm(): FormGroup {
+    return this.form;
+  }
+
+  public get submitLabel(): string {
+    return this.isEditMode ? 'Save' : 'Edit';
+  }
+
   ngOnInit(): void {
-    this.authService.getUserData();
+    this.form = getProfileForm(this.fb, this.authService.userData());
+    this.authService.getUserData().finally(() => {
+      this.form.disable();
+    });
+  }
+
+  async processEdit() {
+    if (this.isEditMode) {
+      this.lsService.set(this.authService.KEY, {
+        credentials: this.form.value,
+      });
+      this.authService.userData.set({ credentials: this.form.value });
+      this.form.disable();
+    } else {
+      this.form.enable();
+    }
+    this.isEditMode = !this.isEditMode;
   }
 }

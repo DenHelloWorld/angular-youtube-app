@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { SearchStringService } from 'app/core/services/search-string.service';
 import { AuthService } from 'app/features/auth/services/auth.service';
 
@@ -11,7 +11,13 @@ export class HeaderComponent implements OnInit {
 
   public authService = inject(AuthService);
 
-  public userName = this.authService.userName;
+  public userName: string = '';
+
+  constructor() {
+    effect(() => {
+      this.userName = this.authService.userData().credentials.userName;
+    });
+  }
 
   ngOnInit(): void {
     this.authService.getUserName();
