@@ -10,7 +10,6 @@ import { StoreModule } from '@ngrx/store';
 import { metaReducers } from 'app/redux';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from 'environments/environment';
 import { reducers } from 'app/redux/reducers/index.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CustomCardEffects } from 'app/redux/effects/custom-card.effects';
@@ -29,15 +28,13 @@ import { CustomCardEffects } from 'app/redux/effects/custom-card.effects';
     BrowserModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([CustomCardEffects]),
-    !environment.production
-      ? StoreDevtoolsModule.instrument({
-        maxAge: 25,
-        autoPause: true,
-        trace: false,
-        traceLimit: 75,
-        connectInZone: true,
-      })
-      : [],
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      autoPause: true,
+      trace: false,
+      traceLimit: 75,
+      connectInZone: true,
+    }),
   ],
   bootstrap: [AppComponent],
 })

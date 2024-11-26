@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
-import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
+import { SearchService } from 'app/features/youtube/services/search.service';
 import { NotFoundComponent } from 'app/core/pages/not-found/not-found.component';
-import { SearchStringService } from 'app/core/services/search-string.service';
 import { SearchStringComponent } from 'app/core/components/search-string/search-string.component';
 import { AuthButtonComponent } from 'app/features/auth/components/auth-button/auth-button.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -31,8 +30,7 @@ import { GreetingComponent } from '../pages/greeting/greeting.component';
   declarations: [HeaderComponent, NotFoundComponent, GreetingComponent],
   exports: [HeaderComponent, NotFoundComponent, GreetingComponent],
   providers: [
-    SearchResultsService,
-    SearchStringService,
+    SearchService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: YoutubeInterceptor,

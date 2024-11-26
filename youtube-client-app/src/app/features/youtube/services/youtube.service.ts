@@ -13,7 +13,9 @@ import { YouTubeSearchResponse } from 'app/features/youtube/models/youtube-searc
 export class YoutubeService {
   public static videoDetailsByIdSignal = signal<YouTubeVideoDetailsData[]>([]);
 
-  public static videoDetailsByTitleSignal = signal<YouTubeVideoDetailsData[]>([]);
+  public static videoDetailsByTitleSignal = signal<YouTubeVideoDetailsData[]>(
+    [],
+  );
 
   public static errorSignal = signal<string | null>(null);
 
@@ -33,7 +35,7 @@ export class YoutubeService {
       .subscribe(items => YoutubeService.videoDetailsByIdSignal.set(items));
   }
 
-  public getByTitle(title: string): void {
+  public async getByTitle(title: string) {
     const url = BUILDED_URLS.videosByTitle(title);
     this.http
       .get<YouTubeSearchResponse>(url)
@@ -54,6 +56,8 @@ export class YoutubeService {
           return of([]);
         }),
       )
-      .subscribe(videos => YoutubeService.videoDetailsByTitleSignal.set(videos));
+      .subscribe(videos =>
+        YoutubeService.videoDetailsByTitleSignal.set(videos),
+      );
   }
 }

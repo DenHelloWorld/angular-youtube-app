@@ -1,7 +1,7 @@
 import { effect, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-video-detalis.interface';
-import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
+import { SearchService } from 'app/features/youtube/services/search.service';
 import { YoutubeService } from 'app/features/youtube/services/youtube.service';
 import { loadFavoriteCardsSuccess } from 'app/redux/actions/favorite-card.actions';
 import { loadYouTubeCardsFailure } from 'app/redux/actions/youtube-card.actions';
@@ -26,7 +26,7 @@ export class FavoriteItemsService {
   constructor(
     private store: Store,
     private youtubeService: YoutubeService,
-    public searchResultsService: SearchResultsService,
+    public searchResultsService: SearchService,
   ) {
     this.state$ = store as Observable<AppState>;
     this.initEffects();
@@ -81,8 +81,12 @@ export class FavoriteItemsService {
   }
 
   public getFavoritesVideosById(): void {
-    const newIds = this.favoriteListIds.filter(id => !this.currentIds.includes(id));
-    const removedIds = this.currentIds.filter(id => !this.favoriteListIds.includes(id));
+    const newIds = this.favoriteListIds.filter(
+      id => !this.currentIds.includes(id),
+    );
+    const removedIds = this.currentIds.filter(
+      id => !this.favoriteListIds.includes(id),
+    );
 
     const updatedVideos = { ...this.favoriteVideosSubject.value };
 

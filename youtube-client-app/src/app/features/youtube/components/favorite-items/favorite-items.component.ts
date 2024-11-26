@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { FavoriteItemsService } from 'app/features/youtube/services/favorite-items.service';
 
-import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
+import { SearchService } from 'app/features/youtube/services/search.service';
 
 @Component({
   selector: 'app-favorite-items',
   templateUrl: './favorite-items.component.html',
 })
 export class FavoriteItemsComponent {
-  public searchResultsService = inject(SearchResultsService);
+  public searchService = inject(SearchService);
 
   public favoriteItemsService = inject(FavoriteItemsService);
 }

@@ -6,13 +6,14 @@ export interface VideoFilters {
   filterTitle: string;
   filterDate: string;
   filterViews: string;
-  searchInputHeader: string;
 }
 export interface SearchResultsData {
+  searchInputHeader: string;
   filters: VideoFilters;
   searchedItems$: Observable<YouTubeVideoDetailsData[]>;
 }
 export interface CustomCardsData {
+  searchInputHeader: string;
   filters: VideoFilters;
   customItems$: Observable<CustomCard[]>;
 }

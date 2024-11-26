@@ -1,20 +1,13 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { SearchResultsService } from 'app/features/youtube/services/search-results.service';
+import { Component, inject } from '@angular/core';
+import { SearchService } from 'app/features/youtube/services/search.service';
 
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
 })
-export class SearchResultsComponent implements OnDestroy, OnInit {
+export class SearchResultsComponent  {
   public title: string = 'Search Results';
 
-  public searchResultsService = inject(SearchResultsService);
+  public searchService = inject(SearchService);
 
-  public ngOnInit() {
-    this.searchResultsService.turnOnListeners();
-  }
-
-  public ngOnDestroy() {
-    this.searchResultsService.destroyListeners();
-  }
 }

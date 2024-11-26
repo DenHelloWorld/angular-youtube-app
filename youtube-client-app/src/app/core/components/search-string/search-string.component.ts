@@ -1,9 +1,9 @@
 import { FilterService } from './../../../features/youtube/services/filter.service';
-import { Component, inject, OnInit } from '@angular/core';
-import { SearchStringService } from 'app/core/services/search-string.service';
+import { Component, inject } from '@angular/core';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
 import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
 import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
+import { SearchService } from '../../../features/youtube/services/search.service';
 
 @Component({
   selector: 'app-search-string',
@@ -17,16 +17,18 @@ import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
     PRIME_NG_MODULES.InputTextModule,
   ],
 })
-export class SearchStringComponent implements OnInit {
-  public searchStringService = inject(SearchStringService);
+export class SearchStringComponent {
+  searchText = '';
 
   public filterService = inject(FilterService);
 
-  public ngOnInit(): void {
-    this.searchStringService.turnOnSubscriptions();
-  }
+  public searchService = inject(SearchService);
 
-  public ngOnDestroy(): void {
-    this.searchStringService.turnOffSubscriptions();
+  search() {
+    if (this.searchText.length > 2) {
+      setTimeout(() => {
+        this.searchService.searchByTitle(this.searchText);
+      }, 300);
+    }
   }
 }

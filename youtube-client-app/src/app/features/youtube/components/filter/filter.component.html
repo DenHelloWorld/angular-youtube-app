@@ -1,14 +1,20 @@
-<p-sidebar class="flex items-center z-20" modal="false" autoZIndex="false" [(visible)]="filterService.showFilter">
+<p-sidebar
+  class="flex items-center z-20"
+  modal="false"
+  autoZIndex="false"
+  [(visible)]="isShowFilter"
+  (onHide)="hideFilter()">
   <p-toolbar>
     <div class="p-toolbar-group-start"></div>
     <div class="p-toolbar-group-center">
       <p-fieldset legend="Sorting By">
-        <p-menubar [model]="filterItems"></p-menubar>
+        <p-menubar [model]="getItems()"></p-menubar>
         <input
           (input)="filterService.showFilterResults()"
           type="text"
           pInputText
-          [(ngModel)]="filterService.filterTitle" placeholder="Name" />
+          [(ngModel)]="filterService.filterData().filterTitle"
+          placeholder="Name" />
       </p-fieldset>
     </div>
 

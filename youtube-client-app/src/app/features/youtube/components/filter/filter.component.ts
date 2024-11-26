@@ -1,6 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { FilterItemsService } from 'app/features/youtube/services/filter-items.service';
 import { FilterService } from 'app/features/youtube/services/filter.service';
 import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
 import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
@@ -19,18 +18,55 @@ import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
   ],
   templateUrl: './filter.component.html',
 })
-export class FilterComponent implements OnInit {
-  public filterItems: MenuItem[] | undefined;
-
+export class FilterComponent {
   public filterService = inject(FilterService);
 
-  private filterItemService = inject(FilterItemsService);
+  public isShowFilter = false;
 
-  public ngOnInit() {
-    this.filterItems = this.filterItemService.getItems();
+  constructor() {
+    effect(() => {
+      this.isShowFilter = this.filterService.isShowFilter();
+    });
   }
 
-  public ngOnDestroy() {
-    this.filterService.removeSubscriptions();
+  public hideFilter() {
+    this.filterService.isShowFilter.set(false);
+  }
+
+  public getItems(): MenuItem[] {
+    return [
+      {
+        label: 'Date',
+        icon: 'pi pi-calendar-clock',
+        items: [
+          {
+            label: 'Ascending',
+            icon: 'pi pi-calendar-plus',
+            command: () => this.filterService.handleMenubar('Date:Ascending'),
+          },
+          {
+            label: 'Descending',
+            icon: 'pi pi-calendar-minus',
+            command: () => this.filterService.handleMenubar('Date:Descending'),
+          },
+        ],
+      },
+      {
+        label: 'Views',
+        icon: 'pi pi-eye',
+        items: [
+          {
+            label: 'Ascending',
+            icon: 'pi pi-arrow-circle-up',
+            command: () => this.filterService.handleMenubar('Views:Ascending'),
+          },
+          {
+            label: 'Descending',
+            icon: 'pi pi-arrow-circle-down',
+            command: () => this.filterService.handleMenubar('Views:Descending'),
+          },
+        ],
+      },
+    ];
   }
 }

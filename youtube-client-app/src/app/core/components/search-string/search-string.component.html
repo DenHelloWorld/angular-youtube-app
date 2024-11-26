@@ -1,17 +1,14 @@
 <span class="relative p-input-icon-left">
   <i class="pi pi-search"></i>
   <input
-    (input)="
-      searchStringService.updateSearchInput(
-        searchStringService.searchInputHeader
-      )
-    "
-    [(ngModel)]="searchStringService.searchInputHeader"
+    (input)="search()"
+    [(ngModel)]="searchText"
     pInputText
-    placeholder="Search from 3 characters"
-  />
+    placeholder="Search from 3 characters" />
 </span>
 <app-custom-button
   (clickEmitter)="filterService.toggleView()"
-  [config]="{ icon: 'pi pi-sliders-v', raised: !filterService.showFilter }"
-/>
+  [config]="{
+    icon: 'pi pi-sliders-v',
+    raised: !filterService.isShowFilter()
+  }" />
