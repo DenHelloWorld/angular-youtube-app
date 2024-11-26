@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/features/auth/services/auth.service';
 import { CustomButtonComponent } from 'app/shared/components/custom-button/custom-button.component';
-import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-auth-button',
@@ -10,23 +10,14 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [CustomButtonComponent],
 })
-export class AuthButtonComponent extends CustomButtonComponent implements OnInit, OnDestroy {
+export class AuthButtonComponent extends CustomButtonComponent {
   private isAuthenticated: boolean = false;
-
-  private authStatusSubscription?: Subscription;
 
   constructor(private authService: AuthService, private router: Router) {
     super();
-  }
-
-  public ngOnInit(): void {
-    this.authStatusSubscription = this.authService.getAuthStatus().subscribe(status => {
-      this.isAuthenticated = status;
+    effect(() => {
+      this.isAuthenticated = this.authService.authStatus();
     });
-  }
-
-  public ngOnDestroy(): void {
-    this.authStatusSubscription?.unsubscribe();
   }
 
   public authIcon(): string {

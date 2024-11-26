@@ -6,14 +6,14 @@
   </div>
 
   <div
-    *ngIf="authService.getAuthStatus() | async"
+    *ngIf="authService.authStatus()"
     class="p-toolbar-group-center">
     <app-search-string></app-search-string>
   </div>
 
   <div class="p-toolbar-group-end">
     <div
-      *ngIf="authService.getAuthStatus() | async"
+      *ngIf="authService.authStatus()"
       class="mr-1 flex items-center gap-2">
       <app-custom-button
         [config]="{

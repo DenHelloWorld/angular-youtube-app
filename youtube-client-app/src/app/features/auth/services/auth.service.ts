@@ -1,7 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-web-storage';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { UserData } from '../models/user-data.interface';
 
 @Injectable({
@@ -22,30 +21,24 @@ export class AuthService {
 
   public userData = signal<UserData>(this.initialUserData);
 
-  private authStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    this.isAuth(),
-  );
+  public authStatus = signal<boolean>(this.isAuth());
 
   public login(userData: UserData) {
     this.lsService.set(this.KEY, userData);
-    this.authStatus.next(this.isAuth());
+    this.authStatus.set(this.isAuth());
     this.userData.set(userData);
     this.router.navigate(['/greeting']);
   }
 
   public logout() {
     this.lsService.remove(this.KEY);
-    this.authStatus.next(this.isAuth());
+    this.authStatus.set(this.isAuth());
     this.userData.set({ ...this.initialUserData });
     this.router.navigate(['/login']);
   }
 
   public isAuth(): boolean {
     return this.lsService.get(this.KEY) !== null;
-  }
-
-  public getAuthStatus(): Observable<boolean> {
-    return this.authStatus.asObservable();
   }
 
   public async getUserData() {
