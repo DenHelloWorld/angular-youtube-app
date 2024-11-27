@@ -13,9 +13,6 @@ import { CardComponent } from 'app/shared/components/card/card.component';
 import { SearchResultsComponent } from 'app/features/youtube/components/search-results/search-results.component';
 import { CustomCardComponent } from 'app/features/youtube/components/custom-card/custom-card.component';
 import { FilterCustomCardByTitlePipe } from 'app/features/youtube/pipes/customCardPipes/filterCustomCardByTitle.pipe';
-import { FilterYouTubeCardByTitlePipe } from 'app/features/youtube/pipes/youtubeCardPipes/filterYoutubeCardByTitle.pipe';
-import { SortYouTubeByDatePipe } from 'app/features/youtube/pipes/youtubeCardPipes/sortYouTubeCardByDate.pipe';
-import { SortYoutubeCardByViewsPipe } from 'app/features/youtube/pipes/youtubeCardPipes/sortYoutubeCardByViews.pipe';
 import { SortCustomCardByDatePipe } from 'app/features/youtube/pipes/customCardPipes/sortCustomCardByDate.pipe';
 import { FlattenPipe } from 'app/shared/pipes/flatten.pipe';
 import { FavoritePageComponent } from 'app/features/youtube/pages/favorite-page/favorite-page.component';
@@ -23,20 +20,24 @@ import { FavoriteItemsComponent } from 'app/features/youtube/components/favorite
 import { MapKeyValueToArrayPipe } from 'app/shared/pipes/mapKeyValueToArray.pipe';
 import { FavoriteItemsService } from 'app/features/youtube/services/favorite-items.service';
 import { FilterComponent } from '../components/filter/filter.component';
+import { FilterSortYouTubePipe } from '../pipes/youtubeCardPipes/FilterSortYouTube.pipe';
 
 @NgModule({
-  declarations: [SearchResultsComponent, MainComponent, FavoritePageComponent, FavoriteItemsComponent],
+  declarations: [
+    SearchResultsComponent,
+    MainComponent,
+    FavoritePageComponent,
+    FavoriteItemsComponent,
+  ],
   imports: [
     FilterComponent,
     SortCustomCardByDatePipe,
     FilterCustomCardByTitlePipe,
-    FilterYouTubeCardByTitlePipe,
     CustomCardComponent,
     SearchItemComponent,
     ColoredBorderDirective,
-    SortYoutubeCardByViewsPipe,
+    FilterSortYouTubePipe,
     MapKeyValueToArrayPipe,
-    SortYouTubeByDatePipe,
     CustomButtonComponent,
     CardComponent,
     FlattenPipe,

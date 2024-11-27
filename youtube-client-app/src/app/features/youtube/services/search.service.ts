@@ -1,6 +1,5 @@
 import { effect, inject, Injectable } from '@angular/core';
 import { YoutubeService } from './youtube.service';
-import { SharedService } from 'app/shared/services/shared.service';
 import {
   CustomCardsData,
   SearchResultsData,
@@ -17,6 +16,7 @@ import { selectCustomCards } from 'app/redux/selectors/custom-card.selectors';
 import { CustomCard } from 'app/features/youtube/models/custom-card.interface';
 import { selectAllVideosArray } from 'app/redux/selectors/youtube-card.selectors';
 import { Router } from '@angular/router';
+import { FilterService } from './filter.service';
 
 @Injectable({
   providedIn: 'root',
@@ -24,12 +24,14 @@ import { Router } from '@angular/router';
 export class SearchService {
   private router = inject(Router);
 
+  private filterService = inject(FilterService);
+
   customItems: CustomCard[] = [];
 
   public SearchResultsData: SearchResultsData = {
     filters: {
       filterTitle: '',
-      filterDate: 'asc',
+      filterDate: '',
       filterViews: '',
     },
     searchInputHeader: '',
@@ -39,18 +41,14 @@ export class SearchService {
   public CustomCardsData: CustomCardsData = {
     filters: {
       filterTitle: '',
-      filterDate: 'asc',
+      filterDate: '',
       filterViews: '',
     },
     searchInputHeader: '',
     customItems$: this.store.select(selectCustomCards),
   };
 
-  constructor(
-    private youtubeService: YoutubeService,
-    private sharedService: SharedService,
-    private store: Store,
-  ) {
+  constructor(private youtubeService: YoutubeService, private store: Store) {
     this.initializeEffects();
     // this.searchByTitle('RSSchool');
   }
@@ -75,11 +73,11 @@ export class SearchService {
       },
       { allowSignalWrites: true },
     );
-  }
 
-  public listenSearchResultsData() {
-    this.sharedService.setSearchResultsData(this.SearchResultsData);
-    this.sharedService.setCustomCardsData(this.CustomCardsData);
+    effect(() => {
+      this.SearchResultsData.filters = this.filterService.filterData();
+      console.log(this.SearchResultsData);
+    });
   }
 
   public async searchByTitle(title: string) {

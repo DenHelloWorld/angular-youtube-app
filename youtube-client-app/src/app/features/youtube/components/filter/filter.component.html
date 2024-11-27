@@ -1,23 +1,30 @@
-<p-sidebar
-  class="flex items-center z-20"
-  modal="false"
-  autoZIndex="false"
-  [(visible)]="isShowFilter"
-  (onHide)="hideFilter()">
-  <p-toolbar>
-    <div class="p-toolbar-group-start"></div>
-    <div class="p-toolbar-group-center">
-      <p-fieldset legend="Sorting By">
-        <p-menubar [model]="getItems()"></p-menubar>
-        <input
-          (input)="filterService.showFilterResults()"
-          type="text"
-          pInputText
-          [(ngModel)]="filterService.filterData().filterTitle"
-          placeholder="Name" />
-      </p-fieldset>
-    </div>
+<p-toolbar>
+  <div class="p-toolbar-group-start gap-2">
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="filterService.filterData().filterTitle"
+      placeholder="Filter by name" />
 
-    <div class="p-toolbar-group-end"></div>
-  </p-toolbar>
-</p-sidebar>
+    <div class="flex gap-2 items-center">
+      <span class="font-medium text-stone-500">Sort by:</span>
+      <app-custom-button
+        (clickEmitter)="sortByDate()"
+        [config]="{
+          icon: arrow(filterMode.date),
+          label: 'Date',
+          raised: !filterMode.date,
+        }" />
+      <app-custom-button
+        (clickEmitter)="sortByViews()"
+        [config]="{
+          icon: arrow(filterMode.views),
+          label: 'Views',
+          raised: !filterMode.views,
+        }" />
+    </div>
+  </div>
+  <div class="p-toolbar-group-center"></div>
+
+  <div class="p-toolbar-group-end"></div>
+</p-toolbar>

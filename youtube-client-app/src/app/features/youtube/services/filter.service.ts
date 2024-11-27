@@ -1,5 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { SharedService } from 'app/shared/services/shared.service';
+import { Injectable, signal } from '@angular/core';
 import { SearchResultsData } from '../models/search-results-data';
 
 @Injectable({
@@ -14,45 +13,36 @@ export class FilterService {
     filterViews: '',
   });
 
-  // TODO: Восстановить работу фильтра(переехал на сигналы)
-  private sharedService = inject(SharedService);
-
   public toggleView() {
     this.isShowFilter.set(!this.isShowFilter());
   }
 
-  public handleMenubar(str: string) {
-    console.log(str);
+  public handleSort(str: string) {
     switch (str) {
       case 'Date:Ascending':
-        this.filterData.set({
-          ...this.filterData(),
-          filterDate: 'asc',
-        });
+        this.filterData().filterViews = '';
+        this.filterData().filterDate = 'asc';
         break;
-      case 'Date:Descending':
-        this.filterData.set({
-          ...this.filterData(),
-          filterDate: 'desc',
-        });
-        break;
-      case 'Views:Ascending':
-        this.filterData.set({
-          ...this.filterData(),
-          filterViews: 'asc',
-        });
-        break;
-      case 'Views:Descending':
-        this.filterData.set({
-          ...this.filterData(),
-          filterViews: 'desc',
-        });
 
+      case 'Date:Descending':
+        this.filterData().filterViews = '';
+        this.filterData().filterDate = 'desc';
+        break;
+
+      case 'Views:Ascending':
+        this.filterData().filterDate = '';
+        this.filterData().filterViews = 'asc';
+        break;
+
+      case 'Views:Descending':
+        this.filterData().filterDate = '';
+        this.filterData().filterViews = 'desc';
+        break;
+
+      default:
+        this.filterData().filterDate = '';
+        this.filterData().filterViews = '';
         break;
     }
-  }
-
-  public showFilterResults() {
-    this.sharedService.setFilterTitle(this.filterData().filterTitle);
   }
 }

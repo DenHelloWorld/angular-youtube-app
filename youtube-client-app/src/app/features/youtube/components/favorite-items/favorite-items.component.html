@@ -1,19 +1,22 @@
 <p-card class="card text-right">
   <div class="flex flex-wrap justify-center gap-3 p-4">
-    <ng-container *ngIf="favoriteItemsService.favoriteVideosLength > 0; else noFavorites">
+    <ng-container
+      *ngIf="favoriteItemsService.favoriteVideosLength > 0; else noFavorites">
       <div
         *ngFor="
           let favoriteItem of favoriteItemsService.favoriteVideos$
             | async
             | keyvalue
             | mapKeyValueToArray
-            | sortrYouTubeByViews : searchService.SearchResultsData.filters.filterViews
-            | filterYouTubeByTitle : searchService.SearchResultsData.filters.filterTitle
-            | sortYouTubeByDate : searchService.SearchResultsData.filters.filterDate
+            | filterSortYouTube
+              : searchService.SearchResultsData.filters.filterTitle
+              : searchService.SearchResultsData.filters.filterDate
+              : searchService.SearchResultsData.filters.filterViews
         ">
         <app-search-item [itemData]="favoriteItem"></app-search-item>
       </div>
     </ng-container>
+
     <ng-template #noFavorites>
       <p>No favorite videos found.</p>
     </ng-template>

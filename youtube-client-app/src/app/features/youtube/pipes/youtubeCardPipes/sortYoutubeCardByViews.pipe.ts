@@ -6,14 +6,19 @@ import { YouTubeVideoDetailsData } from 'app/features/youtube/models/youtube-vid
   standalone: true,
 })
 export class SortYoutubeCardByViewsPipe implements PipeTransform {
-  public transform(items: YouTubeVideoDetailsData[] | null, order: string): YouTubeVideoDetailsData[] {
+  public transform(
+    items: YouTubeVideoDetailsData[] | null,
+    order: string,
+  ): YouTubeVideoDetailsData[] {
     if (!items) {
       return [];
     }
     return [...items].sort((a, b) => {
       const viewCountA = +(a.statistics?.viewCount ?? 0);
       const viewCountB = +(b.statistics?.viewCount ?? 0);
-      return order === 'asc' ? viewCountA - viewCountB : viewCountB - viewCountA;
+      return order === 'asc'
+        ? viewCountA - viewCountB
+        : viewCountB - viewCountA;
     });
   }
 }

@@ -7,7 +7,6 @@ import { AuthService } from 'app/features/auth/services/auth.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
-
   public authService = inject(AuthService);
 
   public userName?: string = 'Guest';
