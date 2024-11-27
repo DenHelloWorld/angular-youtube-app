@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 export const ANGULAG_MODULES = {
   FormControl: [FormControl],
   BrowserModule: [BrowserModule],

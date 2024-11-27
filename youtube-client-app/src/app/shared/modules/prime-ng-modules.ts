@@ -24,9 +24,13 @@ import { PanelModule } from 'primeng/panel';
 import { StepperModule } from 'primeng/stepper';
 import { DialogModule } from 'primeng/dialog';
 import { ImageModule } from 'primeng/image';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 
 export const PRIME_NG_MODULES = {
   ImageModule: [ImageModule],
+  InputGroupAddonModule: [InputGroupAddonModule],
+  InputGroupModule: [InputGroupModule],
   DialogModule: [DialogModule],
   StepperModule: [StepperModule],
   PanelModule: [PanelModule],

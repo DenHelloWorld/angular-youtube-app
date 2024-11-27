@@ -1,14 +1,10 @@
-<span class="relative p-input-icon-left">
-  <i class="pi pi-search"></i>
-  <input
-    (input)="search()"
-    [(ngModel)]="searchText"
-    pInputText
-    placeholder="Search from 3 characters" />
-</span>
-<!-- <app-custom-button
-  (clickEmitter)="filterService.toggleView()"
-  [config]="{
-    icon: 'pi pi-sliders-v',
-    raised: !filterService.isShowFilter()
-  }" /> -->
+<form class="flex flex-nowrap" (ngSubmit)="search()">
+  <input name="searchText" class="w-full" [(ngModel)]="searchText" pInputText />
+
+  <app-custom-button
+    [config]="{
+      icon: 'pi pi-search',
+      raised: true,
+      type: 'submit'
+    }" />
+</form>

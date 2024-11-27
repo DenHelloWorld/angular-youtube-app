@@ -25,10 +25,8 @@ export class SearchStringComponent {
   public searchService = inject(SearchService);
 
   search() {
-    if (this.searchText.length > 2) {
-      setTimeout(() => {
-        this.searchService.searchByTitle(this.searchText);
-      }, 300);
-    }
+    setTimeout(() => {
+      this.searchService.searchByTitle(this.searchText);
+    }, 300);
   }
 }

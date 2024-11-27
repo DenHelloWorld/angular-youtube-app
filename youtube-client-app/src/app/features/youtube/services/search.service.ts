@@ -76,7 +76,6 @@ export class SearchService {
 
     effect(() => {
       this.SearchResultsData.filters = this.filterService.filterData();
-      console.log(this.SearchResultsData);
     });
   }
 

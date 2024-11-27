@@ -11,6 +11,8 @@ export class HeaderComponent implements OnInit {
 
   public userName?: string = 'Guest';
 
+  public menuVisible: boolean = false;
+
   constructor() {
     effect(() => {
       this.userName = this.authService.userData().userName;
@@ -19,5 +21,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getUserData();
+  }
+
+  toggleMenuState(): void {
+    this.menuVisible = !this.menuVisible;
   }
 }

@@ -1,33 +1,35 @@
-<p-toolbar class="flex-toolbar">
-  <div class="p-toolbar-group-start">
-    <a [routerLink]="['/main']">
+<div class="p-4 flex items-center border-b border-b-gray-400 justify-between w-full">
+  <div >
+    <a [routerLink]="['/']">
       <i class="pi pi-youtube mr-2" style="color: red; font-size: 60px"></i>
     </a>
   </div>
 
-  <div class="p-toolbar-group-end">
+  <div class="flex">
     <div *ngIf="authService.authStatus()" class="mr-1 flex items-center gap-2">
-      <app-search-string/>
+      <app-search-string />
+
       <app-custom-button
         [config]="{
           severity: 'secondary',
           icon: 'pi pi-cog'
         }"
-        [routerLink]="['/admin']"/>
+        [routerLink]="['/admin']" />
       <app-custom-button
         [config]="{
           severity: 'secondary',
           icon: 'pi pi-heart'
         }"
-        [routerLink]="['/main/favorite']"/>
+        [routerLink]="['/main/favorite']" />
+
       <span class="font-bold text-bluegray-50">
         {{ userName }}
       </span>
 
       <app-custom-button
         [config]="{ raised: true, icon: 'pi pi-user', rounded: true }"
-        [routerLink]="['/profile']"/>
+        [routerLink]="['/profile']" />
     </div>
-    <app-auth-button/>
+    <app-auth-button />
   </div>
-</p-toolbar>
+</div>
