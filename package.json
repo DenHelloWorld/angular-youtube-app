@@ -2,16 +2,14 @@
   "name": "youtube-client-app",
   "version": "0.0.0",
   "type": "module",
+  "author": "DenHelloWorld",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "start:dev": "ng serve",
+    "build": "ng build --configuration=production",
     "lint": "eslint . --ext .ts",
     "lint--fix": "eslint . --ext .ts --fix",
-    "prepare": "cd .. && husky youtube-client-app/.husky",
-    "precommit": "npm run lint",
-    "config": "tsx src/environments/set-env.ts"
+    "config": "tsx src/environments/set-env.ts",
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
@@ -29,14 +27,10 @@
     "@ngrx/store-devtools": "^18.0.2",
     "@types/uuid": "^10.0.0",
     "angular-web-storage": "^18.0.0",
-    "build-url-ts": "^6.1.7",
     "dotenv": "^16.4.5",
     "primeicons": "^7.0.0",
     "primeng": "^17.18.3",
-    "redux-devtools-extension": "^2.13.9",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "tsx": "^4.19.1",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
@@ -52,9 +46,12 @@
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
-    "husky": "^9.0.11",
+    "husky": "^9.1.7",
+    "redux-devtools-extension": "^2.13.9",
     "tailwindcss": "^3.4.4",
     "ts-node": "^10.9.2",
+    "tslib": "^2.3.0",
+    "tsx": "^4.19.1",
     "typescript": "~5.4.2",
     "uuid": "^10.0.0"
   }
