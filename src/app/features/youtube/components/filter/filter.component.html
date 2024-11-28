@@ -1,0 +1,30 @@
+<p-toolbar>
+  <div class="p-toolbar-group-start gap-2">
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="filterService.filterData().filterTitle"
+      placeholder="Filter by title" />
+
+    <div class="flex gap-2 items-center">
+      <span class="font-medium text-stone-500">Sort by:</span>
+      <app-custom-button
+        (clickEmitter)="sortByDate()"
+        [config]="{
+          icon: arrow(filterMode.date),
+          label: 'Date',
+          raised: !filterMode.date,
+        }" />
+      <app-custom-button
+        (clickEmitter)="sortByViews()"
+        [config]="{
+          icon: arrow(filterMode.views),
+          label: 'Views',
+          raised: !filterMode.views,
+        }" />
+    </div>
+  </div>
+  <div class="p-toolbar-group-center"></div>
+
+  <div class="p-toolbar-group-end"></div>
+</p-toolbar>

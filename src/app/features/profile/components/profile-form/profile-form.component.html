@@ -1,0 +1,32 @@
+<h2 class="text-2xl font-bold text-center">Credentials</h2>
+<form [formGroup]="profaileForm">
+  <div class="text-center flex flex-col gap-3 m-4">
+    <div class="text-center flex flex-col">
+      <p-iconField iconPosition="right">
+        <p-inputIcon styleClass="pi pi-pencil" />
+        <input
+          placeholder="User Name"
+          formControlName="userName"
+          pInputText
+          id="profile-userName"
+          type="text"
+          aria-describedby="user name" />
+      </p-iconField>
+    </div>
+    <div class="text-center flex flex-col">
+      <p-iconField iconPosition="right">
+        <p-inputIcon styleClass="pi pi-pencil" />
+        <input
+          placeholder="Email"
+          formControlName="email"
+          pInputText
+          id="profile-email"
+          type="text"
+          aria-describedby="email" />
+      </p-iconField>
+    </div>
+    <app-custom-button
+      (clickEmitter)="processEdit()"
+      [config]="{ label: submitLabel }" />
+  </div>
+</form>

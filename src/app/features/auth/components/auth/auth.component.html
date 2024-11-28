@@ -1,0 +1,88 @@
+<p-fieldset legend="Sign In" class="w-full text-center m-4">
+  <form class="flex flex-col gap-3" [formGroup]="authFormService.loginForm" (ngSubmit)="onSubmit()">
+    <div>
+      <div class="text-center">
+        <p-iconField iconPosition="right">
+          <p-inputIcon styleClass="pi pi-sign-in" />
+          <input
+            placeholder="name"
+            icon="pi pi-user"
+            formControlName="userName"
+            pInputText
+            id="userName"
+            type="text"
+            aria-describedby="userName-help" />
+        </p-iconField>
+      </div>
+      <div>
+        <small class="font-extralight" *ngIf="authFormService.loginForm.get('userName')?.hasError('required')">
+          Please enter a name
+        </small>
+
+        <small class="text-green-500" *ngIf="!authFormService.loginForm.get('userName')?.errors">
+          The name is valid.
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <div class="text-center">
+        <p-iconField iconPosition="right">
+          <p-inputIcon styleClass="pi pi-sign-in" />
+          <input
+            placeholder="mail@example.com"
+            icon="pi pi-user"
+            formControlName="email"
+            pInputText
+            id="email"
+            type="text"
+            aria-describedby="email-help" />
+        </p-iconField>
+      </div>
+      <div>
+        <small class="font-extralight" *ngIf="authFormService.loginForm.get('email')?.hasError('required')">
+          Please enter a login email
+        </small>
+
+        <small class="font-extralight text-red-500" *ngIf="authFormService.loginForm.get('email')?.value != ''">
+          {{ authFormService.loginForm.get('email')?.errors?.['customValidator'] }}
+        </small>
+
+        <small class="text-green-500" *ngIf="!authFormService.loginForm.get('email')?.errors">
+          The login email is valid.
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <div class="text-center">
+        <p-password
+          [toggleMask]="true"
+          placeholder="password"
+          formControlName="password"
+          [feedback]="false"></p-password>
+      </div>
+      <small class="font-extralight" *ngIf="authFormService.loginForm.get('password')?.hasError('required')">
+        Please enter a password
+      </small>
+      <small class="text-green-500" *ngIf="!authFormService.loginForm.get('password')?.errors">
+        The password is valid.
+      </small>
+      <small class="font-extralight text-red-500" *ngIf="authFormService.loginForm.get('password')?.value != ''">
+        {{ authFormService.loginForm.get('password')?.errors?.['customValidator'] }}
+      </small>
+    </div>
+
+    <div class="text-center">
+      <app-custom-button
+        [config]="{
+          raised: authFormService.loginForm.valid,
+          type: 'submit',
+          disabled: !authFormService.loginForm.valid
+        }"
+        class="app-custom-button"
+        >Login</app-custom-button
+      >
+    </div>
+  </form>
+</p-fieldset>

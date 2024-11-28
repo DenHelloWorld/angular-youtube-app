@@ -1,0 +1,13 @@
+<p-fieldset legend="Create new card" class="text-center m-4">
+  <div class="text-start">
+    <app-custom-button
+      [config]="{
+        raised: true,
+        icon: 'pi pi-angle-double-left',
+        label: 'to main'
+      }"
+      [routerLink]="['/main']"
+    ></app-custom-button>
+  </div>
+  <app-creation-card-form></app-creation-card-form>
+</p-fieldset>

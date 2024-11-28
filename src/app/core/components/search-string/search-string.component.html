@@ -1,0 +1,10 @@
+<form class="flex flex-nowrap" (ngSubmit)="search()">
+  <input name="searchText" class="w-full" [(ngModel)]="searchText" pInputText placeholder="Search by title" />
+
+  <app-custom-button
+    [config]="{
+      icon: 'pi pi-search',
+      raised: true,
+      type: 'submit'
+    }" />
+</form>

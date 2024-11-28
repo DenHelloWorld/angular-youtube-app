@@ -1,0 +1,31 @@
+<div class="p-4">
+  <app-custom-button
+    [config]="{
+        raised: true,
+        icon: 'pi pi-angle-double-left',
+        label: 'To main',
+      }"
+    [routerLink]="['/main']" />
+  <div class="flex flex-wrap justify-center gap-3 p-4">
+    <ng-container
+      *ngIf="favoriteItemsService.favoriteVideosLength > 0; else noFavorites">
+      <div
+        *ngFor="
+          let favoriteItem of favoriteItemsService.favoriteVideos$
+            | async
+            | keyvalue
+            | mapKeyValueToArray
+            | filterSortYouTube
+              : searchService.SearchResultsData.filters.filterTitle
+              : searchService.SearchResultsData.filters.filterDate
+              : searchService.SearchResultsData.filters.filterViews
+        ">
+        <app-search-item [itemData]="favoriteItem"></app-search-item>
+      </div>
+    </ng-container>
+
+    <ng-template #noFavorites>
+      <p>No favorite videos found.</p>
+    </ng-template>
+  </div>
+</div>
