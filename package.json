@@ -4,7 +4,8 @@
   "type": "module",
   "author": "DenHelloWorld",
   "scripts": {
-    "start:dev": "ng serve",
+    "start:dev": "ng serve --configuration=development",
+    "start:prod": " ng build --configuration=production && ng serve --configuration=production",
     "build": "ng build --configuration=production",
     "lint": "eslint . --ext .ts",
     "lint--fix": "eslint . --ext .ts --fix",
