@@ -7,6 +7,7 @@ import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
 import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
 import { ColoredBorderDirective } from 'app/shared/directives/colored-border.directive';
 import { FavoriteButtonComponent } from 'app/features/youtube/components/favorite-button/favorite-button.component';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detalis',
@@ -25,11 +26,15 @@ import { FavoriteButtonComponent } from 'app/features/youtube/components/favorit
   ],
 })
 export class DetailsComponent implements OnInit, OnDestroy {
-  public id: string = '';
-
   public detailsService = inject(DetailsService);
 
   private activatedRoute = inject(ActivatedRoute);
+
+  private sanitizer = inject(DomSanitizer);
+
+  public safeVideoUrl: SafeResourceUrl = '';
+
+  public id: string = '';
 
   public ngOnInit(): void {
     this.turnOnSubscribes();
@@ -43,11 +48,18 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
       this.id = id;
+      this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+        this.getVideoEmbedUrl(id),
+      );
     });
     this.detailsService.loadDetailsById(this.id);
   }
 
   public handleButtonBack() {
     this.detailsService.handleButtonBack();
+  }
+
+  public getVideoEmbedUrl(videoId: string): string {
+    return `https://www.youtube.com/embed/${videoId}`;
   }
 }
