@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "youtube-client-app": {
+    "angular-youtube-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/youtube-client-app",
+            "outputPath": "dist/angular-youtube-app",
+            "baseHref": "/angular-youtube-app/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -35,11 +36,6 @@
           "configurations": {
             "production": {
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kB",
@@ -65,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "youtube-client-app:build:production"
+              "buildTarget": "angular-youtube-app:build:production"
             },
             "development": {
-              "buildTarget": "youtube-client-app:build:development"
+              "buildTarget": "angular-youtube-app:build:development"
             }
           },
           "defaultConfiguration": "development"
