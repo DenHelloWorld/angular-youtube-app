@@ -17,4 +17,4 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Deploy Example
 
-[YoutubeClientApp](https://denhelloworld.github.io/angular-youtube-app/browser/)
+[YoutubeClientApp](https://denhelloworld.github.io/angular-youtube-app/)
