@@ -16,8 +16,6 @@ export class NotFoundComponent {
     });
   }
 
-
-
   public isAuth() {
     return this.isAuthenticated ? 'To main' : 'To Login';
   }

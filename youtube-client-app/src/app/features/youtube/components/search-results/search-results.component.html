@@ -1,29 +1,37 @@
 <app-filter />
 
-<p-card class="card text-right">
+
   <div class="flex flex-wrap justify-center gap-3 p-4">
+    <h2
+      *ngIf="!(searchService.SearchResultsData.searchedItems$ | async)?.length"
+      class="text-center m-4 sm:text-3xl text-2xl text-gray-900 font-medium title-font">
+      Start your search...
+    </h2>
     <ng-container *ngIf="searchService.CustomCardsData.customItems$ | async">
       <div
-        *ngFor="let customItem of searchService.customItems
-          | filterCustomByTitle : searchService.CustomCardsData.filters.filterTitle
-          | sortCustomCardByDatePipe : searchService.CustomCardsData.filters.filterDate"
-      >
+        *ngFor="
+          let customItem of searchService.customItems
+            | filterCustomByTitle
+              : searchService.CustomCardsData.filters.filterTitle
+            | sortCustomCardByDatePipe
+              : searchService.CustomCardsData.filters.filterDate
+        ">
         <app-custom-card [customItemData]="customItem"></app-custom-card>
       </div>
     </ng-container>
 
     <ng-container *ngIf="searchService.SearchResultsData">
       <div
-        *ngFor="let searchedItem of searchService.SearchResultsData.searchedItems$
-      | async
-      | filterSortYouTube: searchService.SearchResultsData.filters.filterTitle
-      : searchService.SearchResultsData.filters.filterDate
-      : searchService.SearchResultsData.filters.filterViews"
-      >
+        *ngFor="
+          let searchedItem of searchService.SearchResultsData.searchedItems$
+            | async
+            | filterSortYouTube
+              : searchService.SearchResultsData.filters.filterTitle
+              : searchService.SearchResultsData.filters.filterDate
+              : searchService.SearchResultsData.filters.filterViews
+        ">
         <app-search-item [itemData]="searchedItem"></app-search-item>
       </div>
     </ng-container>
   </div>
-</p-card>
-
 

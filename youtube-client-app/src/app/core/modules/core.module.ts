@@ -5,7 +5,7 @@ import { NotFoundComponent } from 'app/core/pages/not-found/not-found.component'
 import { SearchStringComponent } from 'app/core/components/search-string/search-string.component';
 import { AuthButtonComponent } from 'app/features/auth/components/auth-button/auth-button.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { YoutubeInterceptor } from 'app/shared/interceptors/youtube.interceptor';
+import { YoutubeInterceptor } from 'app/features/youtube/interceptors/youtube.interceptor';
 import { PRIME_NG_MODULES } from 'app/shared/modules/prime-ng-modules';
 import { ANGULAG_MODULES } from 'app/shared/modules/angular-modules';
 import { FilterComponent } from 'app/features/youtube/components/filter/filter.component';

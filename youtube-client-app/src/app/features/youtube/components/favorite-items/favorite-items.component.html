@@ -1,4 +1,11 @@
-<p-card class="card text-right">
+<div class="p-4">
+  <app-custom-button
+    [config]="{
+        raised: true,
+        icon: 'pi pi-angle-double-left',
+        label: 'To main',
+      }"
+    [routerLink]="['/main']" />
   <div class="flex flex-wrap justify-center gap-3 p-4">
     <ng-container
       *ngIf="favoriteItemsService.favoriteVideosLength > 0; else noFavorites">
@@ -21,4 +28,4 @@
       <p>No favorite videos found.</p>
     </ng-template>
   </div>
-</p-card>
+</div>

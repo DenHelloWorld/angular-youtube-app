@@ -35,7 +35,7 @@ export class FilterComponent implements OnInit {
 
   public arrow(order: SortOrderType): string | undefined {
     if (order === null) {
-      return 'pi pi-ban';
+      return 'pi pi-expand';
     }
     return order === SortOrder.ASC ? 'pi pi-angle-up' : 'pi pi-angle-down';
   }
