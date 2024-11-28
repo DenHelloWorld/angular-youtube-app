@@ -1,7 +1,9 @@
-<p-fieldset styleClass="w-5/6 mx-auto my-8" [legend]="detailsService.detailsData.channelTitle">
+<p-fieldset
+  styleClass="w-5/6 mx-auto my-8"
+  [legend]="detailsService.detailsData.channelTitle">
   <div class="flex row justify-center flex-wrap">
-    <div class="flex">
-      <div class="flex gap-2 flex-col justify-start align-items-center">
+    <div class="flex w-full">
+      <div class="flex w-full gap-2 flex-col justify-start align-items-center">
         <div class="flex gap-4">
           <app-custom-button
             [config]="{
@@ -11,36 +13,40 @@
             (clickEmitter)="handleButtonBack()" />
           <app-favorite-button [id]="id"></app-favorite-button>
         </div>
-        <div class="mx-auto">
-          <img
-            class="block max-w-none overflow-hidden"
-            alt="Video Preview"
-            [src]="detailsService.detailsData.img.url" />
+        <div
+          class="w-full max-h-auto m-auto relative"
+          style="padding-bottom: 56.25%; /* 16:9 aspect ratio */">
+          <iframe
+            class="absolute top-0 left-0 w-full h-full"
+            [src]="safeVideoUrl"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
+
         <app-statistics
+          class="w-1/2 m-auto"
           [appColoredBorder]="detailsService.detailsData.publishedAt"
           [statistics]="detailsService.detailsData.statistics"></app-statistics>
         <p
           [appColoredBorder]="detailsService.detailsData.publishedAt"
-          class="text-center font-medium p-2 border-r-2 shadow-md">
+          class="text-center font-medium p-2 border-r-2 shadow-md w-1/2 m-auto">
           {{ detailsService.detailsData.title }}
         </p>
         <p
           [appColoredBorder]="detailsService.detailsData.publishedAt"
-          class="font-medium text-center p-2 border-r-2 shadow-md">
+          class="font-medium text-center p-2 border-r-2 shadow-md w-1/2 m-auto">
           {{ detailsService.detailsData.publishedAt | date }}
         </p>
       </div>
     </div>
 
     <div>
-      <div class="flex flex-col gap-2 align-items-center justifyt-center">
-        <p-scrollPanel
-          [appColoredBorder]="detailsService.detailsData.publishedAt"
-          class="p-2 border-r-2 shadow-md max-h-full"
-          [style]="{ width: '100%' }">
-          <p>{{ detailsService.detailsData.description }}</p>
-        </p-scrollPanel>
+      <div
+        [appColoredBorder]="detailsService.detailsData.publishedAt"
+        class="p-2 border-r-2 shadow-md max-h-full overflow-hidden">
+        <p>{{ detailsService.detailsData.description }}</p>
       </div>
     </div>
   </div>
