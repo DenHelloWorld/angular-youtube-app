@@ -2,8 +2,8 @@
   styleClass="w-5/6 mx-auto my-8"
   [legend]="detailsService.detailsData.channelTitle">
   <div class="flex row justify-center flex-wrap">
-    <div class="flex">
-      <div class="flex gap-2 flex-col justify-start align-items-center">
+    <div class="flex w-full">
+      <div class="flex w-full gap-2 flex-col justify-start align-items-center">
         <div class="flex gap-4">
           <app-custom-button
             [config]="{
@@ -13,19 +13,20 @@
             (clickEmitter)="handleButtonBack()" />
           <app-favorite-button [id]="id"></app-favorite-button>
         </div>
-        <div class="w-1/2 m-auto">
-          <div>
-            <iframe
-              class="w-full text-center m-auto"
-              [src]="safeVideoUrl"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
+        <div
+          class="w-full max-h-auto m-auto relative"
+          style="padding-bottom: 56.25%; /* 16:9 aspect ratio */">
+          <iframe
+            class="absolute top-0 left-0 w-full h-full"
+            [src]="safeVideoUrl"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
+
         <app-statistics
-        class="w-1/2 m-auto"
+          class="w-1/2 m-auto"
           [appColoredBorder]="detailsService.detailsData.publishedAt"
           [statistics]="detailsService.detailsData.statistics"></app-statistics>
         <p
